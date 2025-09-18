@@ -18,3 +18,12 @@ func _process(delta):
 		direction.y -= 1
 
 	position += direction.normalized() * speed * delta
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if($menu.is_visible_in_tree()):
+			$menu.visible = false;
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			$menu.visible = true;
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	

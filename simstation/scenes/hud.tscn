@@ -20,42 +20,74 @@ offset_bottom = 85.0
 bbcode_enabled = true
 text = "[center][font_size=24]3 000 000 $"
 
-[node name="barre_etat" type="Control" parent="."]
+[node name="barreEtat" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 488.0
 offset_top = 51.0
 offset_right = 1452.0
 offset_bottom = 131.0
 
-[node name="efficacite" type="Panel" parent="barre_etat"]
+[node name="efficacite" type="Panel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 756.0
 offset_right = 942.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="sante_mentale" type="Panel" parent="barre_etat"]
+[node name="LabelEfficacite" type="Label" parent="barreEtat/efficacite"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 27.0
+text = "0/100"
+
+[node name="santeMentale" type="Panel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 523.0
 offset_right = 709.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="environnement" type="Panel" parent="barre_etat"]
+[node name="LabelSanteMentale" type="Label" parent="barreEtat/santeMentale"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 27.0
+text = "0/100"
+
+[node name="environnement" type="Panel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 291.0
 offset_right = 477.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="sante" type="Panel" parent="barre_etat"]
+[node name="LabelEnvironnement" type="Label" parent="barreEtat/environnement"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 27.0
+text = "0/100"
+
+[node name="sante" type="Panel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 52.0
 offset_right = 238.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="sante_text" type="RichTextLabel" parent="barre_etat"]
+[node name="LabelSante" type="Label" parent="barreEtat/sante"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 27.0
+text = "0/100"
+
+[node name="santeText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 30.0
@@ -64,7 +96,7 @@ offset_bottom = 64.0
 bbcode_enabled = true
 text = "[center][font_size=24]Santé"
 
-[node name="environnement_text" type="RichTextLabel" parent="barre_etat"]
+[node name="environnementText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 756.0
 offset_top = 30.0
@@ -73,7 +105,7 @@ offset_bottom = 64.0
 bbcode_enabled = true
 text = "[center][font_size=24]Environnement"
 
-[node name="sante_mentale_text" type="RichTextLabel" parent="barre_etat"]
+[node name="sante_mentaleText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 523.0
 offset_top = 30.0
@@ -82,7 +114,7 @@ offset_bottom = 64.0
 bbcode_enabled = true
 text = "[center][font_size=24]Santé mentale"
 
-[node name="efficacite_text" type="RichTextLabel" parent="barre_etat"]
+[node name="efficaciteText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 291.0
 offset_top = 30.0
@@ -99,14 +131,14 @@ offset_right = 245.0
 offset_bottom = 1014.0
 text = "SHOP"
 
-[node name="info_haut_gauche" type="Control" parent="."]
+[node name="infoHautGauche" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 80.0
 offset_top = 44.0
 offset_right = 251.0
 offset_bottom = 147.0
 
-[node name="date" type="RichTextLabel" parent="info_haut_gauche"]
+[node name="date" type="RichTextLabel" parent="infoHautGauche"]
 layout_mode = 0
 offset_left = -20.0
 offset_top = 7.0
@@ -115,7 +147,7 @@ offset_bottom = 41.0
 bbcode_enabled = true
 text = "[center][font_size=24]XX/XX/2025"
 
-[node name="temperature" type="RichTextLabel" parent="info_haut_gauche"]
+[node name="temperature" type="RichTextLabel" parent="infoHautGauche"]
 layout_mode = 0
 offset_left = -20.0
 offset_top = 58.0
