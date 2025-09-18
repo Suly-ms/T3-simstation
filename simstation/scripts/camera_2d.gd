@@ -19,10 +19,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		# Molette vers le haut → zoom avant
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			zoom -= Vector2(zoom_step, zoom_step)
+			zoom += Vector2(zoom_step*zoom.x, zoom_step*zoom.y)
 		# Molette vers le bas → zoom arrière
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			zoom += Vector2(zoom_step, zoom_step)
+			zoom -= Vector2(zoom_step*zoom.x, zoom_step*zoom.y)
 
 		# Clic gauche → activer/désactiver drag
 		elif event.button_index == MOUSE_BUTTON_LEFT:
