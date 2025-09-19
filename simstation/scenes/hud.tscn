@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=3 format=3 uid="uid://cnva1t7elyuce"]
+
+[ext_resource type="Script" uid="uid://b6hm1i2c17x8n" path="res://scripts/hud.gd" id="1_ahhtf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
 bg_color = Color(1, 0.345884, 0.252034, 1)
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ahhtf")
 
 [node name="argent" type="RichTextLabel" parent="."]
 layout_mode = 0
