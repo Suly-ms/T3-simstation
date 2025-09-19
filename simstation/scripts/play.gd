@@ -1,15 +1,6 @@
 extends Node2D
 
-@export var populationCount = 5
-@export var sante = 100
-@export var efficacite = 100
-@export var santeMentale = 100
-@export var environement = 100
-
-@export var heure = 0 # 0=Jour et 1=Nuit
-@export var temperature = 30 # Degré Celcius
-
-@export var batiments = {
+var batiments = {
 	0: "Dortoir",
 	1: "Cantine",
 	2: "Labo de recherche",
@@ -18,7 +9,7 @@ extends Node2D
 }
 
 # Id bâtiment : [Santé, Pollution, Description]
-@export var infoBatiments = {
+var infoBatiments = {
 	0: [100, 5, "Permet de se reposer tranquillement"],
 	1: [80, 10, "Fournit de la nourriture aux habitants"],
 	2: [50, 15, "Permet de faire des recherches scientifiques"],
@@ -42,27 +33,27 @@ func calculer_etat():
 		total_sante_mentale += info[0] * 0.5  # La santé mentale est une fraction de la santé physique
 
 	# Moyenne par bâtiment
-	sante = clamp(total_sante / batiments.size(), 0, 100)
-	santeMentale = clamp(total_sante_mentale / batiments.size(), 0, 100)
+	Global.sante = clamp(total_sante / batiments.size(), 0, 100)
+	Global.santeMentale = clamp(total_sante_mentale / batiments.size(), 0, 100)
 	
 	# L'environnement diminue avec la pollution
-	environement = clamp(100 - total_pollution, 0, 100)
+	Global.environement = clamp(100 - total_pollution, 0, 100)
 	
 	# Efficacité pourrait être une moyenne de santé physique et mentale
-	efficacite = clamp((sante + santeMentale) / 2, 0, 100)
+	Global.efficacite = clamp((Global.sante + Global.santeMentale) / 2, 0, 100)
 	
 	# Ajustements supplémentaires
-	if heure == 1:  # Nuit
-		santeMentale -= 5
-	if temperature > 35 or temperature < 15:
-		sante -= 10
-		efficacite -= 10
+	if Global.heure == 1:  # Nuit
+		Global.santeMentale -= 5
+	if Global.temperature > 35 or Global.temperature < 15:
+		Global.sante -= 10
+		Global.efficacite -= 10
 	
 	# On garde les valeurs entre 0 et 100
-	sante = clamp(sante, 0, 100)
-	santeMentale = clamp(santeMentale, 0, 100)
-	efficacite = clamp(efficacite, 0, 100)
-	environement = clamp(environement, 0, 100)
+	Global.sante = clamp(Global.sante, 0, 100)
+	Global.santeMentale = clamp(Global.santeMentale, 0, 100)
+	Global.efficacite = clamp(Global.efficacite, 0, 100)
+	Global.environement = clamp(Global.environement, 0, 100)
 
 func _process(_delta):
 	pass
