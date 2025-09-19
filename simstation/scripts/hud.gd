@@ -1,7 +1,18 @@
 extends Control
 
-func _process(delta):
-	$barreEtat/efficacite/LabelEfficacite.text = str(Global.efficacite) + "/100"
-	$barreEtat/santeMentale/LabelSanteMentale.text = str(Global.santeMentale) + "/100"
-	$barreEtat/environnement/LabelEnvironnement.text = str(Global.environement) + "/100"
-	$barreEtat/sante/LabelSante.text = str(Global.sante) + "/100"
+@onready var santeLabel = $barreEtat/sante/LabelSante
+@onready var mentaleLabel = $barreEtat/santeMentale/LabelSanteMentale
+@onready var efficaciteLabel = $barreEtat/efficacite/LabelEfficacite
+@onready var pollutionLabel = $barreEtat/pollution/LabelPollution
+
+func _ready() -> void:
+	miseAJourHUD()
+
+func _process(_delta):
+	miseAJourHUD()
+	
+func miseAJourHUD():
+	efficaciteLabel.text = str(Global.efficacite) + "/100"
+	mentaleLabel.text = str(Global.santeMentale) + "/100"
+	pollutionLabel.text = str(Global.pollution) + "/100"
+	santeLabel.text = str(Global.sante) + "/100"

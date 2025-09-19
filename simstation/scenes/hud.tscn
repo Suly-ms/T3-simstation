@@ -60,14 +60,14 @@ offset_right = 112.0
 offset_bottom = 27.0
 text = "0/100"
 
-[node name="environnement" type="Panel" parent="barreEtat"]
+[node name="pollution" type="Panel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 291.0
 offset_right = 477.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="LabelEnvironnement" type="Label" parent="barreEtat/environnement"]
+[node name="LabelPollution" type="Label" parent="barreEtat/pollution"]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 4.0
@@ -99,16 +99,16 @@ offset_bottom = 64.0
 bbcode_enabled = true
 text = "[center][font_size=24]Santé"
 
-[node name="environnementText" type="RichTextLabel" parent="barreEtat"]
+[node name="pollutionText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
-offset_left = 756.0
+offset_left = 291.0
 offset_top = 30.0
-offset_right = 942.0
+offset_right = 477.0
 offset_bottom = 64.0
 bbcode_enabled = true
-text = "[center][font_size=24]Environnement"
+text = "[center][font_size=24]Pollution"
 
-[node name="sante_mentaleText" type="RichTextLabel" parent="barreEtat"]
+[node name="santeMentaleText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 523.0
 offset_top = 30.0
@@ -119,9 +119,9 @@ text = "[center][font_size=24]Santé mentale"
 
 [node name="efficaciteText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
-offset_left = 291.0
+offset_left = 756.0
 offset_top = 30.0
-offset_right = 477.0
+offset_right = 942.0
 offset_bottom = 64.0
 bbcode_enabled = true
 text = "[center][font_size=24]Efficacité"
