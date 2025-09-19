@@ -6,7 +6,7 @@ var batimentsNombre = {
 	2: 5, # Labo recherche
 	3: 1, # Salle sport
 	4: 1,  # Salle repos
-	5: 2
+	5: 200
 }
 
 var batimentsDef = {
@@ -30,58 +30,60 @@ var infoBatiments = {
 
 
 func calculer_etat():
-	# --- Santé des habitants ---
-	var sante_total_SD = 0
-	var sante_max_totale = 0
+	# --- Santé brute ---
+	var sante_brute = 0
 	for h in Global.population:
-		sante_total_SD += h["sante"]
-		sante_max_totale += 100   # chaque habitant a 100 max
-	sante_total_SD = (float(sante_total_SD) / sante_max_totale) * 100 if sante_max_totale > 0 else 0
+		sante_brute += h["sante"]
 
-	# --- Santé mentale des habitants ---
-	var mentale_total_SD = 0
-	var mentale_max_totale = 0
+	# --- Bonheur brut (habitants) ---
+	var bonheur_brute = 0
+	var bonheur_max = 0
 	for h in Global.population:
-		mentale_total_SD += h["sante_mentale"]
-		mentale_max_totale += 100
-	mentale_total_SD = (float(mentale_total_SD) / mentale_max_totale) * 100 if mentale_max_totale > 0 else 0
+		bonheur_brute += h["bonheur"]
+		bonheur_max += 100
+	if bonheur_max > 0:
+		bonheur_brute = (float(bonheur_brute) / bonheur_max) * 100
 
-	# --- Efficacité des habitants ---
-	var efficacite_total_SD = 0
-	var efficacite_max_totale = 0
+	# --- Efficacité brute ---
+	var efficacite_brute = 0
 	for h in Global.population:
-		efficacite_total_SD += h["efficacite"]
-		efficacite_max_totale += 100
-	efficacite_total_SD = (float(efficacite_total_SD) / efficacite_max_totale) * 100 if efficacite_max_totale > 0 else 0
+		efficacite_brute += h["efficacite"]
 
+	# --- Pollution brute ---
 	var pollution_totale = 0
 	var batiments_total = 0
 	for id in batimentsNombre.keys():
 		var nombre = batimentsNombre[id]
 		pollution_totale += infoBatiments[id][1] * nombre
 		batiments_total += nombre
-
 	var pollution_moyenne = float(pollution_totale) / batiments_total if batiments_total > 0 else 0
-	Global.pollution = int(round(pollution_moyenne))
+	Global.pollution = int(clamp(pow(pollution_moyenne, 1.2), 0, 100)) # exposant >1 amplifie
+
 
 	# --- Bonheur des bâtiments ---
-	var bonheur_total = 0
-	var bonheur_max = 0
+	var bonheurBatiment_total = 0
+	var bonheurBatiment_max = 0
 	for id in batimentsNombre.keys():
 		var nombre = batimentsNombre[id]
-		var bonheur_batiment = infoBatiments[id][2]   # index 2 = bonheur
-		bonheur_total += bonheur_batiment * nombre
-		bonheur_max += 100 * nombre                  # max bonheur possible pour ces bâtiments
+		bonheurBatiment_total += infoBatiments[id][2] * nombre
+		bonheurBatiment_max += 100 * nombre
+	var bonheurBatiment_score = (float(bonheurBatiment_total) / bonheurBatiment_max) * 100 if bonheurBatiment_max > 0 else 50
 
-	# Score normalisé entre 0 et 100
-	var bonheur_score = clamp((float(bonheur_total) / bonheur_max) * 100, 0, 100) if bonheur_max > 0 else 50
+	# --- Somme brute ---
+	var bonheur_total = bonheur_brute + bonheurBatiment_score
+	var sante_finale = sante_brute - Global.pollution + bonheur_total
+	var efficacite_finale = efficacite_brute - (sante_finale / 2) - (bonheur_total / 2)
 
-	# --- Formules finales ---
-	Global.santeMentale = clamp(int(round(mentale_total_SD + bonheur_score)), 0, 100)
-	Global.sante = clamp(int(round(sante_total_SD - (Global.pollution / 2) + (Global.santeMentale / 2))), 0, 100)
-	Global.efficacite = clamp(int(round(efficacite_total_SD - (Global.sante / 2) - (Global.santeMentale / 2))), 0, 100)
-	
-	print(str(Global.sante) + " ", str(Global.santeMentale) + " ", str(Global.efficacite) + " ", str(Global.pollution))
+	# --- Normalisation sur 0-100 ---
+	Global.bonheur = clamp(int(round(bonheur_total)), 0, 100)
+	Global.sante = clamp(int(round(sante_finale / (100 * len(Global.population)) * 100)), 0, 100)
+	Global.efficacite = clamp(int(round(efficacite_finale / (100 * len(Global.population)) * 100)), 0, 100)
 
 func _ready() -> void:
 	calculer_etat()
+	
+func _process(_delta):
+	calculer_etat()
+
+func _on_button_pressed() -> void:
+	Global.population.append({"sante": RandomNumberGenerator.new().randi_range(10,100), "efficacite": RandomNumberGenerator.new().randi_range(50,100), "bonheur": 0})

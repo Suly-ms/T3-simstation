@@ -45,14 +45,14 @@ offset_right = 112.0
 offset_bottom = 27.0
 text = "0/100"
 
-[node name="santeMentale" type="Panel" parent="barreEtat"]
+[node name="bonheur" type="Panel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 523.0
 offset_right = 709.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="LabelSanteMentale" type="Label" parent="barreEtat/santeMentale"]
+[node name="Labelbonheur" type="Label" parent="barreEtat/bonheur"]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 4.0
@@ -108,14 +108,14 @@ offset_bottom = 64.0
 bbcode_enabled = true
 text = "[center][font_size=24]Pollution"
 
-[node name="santeMentaleText" type="RichTextLabel" parent="barreEtat"]
+[node name="bonheurText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0
 offset_left = 523.0
 offset_top = 30.0
 offset_right = 709.0
 offset_bottom = 64.0
 bbcode_enabled = true
-text = "[center][font_size=24]Santé mentale"
+text = "[center][font_size=24]Bonheur"
 
 [node name="efficaciteText" type="RichTextLabel" parent="barreEtat"]
 layout_mode = 0

@@ -68,3 +68,12 @@ text = "Quitter"
 position = Vector2(801, 523)
 scale = Vector2(0.307615, 0.293587)
 texture = ExtResource("4_hsi3f")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 559.0
+offset_top = 163.0
+offset_right = 681.0
+offset_bottom = 200.0
+text = "Ajouter pop"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

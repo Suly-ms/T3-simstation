@@ -1,12 +1,12 @@
 extends Node
 
 var population = [
-	{"sante": 100, "efficacite": 100, "sante_mentale": 0}
+	{"sante": 100, "efficacite": 100, "bonheur": 50}
 ]
 
 var sante
 var efficacite
-var santeMentale
+var bonheur
 var pollution
 
 var heure = 0 # 0=Jour et 1=Nuit

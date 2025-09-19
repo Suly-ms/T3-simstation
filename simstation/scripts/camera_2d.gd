@@ -3,7 +3,7 @@ extends Camera2D
 @export var speed := 400.0
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 
 func _process(delta):
 	var direction := Vector2.ZERO
@@ -22,8 +22,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if($menu.is_visible_in_tree()):
 			$menu.visible = false;
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			$menu.visible = true;
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
