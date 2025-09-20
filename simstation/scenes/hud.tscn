@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=7 format=3 uid="uid://cnva1t7elyuce"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
+[ext_resource type="Script" uid="uid://b6hm1i2c17x8n" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://dwhud7j00akxx" path="res://textures/health_bar.png" id="2_oo0fn"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://dko1p3xonfuc" path="res://textures/health_bar_empty.png" id="5_uo2fv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
 bg_color = Color(1, 0.345884, 0.252034, 1)
@@ -12,117 +16,166 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_5ysmq")
 script = ExtResource("1_ahhtf")
 
-[node name="argent" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 1658.0
-offset_top = 51.0
-offset_right = 1871.0
-offset_bottom = 85.0
-bbcode_enabled = true
-text = "[center][font_size=24]3 000 000 $"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="barre_etat" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 488.0
-offset_top = 51.0
-offset_right = 1452.0
-offset_bottom = 131.0
+[node name="background" type="Panel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2309.0
+offset_right = 2309.0
+offset_bottom = 168.0
+grow_horizontal = 2
 
-[node name="efficacite" type="Panel" parent="barre_etat"]
+[node name="barre_etat" type="Control" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -596.0
+offset_right = 596.0
+offset_bottom = 133.0
+grow_horizontal = 2
+
+[node name="efficacite" type="Panel" parent="CanvasLayer/background/barre_etat"]
 layout_mode = 0
-offset_left = 756.0
-offset_right = 942.0
-offset_bottom = 30.0
+offset_left = 1323.0
+offset_top = 80.0
+offset_right = 1509.0
+offset_bottom = 110.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
 
-[node name="sante_mentale" type="Panel" parent="barre_etat"]
+[node name="efficacite_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat/efficacite"]
 layout_mode = 0
-offset_left = 523.0
-offset_right = 709.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="environnement" type="Panel" parent="barre_etat"]
-layout_mode = 0
-offset_left = 291.0
-offset_right = 477.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="sante" type="Panel" parent="barre_etat"]
-layout_mode = 0
-offset_left = 52.0
-offset_right = 238.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="sante_text" type="RichTextLabel" parent="barre_etat"]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 30.0
-offset_right = 238.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Santé"
-
-[node name="environnement_text" type="RichTextLabel" parent="barre_etat"]
-layout_mode = 0
-offset_left = 756.0
-offset_top = 30.0
-offset_right = 942.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Environnement"
-
-[node name="sante_mentale_text" type="RichTextLabel" parent="barre_etat"]
-layout_mode = 0
-offset_left = 523.0
-offset_top = 30.0
-offset_right = 709.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Santé mentale"
-
-[node name="efficacite_text" type="RichTextLabel" parent="barre_etat"]
-layout_mode = 0
-offset_left = 291.0
-offset_top = 30.0
-offset_right = 477.0
-offset_bottom = 64.0
+offset_left = -470.0
+offset_top = 33.0
+offset_right = -269.0
+offset_bottom = 78.0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=24]Efficacité"
 
-[node name="Button" type="Button" parent="."]
+[node name="sante_mentale" type="Panel" parent="CanvasLayer/background/barre_etat"]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 955.0
-offset_right = 245.0
-offset_bottom = 1014.0
+offset_left = 1090.0
+offset_top = 80.0
+offset_right = 1276.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
+
+[node name="sante_mentale_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat/sante_mentale"]
+layout_mode = 0
+offset_left = -43.0
+offset_top = 32.0
+offset_right = 217.0
+offset_bottom = 74.0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=24]Santé mentale"
+
+[node name="environnement_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat"]
+layout_mode = 0
+offset_left = 1289.0
+offset_top = 110.0
+offset_right = 1550.0
+offset_bottom = 154.0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=24]Environnement"
+
+[node name="environnement" type="Panel" parent="CanvasLayer/background/barre_etat"]
+layout_mode = 0
+offset_left = 858.0
+offset_top = 80.0
+offset_right = 1044.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
+
+[node name="HealthBar" type="Sprite2D" parent="CanvasLayer/background/barre_etat"]
+position = Vector2(262.99997, 85.00001)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("2_oo0fn")
+region_enabled = true
+region_rect = Rect2(8.589226, 45.35287, 109.28244, 54.509556)
+
+[node name="sante_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat/HealthBar"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.69784576
+anchor_bottom = 1.1763283
+offset_left = -82.32608
+offset_top = -48.78261
+offset_right = 24.804382
+offset_bottom = -14.47826
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=24]Santé"
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/barre_etat"]
+position = Vector2(619, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("5_uo2fv")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="argent" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.04
+anchor_right = 0.95
+anchor_bottom = 0.04
+offset_left = -281.0
+offset_bottom = 71.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[right][font_size=24]3 000 000 $"
+scroll_active = false
+
+[node name="shop_button" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.05
+anchor_bottom = 0.95
+offset_top = -59.0
+offset_right = 185.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_6fi6k")
 text = "SHOP"
 
-[node name="info_haut_gauche" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 80.0
-offset_top = 44.0
-offset_right = 251.0
-offset_bottom = 147.0
-
-[node name="date" type="RichTextLabel" parent="info_haut_gauche"]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 7.0
-offset_right = 193.0
-offset_bottom = 41.0
+[node name="date" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.02
+anchor_right = 0.04
+anchor_bottom = 0.02
+offset_right = 183.20001
+offset_bottom = 91.0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=24]XX/XX/2025"
 
-[node name="temperature" type="RichTextLabel" parent="info_haut_gauche"]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 58.0
-offset_right = 193.0
-offset_bottom = 92.0
+[node name="temperature" type="RichTextLabel" parent="CanvasLayer/date"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.5
+offset_top = -42.0
+offset_right = 61.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=24]24 C°"
