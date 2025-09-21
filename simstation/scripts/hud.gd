@@ -6,10 +6,10 @@ extends Control
 @onready var pollutionLabel = $barreEtat/pollution/LabelPollution
 
 func miseAJourHUD():
-	efficaciteLabel.text = str(Global.efficacite) + "/100"
-	bonheurLabel.text = str(Global.bonheur) + "/100"
-	pollutionLabel.text = str(Global.pollution) + "/100"
-	santeLabel.text = str(Global.sante) + "/100"
+	efficaciteLabel.text = str(Global.stats["efficacite"]) + "/100"
+	bonheurLabel.text = str(Global.stats["bonheur"]) + "/100"
+	pollutionLabel.text = str(Global.stats["pollution"]) + "/100"
+	santeLabel.text = str(Global.stats["sante"]) + "/100"
 	
 func _ready() -> void:
 	miseAJourHUD()
