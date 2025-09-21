@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=9 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://b6hm1i2c17x8n" path="res://scripts/hud.gd" id="1_ahhtf"]
-[ext_resource type="Texture2D" uid="uid://dwhud7j00akxx" path="res://textures/health_bar.png" id="2_oo0fn"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://dfdn3i5s5y4j7" path="res://textures/filled_bar.png" id="5_047uy"]
 [ext_resource type="Texture2D" uid="uid://dko1p3xonfuc" path="res://textures/health_bar_empty.png" id="5_uo2fv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
-bg_color = Color(1, 0.345884, 0.252034, 1)
+[ext_resource type="Texture2D" uid="uid://dpsijbr80dolk" path="res://textures/efficiency_bar_empty.png" id="6_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://b4ky2alkrr51t" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -30,101 +30,128 @@ offset_right = 2309.0
 offset_bottom = 168.0
 grow_horizontal = 2
 
-[node name="barre_etat" type="Control" parent="CanvasLayer/background"]
+[node name="state_bar" type="Control" parent="CanvasLayer/background"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -596.0
-offset_right = 596.0
+offset_left = -667.5
+offset_right = 667.5
 offset_bottom = 133.0
 grow_horizontal = 2
 
-[node name="efficacite" type="Panel" parent="CanvasLayer/background/barre_etat"]
-layout_mode = 0
-offset_left = 1323.0
-offset_top = 80.0
-offset_right = 1509.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="efficacite_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat/efficacite"]
-layout_mode = 0
-offset_left = -470.0
-offset_top = 33.0
-offset_right = -269.0
-offset_bottom = 78.0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
-bbcode_enabled = true
-text = "[center][font_size=24]Efficacité"
-
-[node name="sante_mentale" type="Panel" parent="CanvasLayer/background/barre_etat"]
-layout_mode = 0
-offset_left = 1090.0
-offset_top = 80.0
-offset_right = 1276.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="sante_mentale_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat/sante_mentale"]
-layout_mode = 0
-offset_left = -43.0
-offset_top = 32.0
-offset_right = 217.0
-offset_bottom = 74.0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
-bbcode_enabled = true
-text = "[center][font_size=24]Santé mentale"
-
-[node name="environnement_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat"]
-layout_mode = 0
-offset_left = 1289.0
-offset_top = 110.0
-offset_right = 1550.0
-offset_bottom = 154.0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
-bbcode_enabled = true
-text = "[center][font_size=24]Environnement"
-
-[node name="environnement" type="Panel" parent="CanvasLayer/background/barre_etat"]
-layout_mode = 0
-offset_left = 858.0
-offset_top = 80.0
-offset_right = 1044.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="HealthBar" type="Sprite2D" parent="CanvasLayer/background/barre_etat"]
-position = Vector2(262.99997, 85.00001)
-scale = Vector2(2.875, 2.875)
-texture = ExtResource("2_oo0fn")
-region_enabled = true
-region_rect = Rect2(8.589226, 45.35287, 109.28244, 54.509556)
-
-[node name="sante_text" type="RichTextLabel" parent="CanvasLayer/background/barre_etat/HealthBar"]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.69784576
-anchor_bottom = 1.1763283
-offset_left = -82.32608
-offset_top = -48.78261
-offset_right = 24.804382
-offset_bottom = -14.47826
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
-bbcode_enabled = true
-text = "[center][font_size=24]Santé"
-metadata/_edit_use_anchors_ = true
-
-[node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/barre_etat"]
-position = Vector2(619, 90)
+[node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(160, 90)
 scale = Vector2(2.875, 2.875)
 texture = ExtResource("5_uo2fv")
 region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Health_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.97283
+offset_top = -48.782608
+offset_right = -13.027168
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Santé  mentale"
+
+[node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(500, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("6_hd3ao")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarEfficiency" type="Sprite2D" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Efficiency_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.97283
+offset_top = -48.782608
+offset_right = -13.027168
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Efficacité"
+
+[node name="HappinessBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(840, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("7_0i1j5")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarHappiness" type="Sprite2D" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Happiness_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.97283
+offset_top = -48.782608
+offset_right = -13.027168
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Bonheur"
+
+[node name="PollutionBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(1180, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("8_mphia")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarPollution" type="Sprite2D" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Pollution_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.97283
+offset_top = -48.782608
+offset_right = -13.027168
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Pollution
+"
 
 [node name="argent" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = -1
@@ -150,7 +177,8 @@ offset_top = -59.0
 offset_right = 185.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_6fi6k")
-text = "SHOP"
+theme_override_font_sizes/font_size = 20
+text = "MAGASIN"
 
 [node name="date" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = -1
@@ -158,7 +186,7 @@ anchor_left = 0.04
 anchor_top = 0.02
 anchor_right = 0.04
 anchor_bottom = 0.02
-offset_right = 183.20001
+offset_right = 183.19995
 offset_bottom = 91.0
 theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
