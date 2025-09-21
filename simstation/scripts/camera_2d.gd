@@ -10,6 +10,9 @@ var dragging: bool = false
 var last_mouse_pos: Vector2 = Vector2.ZERO
 var current_mouse_pos: Vector2 = Vector2.ZERO
 
+func _ready() -> void:
+	pass
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	# --- ZOOM ---

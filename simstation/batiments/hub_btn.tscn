@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dghm26exahua8"]
+
+[ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="1_0xwq6"]
+[ext_resource type="ButtonGroup" uid="uid://bairrufpuwok0" path="res://batiments/group.tres" id="1_2slj6"]
+[ext_resource type="Texture2D" uid="uid://dxee5jcu773ka" path="res://assets/batiments/hub/hover.png" id="2_2slj6"]
+[ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/batiment_btn.gd" id="4_iji3d"]
+
+[sub_resource type="BitMap" id="BitMap_npxuh"]
+
+[node name="cafet_btns" type="TextureButton"]
+offset_left = 347.0
+offset_top = 135.0
+offset_right = 580.2969
+offset_bottom = 341.3203
+scale = Vector2(4, 4)
+pivot_offset = Vector2(96.9375, 30.953125)
+size_flags_stretch_ratio = 1.6
+mouse_default_cursor_shape = 2
+button_group = ExtResource("1_2slj6")
+texture_normal = ExtResource("1_0xwq6")
+texture_pressed = ExtResource("1_0xwq6")
+texture_hover = ExtResource("2_2slj6")
+texture_click_mask = SubResource("BitMap_npxuh")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("4_iji3d")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
