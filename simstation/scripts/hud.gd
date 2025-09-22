@@ -14,5 +14,5 @@ func miseAJourHUD():
 func _ready() -> void:
 	miseAJourHUD()
 
-func _process(delta):
+func _process(_delta):
 	miseAJourHUD()

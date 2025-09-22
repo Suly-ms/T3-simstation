@@ -1,21 +1,19 @@
 extends Node
 
-# --- Données population ---
 var population = [
 	{"sante": 100, "efficacite": 100, "bonheur": 50}
 ]
 
-# --- Données bâtiments ---
 var batiments_nombre = {
 	"dortoir": 5, 
 	"cantine": 1, 
 	"labo_recherche": 5, 
 	"salle_sport": 1, 
 	"salle_repos": 1, 
-	"generateur_petrole": 2
+	"generateur_petrole": 3
 }
 
-# Id bâtiment : [Santé, Pollution, Bonheur, Description]
+# [Santé, Pollution, Bonheur, Description]
 var info_batiments = {
 	"dortoir": [100, 5, 80, "Permet de se reposer tranquillement"],  
 	"cantine": [80, 10, 70, "Fournit de la nourriture aux habitants"],
@@ -25,7 +23,6 @@ var info_batiments = {
 	"generateur_petrole": [90, 50, -20, "Génère de l'électricité avec du pétrole"] 
 }
 
-# --- Données globales ---
 var stats = {
 	"sante": 0,
 	"efficacite": 0,
@@ -33,7 +30,6 @@ var stats = {
 	"pollution": 0
 }
 
-# --- Environnement ---
 var environnement = {
 	"heure": 0,        # 0 = Jour, 1 = Nuit
 	"temperature": 30  # °C
