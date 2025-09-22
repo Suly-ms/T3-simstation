@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SimStation"
-run/main_scene="uid://caeh17mm30u1v"
+run/main_scene="uid://byhx4nqhp22jo"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -60,3 +60,7 @@ ui_down={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

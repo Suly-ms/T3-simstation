@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=10 format=3 uid="uid://cnva1t7elyuce"]
 
+[ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://themes/hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="1_ahhtf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
-bg_color = Color(1, 0.345884, 0.252034, 1)
+[ext_resource type="Script" uid="uid://ca4emi7g2g438" path="res://scripts/state_bar.gd" id="4_0i1j5"]
+[ext_resource type="FontFile" uid="uid://brcrbwcxqryrw" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://b68pfpmwkxhcu" path="res://textures/filled_bar.png" id="5_047uy"]
+[ext_resource type="Texture2D" uid="uid://mkw2y3xufgqd" path="res://textures/health_bar_empty.png" id="5_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://ctarqu02frmww" path="res://textures/efficiency_bar_empty.png" id="6_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://cvupgjnttydj" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://ms15wvpoly5u" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -12,149 +17,182 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_5ysmq")
 script = ExtResource("1_ahhtf")
 
-[node name="argent" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 1658.0
-offset_top = 51.0
-offset_right = 1871.0
-offset_bottom = 85.0
-bbcode_enabled = true
-text = "[center][font_size=24]3 000 000 $"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="barreEtat" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 488.0
-offset_top = 51.0
-offset_right = 1452.0
-offset_bottom = 131.0
+[node name="background" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.15
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="efficacite" type="Panel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 756.0
-offset_right = 942.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="LabelEfficacite" type="Label" parent="barreEtat/efficacite"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 4.0
-offset_right = 112.0
-offset_bottom = 27.0
-text = "0/100"
-
-[node name="bonheur" type="Panel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 523.0
-offset_right = 709.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="Labelbonheur" type="Label" parent="barreEtat/bonheur"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 4.0
-offset_right = 112.0
-offset_bottom = 27.0
-text = "0/100"
-
-[node name="pollution" type="Panel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 291.0
-offset_right = 477.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="LabelPollution" type="Label" parent="barreEtat/pollution"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 4.0
-offset_right = 112.0
-offset_bottom = 27.0
-text = "0/100"
-
-[node name="sante" type="Panel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 52.0
-offset_right = 238.0
-offset_bottom = 30.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_toqtt")
-
-[node name="LabelSante" type="Label" parent="barreEtat/sante"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 4.0
-offset_right = 112.0
-offset_bottom = 27.0
-text = "0/100"
-
-[node name="santeText" type="RichTextLabel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 30.0
-offset_right = 238.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Santé"
-
-[node name="pollutionText" type="RichTextLabel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 291.0
-offset_top = 30.0
-offset_right = 477.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Pollution"
-
-[node name="bonheurText" type="RichTextLabel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 523.0
-offset_top = 30.0
-offset_right = 709.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Bonheur"
-
-[node name="efficaciteText" type="RichTextLabel" parent="barreEtat"]
-layout_mode = 0
-offset_left = 756.0
-offset_top = 30.0
-offset_right = 942.0
-offset_bottom = 64.0
-bbcode_enabled = true
-text = "[center][font_size=24]Efficacité"
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 955.0
-offset_right = 245.0
-offset_bottom = 1014.0
-text = "SHOP"
-
-[node name="infoHautGauche" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 80.0
-offset_top = 44.0
-offset_right = 251.0
-offset_bottom = 147.0
-
-[node name="date" type="RichTextLabel" parent="infoHautGauche"]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 7.0
-offset_right = 193.0
-offset_bottom = 41.0
+[node name="date" type="RichTextLabel" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.2
+anchor_right = 0.03
+anchor_bottom = 0.2
+offset_right = 183.2
+offset_bottom = 91.0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=24]XX/XX/2025"
 
-[node name="temperature" type="RichTextLabel" parent="infoHautGauche"]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 58.0
-offset_right = 193.0
-offset_bottom = 92.0
+[node name="temperature" type="RichTextLabel" parent="CanvasLayer/background/date"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.5
+offset_top = -42.0
+offset_right = 61.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=24]24 C°"
+
+[node name="argent" type="RichTextLabel" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.97
+anchor_top = 0.2
+anchor_right = 0.97
+anchor_bottom = 0.2
+offset_left = -281.0
+offset_bottom = 71.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[right][font_size=24]3 000 000 $"
+scroll_active = false
+
+[node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -667.5
+offset_right = 667.5
+offset_bottom = 133.0
+grow_horizontal = 2
+script = ExtResource("4_0i1j5")
+
+[node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(160, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("5_uo2fv")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Health_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.0272
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Santé"
+
+[node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(500, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("6_hd3ao")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarEfficiency" type="Sprite2D" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Efficiency_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.0272
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Efficacité"
+
+[node name="HappinessBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(840, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("7_0i1j5")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarHappiness" type="Sprite2D" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Happiness_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.0272
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Bonheur"
+
+[node name="PollutionBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
+position = Vector2(1180, 90)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("8_mphia")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarPollution" type="Sprite2D" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
+texture = ExtResource("5_047uy")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="Pollution_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.0272
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[center][font_size=8]Pollution
+"
