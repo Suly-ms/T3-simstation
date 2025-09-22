@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SimStation"
-run/main_scene="uid://bwq4faoma4u75"
+run/main_scene="uid://byhx4nqhp22jo"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
