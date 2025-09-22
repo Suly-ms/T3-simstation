@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwq4faoma4u75"]
+[gd_scene load_steps=5 format=3 uid="uid://bwq4faoma4u75"]
 
 [ext_resource type="Script" uid="uid://h1qyqkewq33w" path="res://scripts/play.gd" id="1_bofkp"]
 [ext_resource type="Script" uid="uid://djclb5m4lgayv" path="res://scripts/camera_2d.gd" id="2_bofkp"]
 [ext_resource type="PackedScene" uid="uid://cnva1t7elyuce" path="res://scenes/hud.tscn" id="3_bq38n"]
-[ext_resource type="Texture2D" uid="uid://b68dgxqj7ukv5" path="res://textures/bouton_shop.png" id="4_hsi3f"]
-[ext_resource type="PackedScene" uid="uid://dpjv0tgqcixln" path="res://scenes/Map.tscn" id="5_65v2a"]
+[ext_resource type="PackedScene" uid="uid://cnd66etwire0l" path="res://scenes/Map2.tscn" id="5_65v2a"]
 
 [node name="Play" type="Node2D"]
 script = ExtResource("1_bofkp")
@@ -13,15 +12,10 @@ script = ExtResource("1_bofkp")
 anchor_mode = 0
 script = ExtResource("2_bofkp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(801, 523)
-scale = Vector2(0.307615, 0.293587)
-texture = ExtResource("4_hsi3f")
-
 [node name="hud" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="hud" instance=ExtResource("3_bq38n")]
 mouse_filter = 2
 
-[node name="Map" parent="." instance=ExtResource("5_65v2a")]
-position = Vector2(1000, 1000)
+[node name="Node2D" parent="." instance=ExtResource("5_65v2a")]
+position = Vector2(100, -196)

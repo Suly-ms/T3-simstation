@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://byhx4nqhp22jo"]
+
+[ext_resource type="Script" uid="uid://c4e02x7hylkmt" path="res://scripts/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Texture2D" uid="uid://ms5p2chwkqwp" path="res://menu_pictures/placeholder.jpg" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://b0r2s7mgokugb" path="res://menu_pictures/logo.png" id="3_oa1go"]
+[ext_resource type="Texture2D" uid="uid://dn22i8u0wu05f" path="res://menu_pictures/button.png" id="4_tbmy8"]
+[ext_resource type="FontFile" uid="uid://brcrbwcxqryrw" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://dbt5nrlsv1j6t" path="res://menu_pictures/button_hover.png" id="5_rtw2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
+bg_color = Color(0.294118, 0.635294, 0.721569, 0.603922)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ln24")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="placeholder_jpg" type="Sprite2D" parent="."]
+position = Vector2(955, 538)
+texture = ExtResource("2_rtw2f")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -296.0
+offset_right = 390.0
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_06t4h")
+
+[node name="Logo" type="Sprite2D" parent="Panel"]
+position = Vector2(392, -1)
+scale = Vector2(0.796892, 0.714862)
+texture = ExtResource("3_oa1go")
+
+[node name="btnJouer" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_top = 0.387
+anchor_right = 0.511
+anchor_bottom = 0.387
+offset_left = -230.58
+offset_top = -140.104
+offset_right = 793.42
+offset_bottom = 473.896
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45, 0.4)
+texture_normal = ExtResource("4_tbmy8")
+texture_hover = ExtResource("5_rtw2f")
+
+[node name="Label" type="Label" parent="Panel/btnJouer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.889
+offset_top = -27.0
+offset_right = 194.111
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jk1qb")
+theme_override_font_sizes/font_size = 100
+text = "JOUER"
+
+[node name="btnQuitter" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_top = 0.387
+anchor_right = 0.511
+anchor_bottom = 0.387
+offset_left = -228.58
+offset_top = 96.896
+offset_right = 795.42
+offset_bottom = 710.896
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45, 0.4)
+texture_normal = ExtResource("4_tbmy8")
+texture_hover = ExtResource("5_rtw2f")
+
+[node name="Label" type="Label" parent="Panel/btnQuitter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.889
+offset_top = -27.0
+offset_right = 194.111
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jk1qb")
+theme_override_font_sizes/font_size = 100
+text = "QUITTER"
+
+[connection signal="pressed" from="Panel/btnJouer" to="." method="_on_btn_jouer_pressed"]
+[connection signal="pressed" from="Panel/btnQuitter" to="." method="_on_btn_quitter_pressed"]
