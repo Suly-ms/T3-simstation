@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://h1qyqkewq33w" path="res://scripts/play.gd" id="1_bofkp"]
 [ext_resource type="Script" uid="uid://djclb5m4lgayv" path="res://scripts/camera_2d.gd" id="2_bofkp"]
 [ext_resource type="PackedScene" uid="uid://cnva1t7elyuce" path="res://scenes/hud.tscn" id="3_bq38n"]
-[ext_resource type="Texture2D" uid="uid://b68dgxqj7ukv5" path="res://textures/bouton_shop.png" id="4_hsi3f"]
 [ext_resource type="PackedScene" uid="uid://dpjv0tgqcixln" path="res://scenes/Map.tscn" id="5_65v2a"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hsi3f"]
 
 [node name="Play" type="Node2D"]
 script = ExtResource("1_bofkp")
@@ -16,7 +17,7 @@ script = ExtResource("2_bofkp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(801, 523)
 scale = Vector2(0.307615, 0.293587)
-texture = ExtResource("4_hsi3f")
+texture = SubResource("CompressedTexture2D_hsi3f")
 
 [node name="hud" type="CanvasLayer" parent="."]
 
