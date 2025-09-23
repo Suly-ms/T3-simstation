@@ -2,16 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b68pfpmwkxhcu"
+<<<<<<<< HEAD:simstation/assets/snow/snow.png.import
+uid="uid://dkrksyp3wu2sb"
+path="res://.godot/imported/snow.png-894f4c62fdabe05c91928aec973bd4c2.ctex"
+========
+uid="uid://dfdn3i5s5y4j7"
 path="res://.godot/imported/filled_bar.png-7dfeeecfd2eff2715c82e63ad59bf24c.ctex"
+>>>>>>>> c7a6bbf12b6bf282aac52b90c5414b4dd605169e:simstation/textures/filled_bar.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<<< HEAD:simstation/assets/snow/snow.png.import
+source_file="res://assets/snow/snow.png"
+dest_files=["res://.godot/imported/snow.png-894f4c62fdabe05c91928aec973bd4c2.ctex"]
+========
 source_file="res://textures/filled_bar.png"
 dest_files=["res://.godot/imported/filled_bar.png-7dfeeecfd2eff2715c82e63ad59bf24c.ctex"]
+>>>>>>>> c7a6bbf12b6bf282aac52b90c5414b4dd605169e:simstation/textures/filled_bar.png.import
 
 [params]
 
