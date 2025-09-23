@@ -1,14 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=12 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_ahhtf"]
-[ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://scenes/state_bar.gd" id="4_0i1j5"]
+[ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
+[ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://scripts/HUD/resize_state_bar.gd" id="4_0i1j5"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
 [ext_resource type="Texture2D" uid="uid://dfdn3i5s5y4j7" path="res://textures/filled_bar.png" id="5_047uy"]
 [ext_resource type="Texture2D" uid="uid://dko1p3xonfuc" path="res://textures/health_bar_empty.png" id="5_uo2fv"]
 [ext_resource type="Texture2D" uid="uid://dpsijbr80dolk" path="res://textures/efficiency_bar_empty.png" id="6_hd3ao"]
 [ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Texture2D" uid="uid://b4ky2alkrr51t" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
+
+[sub_resource type="GDScript" id="GDScript_hd3ao"]
+script/source = "extends Control
+"
+
+[sub_resource type="GDScript" id="GDScript_mphia"]
+script/source = "extends RichTextLabel
+
+const BASE_RES = Vector2(1920, 1080)
+
+func _ready():
+	_resize()
+	get_viewport().connect(\"size_changed\", Callable(self, \"_resize\"))
+
+func _resize():
+	var screen_size = get_viewport_rect().size
+	var scale_factor = min(
+		screen_size.x / BASE_RES.x,
+		screen_size.y / BASE_RES.y
+	)
+	
+	# On applique uniquement l'échelle
+	self.scale = Vector2(scale_factor, scale_factor)
+"
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -18,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_5ysmq")
-script = ExtResource("1_ahhtf")
+script = SubResource("GDScript_hd3ao")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,6 +65,7 @@ offset_bottom = 91.0
 theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=24]XX/XX/2025"
+script = ExtResource("3_mphia")
 
 [node name="temperature" type="RichTextLabel" parent="CanvasLayer/background/date"]
 layout_mode = 1
@@ -65,13 +90,16 @@ anchor_left = 0.97
 anchor_top = 0.2
 anchor_right = 0.97
 anchor_bottom = 0.2
-offset_left = -281.0
-offset_bottom = 71.0
+offset_left = -181.4
+offset_top = -0.400002
+offset_right = -0.400024
+offset_bottom = 34.6
 grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[right][font_size=24]3 000 000 $"
 scroll_active = false
+script = SubResource("GDScript_mphia")
 
 [node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
 layout_mode = 1
@@ -91,11 +119,6 @@ texture = ExtResource("5_uo2fv")
 region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
-[node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
-texture = ExtResource("5_047uy")
-region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
-
 [node name="Health_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
 anchors_preset = -1
 anchor_left = 0.6
@@ -112,6 +135,13 @@ theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=8]Santé"
 
+[node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
+position = Vector2(-29.231, -27.26)
+texture = ExtResource("5_047uy")
+centered = false
+region_enabled = true
+region_rect = Rect2(33.999, 45.353, 83.872, 54.51)
+
 [node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
 position = Vector2(500, 90)
 scale = Vector2(2.875, 2.875)
@@ -120,9 +150,11 @@ region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
 [node name="FilledBarEfficiency" type="Sprite2D" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
+position = Vector2(-29.231, -27.26)
 texture = ExtResource("5_047uy")
+centered = false
 region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
 
 [node name="Efficiency_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
 anchors_preset = -1
@@ -148,9 +180,11 @@ region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
 [node name="FilledBarHappiness" type="Sprite2D" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
+position = Vector2(-29.231, -27.26)
 texture = ExtResource("5_047uy")
+centered = false
 region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
 
 [node name="Happiness_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
 anchors_preset = -1
@@ -176,9 +210,11 @@ region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
 [node name="FilledBarPollution" type="Sprite2D" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
+position = Vector2(-29.231, -27.26)
 texture = ExtResource("5_047uy")
+centered = false
 region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+region_rect = Rect2(34.007, 45.353, 83.8639, 54.51)
 
 [node name="Pollution_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
 anchors_preset = -1
@@ -196,3 +232,17 @@ theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=8]Pollution
 "
+
+[node name="shop_button" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.9
+anchor_right = 0.1
+anchor_bottom = 0.9
+offset_top = -54.0
+offset_right = 156.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_6fi6k")
+theme_override_font_sizes/font_size = 24
+text = "Magasin"
+script = ExtResource("3_mphia")
