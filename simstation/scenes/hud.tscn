@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
 [ext_resource type="Texture2D" uid="uid://b4ky2alkrr51t" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
+[ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="11_apjy4"]
+[ext_resource type="Script" uid="uid://djy8nr6q3ggpo" path="res://scripts/drag_building.gd" id="13_5n1hp"]
+[ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="13_eld54"]
 
 [sub_resource type="GDScript" id="GDScript_hd3ao"]
 script/source = "extends Control
@@ -251,3 +254,20 @@ theme_override_fonts/font = ExtResource("4_6fi6k")
 theme_override_font_sizes/font_size = 24
 text = "Magasin"
 script = ExtResource("3_mphia")
+
+[node name="dragBuilding" type="Panel" parent="CanvasLayer"]
+offset_left = 204.0
+offset_top = 348.0
+offset_right = 345.0
+offset_bottom = 808.0
+
+[node name="building2" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(78, 83)
+texture = ExtResource("11_apjy4")
+script = ExtResource("13_5n1hp")
+
+[node name="hub" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(74, 222)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_eld54")
+script = ExtResource("13_5n1hp")

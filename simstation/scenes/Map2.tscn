@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=4 uid="uid://cnd66etwire0l"]
+[gd_scene load_steps=15 format=4 uid="uid://cnd66etwire0l"]
 
+[ext_resource type="Script" uid="uid://bqfn5lgoa0svc" path="res://scripts/map2.gd" id="1_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://uxk73ab1jk6e" path="res://assets/snow/spritesheet.png" id="1_pn7st"]
 [ext_resource type="Texture2D" uid="uid://s1rhej03yoa7" path="res://assets/snow/isometric-tiny-polar-rocks__d762299a.png" id="2_cswph"]
 [ext_resource type="Texture2D" uid="uid://cam7p7d4largs" path="res://assets/snow/isometric-tiny-polar-rocks__b552125a.png" id="3_p3a57"]
 [ext_resource type="Texture2D" uid="uid://ci3eu2es5oban" path="res://assets/snow/isometric-tiny-polar-rocks__2fe54bc3.png" id="4_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://bml1vcld6rjy4" path="res://assets/snow/isometric-polar-rocks__78edce47.png" id="5_i4jx2"]
-[ext_resource type="PackedScene" uid="uid://dghm26exahua8" path="res://batiments/hub_btn.tscn" id="6_p3a57"]
-[ext_resource type="PackedScene" uid="uid://bobhrar4pirpv" path="res://batiments/cafet_btn.tscn" id="7_o7eqr"]
+[ext_resource type="PackedScene" uid="uid://dghm26exahua8" path="res://batiments/hubs.tscn" id="6_p3a57"]
+[ext_resource type="PackedScene" uid="uid://bobhrar4pirpv" path="res://batiments/cafet.tscn" id="7_o7eqr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mg43x"]
 texture = ExtResource("1_pn7st")
@@ -30,6 +31,7 @@ sources/12 = SubResource("TileSetAtlasSource_mg43x")
 [sub_resource type="ButtonGroup" id="ButtonGroup_avpev"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_o7eqr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
