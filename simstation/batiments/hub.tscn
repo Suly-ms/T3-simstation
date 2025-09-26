@@ -7,7 +7,7 @@
 
 [sub_resource type="BitMap" id="BitMap_npxuh"]
 
-[node name="cafet_btns" type="TextureButton"]
+[node name="textureButtons" type="TextureButton"]
 offset_left = 347.0
 offset_top = 135.0
 offset_right = 580.2969

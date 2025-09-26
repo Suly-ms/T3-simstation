@@ -8,10 +8,10 @@
 [sub_resource type="BitMap" id="BitMap_npxuh"]
 
 [node name="cafet_btns" type="TextureButton"]
-offset_left = 393.0
-offset_top = 256.0
-offset_right = 512.5
-offset_bottom = 357.5
+offset_left = 265.0
+offset_top = 194.0
+offset_right = 384.5
+offset_bottom = 295.5
 scale = Vector2(4, 4)
 pivot_offset = Vector2(56.25, 46.9375)
 size_flags_stretch_ratio = 1.6

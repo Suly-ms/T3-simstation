@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0qxnub0l6mv5"
-path="res://.godot/imported/pixel-art-isometric-view-futuristic-polar-recreation-hall-building-exterior-only-octagonal-structure__cc75a962.png-f535da72461d790ab5ddbd5d2fb2447e.ctex"
+uid="uid://c4ugnpb45lggb"
+path="res://.godot/imported/lab.png-4048c1c08eac25665019ddaa23884d61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/batiments/pixel-art-isometric-view-futuristic-polar-recreation-hall-building-exterior-only-octagonal-structure__cc75a962.png"
-dest_files=["res://.godot/imported/pixel-art-isometric-view-futuristic-polar-recreation-hall-building-exterior-only-octagonal-structure__cc75a962.png-f535da72461d790ab5ddbd5d2fb2447e.ctex"]
+source_file="res://assets/batiments/lab/lab.png"
+dest_files=["res://.godot/imported/lab.png-4048c1c08eac25665019ddaa23884d61.ctex"]
 
 [params]
 

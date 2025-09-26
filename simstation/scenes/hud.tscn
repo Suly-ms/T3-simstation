@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=17 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="11_apjy4"]
 [ext_resource type="Script" uid="uid://djy8nr6q3ggpo" path="res://scripts/drag_building.gd" id="13_5n1hp"]
 [ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="13_eld54"]
+[ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="14_eld54"]
 
 [sub_resource type="GDScript" id="GDScript_hd3ao"]
 script/source = "extends Control
@@ -261,13 +262,19 @@ offset_top = 348.0
 offset_right = 345.0
 offset_bottom = 808.0
 
-[node name="building2" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
-position = Vector2(78, 83)
+[node name="cafet" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(71, 62)
 texture = ExtResource("11_apjy4")
 script = ExtResource("13_5n1hp")
 
 [node name="hub" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
-position = Vector2(74, 222)
+position = Vector2(67, 186)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_eld54")
+script = ExtResource("13_5n1hp")
+
+[node name="lab" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(66, 273)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_eld54")
 script = ExtResource("13_5n1hp")
