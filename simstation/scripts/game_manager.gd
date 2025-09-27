@@ -18,4 +18,3 @@ func set_current_zoom_cam(zoom_cam : Vector2):
 func get_zoom_cam() -> Vector2:
 	return zoom_cam
 	
-	

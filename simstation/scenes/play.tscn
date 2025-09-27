@@ -8,15 +8,17 @@
 [node name="Play" type="Node2D"]
 script = ExtResource("1_bofkp")
 
+[node name="map" parent="." instance=ExtResource("5_65v2a")]
+position = Vector2(100, -196)
+
+[node name="hud" type="CanvasLayer" parent="."]
+layer = 7
+
+[node name="Hud" parent="hud" instance=ExtResource("3_bq38n")]
+z_index = 4
+mouse_filter = 2
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("2_bofkp")
 max_zoom = Vector2(92.9, 100.295)
-
-[node name="hud" type="CanvasLayer" parent="."]
-
-[node name="Hud" parent="hud" instance=ExtResource("3_bq38n")]
-mouse_filter = 2
-
-[node name="Node2D" parent="." instance=ExtResource("5_65v2a")]
-position = Vector2(100, -196)
