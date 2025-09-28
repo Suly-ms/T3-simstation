@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=14 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
@@ -10,10 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
 [ext_resource type="Texture2D" uid="uid://b4ky2alkrr51t" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
+[ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/shop_button.gd" id="11_0m4u7"]
 
 [sub_resource type="GDScript" id="GDScript_hd3ao"]
-script/source = "extends Control
-"
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -250,4 +249,6 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_6fi6k")
 theme_override_font_sizes/font_size = 24
 text = "Magasin"
-script = ExtResource("3_mphia")
+script = ExtResource("11_0m4u7")
+
+[connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed"]
