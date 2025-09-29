@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cnd66etwire0l"]
+[gd_scene load_steps=9 format=4 uid="uid://cnd66etwire0l"]
 
 [ext_resource type="Script" uid="uid://bqfn5lgoa0svc" path="res://scripts/map.gd" id="1_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://uxk73ab1jk6e" path="res://assets/snow/spritesheet.png" id="1_pn7st"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cam7p7d4largs" path="res://assets/snow/isometric-tiny-polar-rocks__b552125a.png" id="3_p3a57"]
 [ext_resource type="Texture2D" uid="uid://ci3eu2es5oban" path="res://assets/snow/isometric-tiny-polar-rocks__2fe54bc3.png" id="4_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://bml1vcld6rjy4" path="res://assets/snow/isometric-polar-rocks__78edce47.png" id="5_i4jx2"]
-[ext_resource type="PackedScene" uid="uid://dghm26exahua8" path="res://batiments/hub.tscn" id="6_p3a57"]
-[ext_resource type="PackedScene" uid="uid://bobhrar4pirpv" path="res://batiments/cafet.tscn" id="7_o7eqr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mg43x"]
 texture = ExtResource("1_pn7st")
@@ -21,16 +19,6 @@ texture_region_size = Vector2i(128, 128)
 tile_shape = 1
 tile_size = Vector2i(100, 50)
 sources/12 = SubResource("TileSetAtlasSource_mg43x")
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_i4jx2"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_mg43x"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_gmmwb"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_avpev"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_o7eqr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_o7eqr")
@@ -260,38 +248,3 @@ position = Vector2(2029.5986, -992.5093)
 texture = ExtResource("5_i4jx2")
 
 [node name="buildings" type="Node" parent="."]
-
-[node name="cafet_btns" parent="buildings" instance=ExtResource("6_p3a57")]
-offset_left = 847.5093
-offset_top = -4220.2417
-offset_right = 1080.8062
-offset_bottom = -4013.9214
-button_group = SubResource("ButtonGroup_i4jx2")
-
-[node name="cafet_btns2" parent="buildings" instance=ExtResource("7_o7eqr")]
-offset_left = 2006.3999
-offset_top = -3370.4905
-offset_right = 2125.9
-offset_bottom = -3268.9905
-button_group = SubResource("ButtonGroup_mg43x")
-
-[node name="cafet_btns3" parent="buildings" instance=ExtResource("7_o7eqr")]
-offset_left = 144.7998
-offset_top = -3143.9465
-offset_right = 264.2998
-offset_bottom = -3042.4465
-button_group = SubResource("ButtonGroup_gmmwb")
-
-[node name="cafet_btns4" parent="buildings" instance=ExtResource("7_o7eqr")]
-offset_left = 1415.416
-offset_top = -2681.0088
-offset_right = 1534.916
-offset_bottom = -2579.5088
-button_group = SubResource("ButtonGroup_avpev")
-
-[node name="cafet_btns5" parent="buildings" instance=ExtResource("7_o7eqr")]
-offset_left = -1307.0
-offset_top = -2619.0
-offset_right = -1187.5
-offset_bottom = -2517.5
-button_group = SubResource("ButtonGroup_o7eqr")

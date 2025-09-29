@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://du2r3b86tqr30"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkts2"]
+bg_color = Color(0.68235296, 0.5803922, 0.49411765, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.45490196)
+
+[node name="square" type="Panel"]
+visible = false
+z_index = -1
+offset_right = 119.5
+offset_bottom = 101.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_rkts2")
