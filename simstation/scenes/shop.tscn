@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvvtj6x6hcber"]
+[gd_scene load_steps=9 format=3 uid="uid://dvvtj6x6hcber"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_xfvoa"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_1l46r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmg6e66utbo2u" path="res://textures/exit_button_click.png" id="4_2fc2m"]
 [ext_resource type="Texture2D" uid="uid://d1ytjptrjyd4n" path="res://textures/exit_button_hover.png" id="4_032fp"]
 [ext_resource type="Script" uid="uid://ca8j6a3vliaoo" path="res://scripts/exit_button.gd" id="6_8r1wq"]
+[ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="7_ajxib"]
 
 [sub_resource type="GDScript" id="GDScript_hd3ao"]
 
@@ -72,7 +73,44 @@ offset_bottom = -919.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cafet" type="Sprite2D" parent="CanvasLayer/background"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/background/ScrollContainer"]
+layout_mode = 2
+
+[node name="Cafet_image" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Control"]
+position = Vector2(204, 215)
+scale = Vector2(2.5429685, 2.5429685)
+texture = ExtResource("7_ajxib")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 136.4823)
+
+[node name="Cost_button" type="RichTextLabel" parent="CanvasLayer/background/ScrollContainer/Control/Cafet_image"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.54993
+offset_top = -96.706604
+offset_right = -17.450073
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+text = "10 000€"
+
+[node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Control/Cafet_image/Cost_button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="CanvasLayer/background/Exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/background/Exit_button" to="CanvasLayer/background/Exit_button" method="_on_pressed"]
