@@ -13,6 +13,9 @@ var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	calculer_etat()
+	
+	var control_node = get_node("/root/Play/hud/Hud") 
+	control_node.connect("changement_etat", Callable(self, "calculer_etat"))
 
 func _process(_delta):
 	if not fin_partie and (
@@ -24,18 +27,10 @@ func _process(_delta):
 		fin_partie = true
 		print("FIN DE LA PARTIE")
 
-
-func _on_button_pressed() -> void:
-	Global.population.append({
-		"sante": rng.randi_range(10, 100),
-		"efficacite": rng.randi_range(50, 100),
-		"bonheur": 0
-	})
-	calculer_etat()
-
 # Fonctions principales pour calculer petite stats
 
 func calculer_etat():
+	print("Signal recu")
 	var bonheur_total = calculer_bonheur()
 	var sante_finale = calculer_sante(bonheur_total)
 	var efficacite_finale = calculer_efficacite(bonheur_total, sante_finale)

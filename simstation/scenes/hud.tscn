@@ -196,3 +196,31 @@ theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=8]Pollution
 "
+
+[node name="AjouterPopulation" type="Button" parent="."]
+layout_mode = 0
+offset_left = 609.0
+offset_top = 186.0
+offset_right = 828.0
+offset_bottom = 273.0
+text = "Ajouter population"
+
+[node name="AjouterBatiment" type="Button" parent="."]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 186.0
+offset_right = 560.0
+offset_bottom = 273.0
+text = "Ajouter batiment"
+
+[node name="AjouterTemperature" type="Button" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 186.0
+offset_right = 292.0
+offset_bottom = 273.0
+text = "Augmenter température"
+
+[connection signal="pressed" from="AjouterPopulation" to="." method="_on_ajouter_population_pressed"]
+[connection signal="pressed" from="AjouterBatiment" to="." method="_on_ajouter_batiment_pressed"]
+[connection signal="pressed" from="AjouterTemperature" to="." method="_on_ajouter_temperature_pressed"]
