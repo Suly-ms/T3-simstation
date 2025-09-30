@@ -28,7 +28,5 @@ func _on_pressed() -> void:
 		current_scene.add_child(shop_instance)
 	else:
 		var shop_node = current_scene.get_node("Shop")
-		if shop_node.visible:
-			shop_node.hide()
-		else:
-			shop_node.show()
+		var shop_background = shop_node.get_node("CanvasLayer/background")
+		shop_background.visible = !shop_background.visible

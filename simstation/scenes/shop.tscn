@@ -72,5 +72,7 @@ offset_bottom = -919.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Cafet" type="Sprite2D" parent="CanvasLayer/background"]
+
 [connection signal="pressed" from="CanvasLayer/background/Exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/background/Exit_button" to="CanvasLayer/background/Exit_button" method="_on_pressed"]

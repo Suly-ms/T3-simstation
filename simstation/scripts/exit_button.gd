@@ -2,4 +2,5 @@ extends TextureButton
 
 
 func _on_pressed() -> void:
-	get_parent().queue_free()
+	var shop = get_tree().current_scene.get_node("Shop")
+	shop.get_node("CanvasLayer/background").visible = false
