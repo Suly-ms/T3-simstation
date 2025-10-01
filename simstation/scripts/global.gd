@@ -1,5 +1,7 @@
 extends Node
 
+var camera_enable = true;
+
 var population = [
 	{"sante": 100, "efficacite": 100, "bonheur": 50}
 ]

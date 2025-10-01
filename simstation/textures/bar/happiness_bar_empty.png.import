@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfdn3i5s5y4j7"
-path="res://.godot/imported/filled_bar.png-7dfeeecfd2eff2715c82e63ad59bf24c.ctex"
+uid="uid://bicfj5uhoomq4"
+path="res://.godot/imported/happiness_bar_empty.png-e9a2532bc0e3088f0c8e8a56017e15d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/filled_bar.png"
-dest_files=["res://.godot/imported/filled_bar.png-7dfeeecfd2eff2715c82e63ad59bf24c.ctex"]
+source_file="res://textures/bar/happiness_bar_empty.png"
+dest_files=["res://.godot/imported/happiness_bar_empty.png-e9a2532bc0e3088f0c8e8a56017e15d6.ctex"]
 
 [params]
 

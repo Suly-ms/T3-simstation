@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ky2alkrr51t"
-path="res://.godot/imported/pollution_bar_empty.png-0633113f7037fde628cb73ae8180cea2.ctex"
+uid="uid://dfdn3i5s5y4j7"
+path="res://.godot/imported/filled_bar.png-c1d39291f0acf24e05fa5208e19b49af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/pollution_bar_empty.png"
-dest_files=["res://.godot/imported/pollution_bar_empty.png-0633113f7037fde628cb73ae8180cea2.ctex"]
+source_file="res://textures/bar/filled_bar.png"
+dest_files=["res://.godot/imported/filled_bar.png-c1d39291f0acf24e05fa5208e19b49af.ctex"]
 
 [params]
 

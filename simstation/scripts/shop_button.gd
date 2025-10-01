@@ -30,3 +30,4 @@ func _on_pressed() -> void:
 		var shop_node = current_scene.get_node("Shop")
 		var shop_background = shop_node.get_node("CanvasLayer/background")
 		shop_background.visible = !shop_background.visible
+	Global.camera_enable = !Global.camera_enable
