@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpsijbr80dolk"
-path="res://.godot/imported/efficiency_bar_empty.png-83e9201210af2d90a1bca5216bb86e13.ctex"
+uid="uid://dmg6e66utbo2u"
+path="res://.godot/imported/exit_button_click.png-0262335c46b8dae6515a6c5f625fcc62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/efficiency_bar_empty.png"
-dest_files=["res://.godot/imported/efficiency_bar_empty.png-83e9201210af2d90a1bca5216bb86e13.ctex"]
+source_file="res://textures/exit_button_click.png"
+dest_files=["res://.godot/imported/exit_button_click.png-0262335c46b8dae6515a6c5f625fcc62.ctex"]
 
 [params]
 

@@ -2,13 +2,11 @@ extends Control
 
 signal changement_etat
 
-var rng = RandomNumberGenerator.new()
-
 func _on_ajouter_population_pressed():
 	Global.population.append({
-		"sante": rng.randi_range(10, 100),
-		"efficacite": rng.randi_range(50, 100),
-		"bonheur": rng.randi_range(50, 100)
+		"sante": 0,
+		"efficacite": 20,
+		"bonheur": 20
 	})
 	emit_signal("changement_etat")
 
