@@ -3,11 +3,12 @@ extends Sprite2D
 var batiment_instance = null
 var map = null
 var dragging = false
-@export var delay = 0.01 # variable dictant l'animation de drag and drop
+@export var delay = 0.0001 # variable dictant l'animation de drag and drop
 @export var speed_ap = 10 #vitesse de l'animation de automatic placement
 var mouse_offset # pour centrer le drop au millieu de la sprite
 var automatic_placement = false
-
+var global_vector : Vector2 = Vector2(1,1)
+var is_square = false
 #on recupere la map actuelle
 func _process(_delta):
 	if map == null and GameManager.get_current_map():
@@ -20,18 +21,22 @@ func _physics_process(delta: float) -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(batiment_instance, "position",get_world_mouse_position() - mouse_offset , delay * delta)
 	if automatic_placement and !map.is_placable(batiment_instance)[0]:
+		global_vector = (map.is_placable(batiment_instance)[1] + global_vector) /2
 		var tween = get_tree().create_tween()
-		tween.tween_property(batiment_instance, "position", batiment_instance.position - map.is_placable(batiment_instance)[1] * Vector2(speed_ap, speed_ap), delay * delta)
+		tween.tween_property(batiment_instance, "position", batiment_instance.position - global_vector * Vector2(speed_ap, speed_ap), delay * delta)
 	else:
 		automatic_placement = false
-	if !dragging and map and batiment_instance :
+	if !dragging and  batiment_instance and is_square:
 		map.delete_square()
-		
+		is_square = false
+
+
 #detecte le clic de la souris et gere le drag
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if get_rect().has_point(to_local(event.position)):
+				is_square = true
 				map.show_square()
 				var batiment = find_building_scene()
 				batiment_instance = batiment.instantiate()
@@ -67,7 +72,6 @@ func place_building():
 	if map.is_placable(batiment_instance)[0]:
 		print(map.is_placable(batiment_instance)[1])
 		batiment_instance.position = get_world_mouse_position() - mouse_offset
-		map.delete_square()
 	else:
 		automatic_placement = true
 
@@ -77,12 +81,7 @@ func place_building():
 func add_building_map():
 	var folder_buildings = map.get_child(2)
 	folder_buildings.add_child(batiment_instance)
-	
-	
-#afficher les carré autour des batiments pour voir leurs zone placable
-func show_square():
-	map.afficher_carre()
 
-#enlever l'afffichage des carre
-func delete_square():
-	map.delete_square()
+#attendre les secondes en parametre
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout

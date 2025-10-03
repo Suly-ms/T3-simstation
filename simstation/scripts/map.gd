@@ -36,11 +36,13 @@ func get_vector(btn1 : TextureButton, btn2 : TextureButton):
 func show_square():
 	var children = node_buildings.get_children()
 	for btn in children:
-		btn.get_child(0).visible = true
+		if(btn.get_child(0)):
+			btn.get_child(0).visible = true
 
 
 #supprime l'affichage pour tout les batiments les carré deffinissant leurs zones placable
 func delete_square():
 	var children = node_buildings.get_children()
 	for btn in children: 
-		btn.get_child(0).visible = false
+		if(btn.get_child(0)):
+			btn.get_child(0).visible = false
