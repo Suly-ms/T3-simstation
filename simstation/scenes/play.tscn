@@ -19,3 +19,5 @@ mouse_filter = 2
 
 [node name="Node2D" parent="." instance=ExtResource("5_65v2a")]
 position = Vector2(100, -196)
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

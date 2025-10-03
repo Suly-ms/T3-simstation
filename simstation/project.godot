@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Httprequest="*res://scripts/httprequest.gd"
 Global="*res://scripts/global.gd"
 
 [display]

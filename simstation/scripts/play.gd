@@ -16,6 +16,8 @@ const COEF_BONHEUR_EFF := 0.4
 var rng := RandomNumberGenerator.new()
 var DEBUG_MODE := true
 
+@onready var http_request: HTTPRequest = $HTTPRequest
+
 func _ready() -> void:
 	calculer_etat()
 	
@@ -23,6 +25,23 @@ func _ready() -> void:
 	control_node.connect("changement_etat", Callable(self, "calculer_etat"))
 	
 	rng.randomize()
+	
+func _input(_event: InputEvent) -> void:
+	if(Input.is_action_just_pressed("sauvegarder")):
+		var url = "https://simstation-33519-default-rtdb.europe-west1.firebasedatabase.app/users/"+Global.user["nom"]+".json"
+		var data = {"time":Global.user["time"], "habitants": Global.population.size(), "stats":Global.stats}
+		var json_data = JSON.stringify(data)
+		
+		# PUT remplace la valeur, POST ajoute une nouvelle entrée
+		var error = http_request.request(
+			url,
+			["Content-Type: application/json"],
+			HTTPClient.METHOD_PUT,
+			json_data
+		)
+		
+		if error != OK:
+			print("Erreur envoi Firebase:", error)
 
 func _process(_delta):
 	if not fin_partie and (
@@ -155,3 +174,8 @@ func _clamp_and_squash(value: float) -> float:
 	# applique une limite douce puis clamp final
 	var softened = _squash_score(value)
 	return clamp(softened, MIN_SCORE, MAX_SCORE)
+
+# Fonction pour envoyer donnée sur base firebase avec httprequest
+
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	print("Réponse Firebase:", response_code, body.get_string_from_utf8())
