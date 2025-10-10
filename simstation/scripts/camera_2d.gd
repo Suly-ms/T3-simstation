@@ -2,16 +2,16 @@ extends Camera2D
 
 # --- Config Zoom ---
 @export var zoom_step: float = 0.1
-@export var min_zoom: Vector2 = Vector2(0.5, 0.5)
-@export var max_zoom: Vector2 = Vector2(3, 3)
+@export var min_zoom: Vector2 = Vector2(0.1, 0.1)
+@export var max_zoom: Vector2 = Vector2(5, 5)
 
 # --- Variables Drag ---
 var dragging: bool = false
 var last_mouse_pos: Vector2 = Vector2.ZERO
 var current_mouse_pos: Vector2 = Vector2.ZERO
 
-func _ready() -> void:
-	pass
+func _process(delta: float) -> void:
+	GameManager.set_current_zoom_cam(zoom)
 
 
 func _unhandled_input(event: InputEvent) -> void:

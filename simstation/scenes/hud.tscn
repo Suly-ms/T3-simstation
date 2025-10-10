@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=19 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
@@ -12,6 +12,11 @@
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
 [ext_resource type="Texture2D" uid="uid://b4ky2alkrr51t" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/shop_button.gd" id="11_0m4u7"]
+[ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="13_uxdf7"]
+[ext_resource type="Script" uid="uid://d1dt8clvu4sqk" path="res://scripts/drag_building.gd" id="14_5357l"]
+[ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="15_iypfu"]
+[ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="16_qpprf"]
+[ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scenes/night_mode.gd" id="17_3xg78"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -250,6 +255,49 @@ theme_override_font_sizes/font_size = 24
 text = "Magasin"
 script = ExtResource("11_0m4u7")
 
+[node name="dragBuilding" type="Panel" parent="CanvasLayer"]
+offset_left = 204.0
+offset_top = 348.0
+offset_right = 345.0
+offset_bottom = 808.0
+
+[node name="cafet" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(71, 62)
+texture = ExtResource("13_uxdf7")
+script = ExtResource("14_5357l")
+
+[node name="hub" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(67, 186)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_iypfu")
+script = ExtResource("14_5357l")
+
+[node name="lab" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+position = Vector2(66, 273)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_qpprf")
+script = ExtResource("14_5357l")
+
+[node name="nightMode" type="Button" parent="CanvasLayer"]
+offset_left = 1533.0
+offset_top = 736.0
+offset_right = 1710.0
+offset_bottom = 880.0
+text = "Night mode"
+
+[node name="filtre_night" type="CanvasLayer" parent="CanvasLayer/nightMode"]
+layer = 0
+visible = false
+script = ExtResource("17_3xg78")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/nightMode/filtre_night"]
+offset_left = -61.0
+offset_top = -39.0
+offset_right = 1986.0
+offset_bottom = 1130.0
+mouse_filter = 2
+color = Color(0, 0.03529412, 0.03529412, 0.8627451)
+
 [node name="AjouterPopulation" type="Button" parent="."]
 layout_mode = 0
 offset_left = 34.0
@@ -275,6 +323,7 @@ offset_bottom = 293.0
 text = "Ajouter température"
 
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
 [connection signal="pressed" from="AjouterPopulation" to="." method="_on_ajouter_population_pressed"]
 [connection signal="pressed" from="AjouterBatiment" to="." method="_on_ajouter_batiment_pressed"]
 [connection signal="pressed" from="AjouterTemperature" to="." method="_on_ajouter_temperature_pressed"]

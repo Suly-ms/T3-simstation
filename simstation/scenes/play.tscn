@@ -8,14 +8,16 @@
 [node name="Play" type="Node2D"]
 script = ExtResource("1_bofkp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-script = ExtResource("2_bofkp")
+[node name="Node2D" parent="." instance=ExtResource("5_65v2a")]
+position = Vector2(100, -196)
 
 [node name="hud" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="hud" instance=ExtResource("3_bq38n")]
 mouse_filter = 2
 
-[node name="Node2D" parent="." instance=ExtResource("5_65v2a")]
-position = Vector2(100, -196)
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("2_bofkp")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
