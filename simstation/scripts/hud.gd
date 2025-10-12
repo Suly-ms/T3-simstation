@@ -4,9 +4,9 @@ signal changement_etat
 
 func _on_ajouter_population_pressed():
 	Global.population.append({
-		"sante": 0,
-		"efficacite": 20,
-		"bonheur": 20
+		"sante": 10,
+		"efficacite": 10,
+		"bonheur": 10
 	})
 	emit_signal("changement_etat")
 

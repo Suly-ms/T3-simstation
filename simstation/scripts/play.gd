@@ -1,62 +1,98 @@
 extends Node2D
 
 var fin_partie = false
-
 const MAX_SCORE := 100
 const MIN_SCORE := 0
 const DEFAULT_BONHEUR_BATIMENT := 50.0
-const RANDOM_VARIATION_MIN := -2.0
-const RANDOM_VARIATION_MAX := 2.0
+const RANDOM_VARIATION_MIN := -5.0
+const RANDOM_VARIATION_MAX := 5.0
 
-const COEF_POLLUTION_SANTE := 0.5   # exemple, adapte selon ton jeu
-const COEF_BONHEUR_SANTE := 0.3
-const COEF_SANTE_EFF := 0.2
-const COEF_BONHEUR_EFF := 0.4
+# Matrice d'influence
+var matrice_influence = [
+	[0.0,   0.2,  0.3],  # Influence du bonheur
+	[0.3,   0.0,  0.1],  # Influence de la santé
+	[0.1,   0.2,  0.0]   # Influence de l'efficacité
+]
 
 var rng := RandomNumberGenerator.new()
 var DEBUG_MODE := true
-
 @onready var http_request: HTTPRequest = $HTTPRequest
 
 func _ready() -> void:
 	calculer_etat()
-	
-	var control_node = get_node("/root/Play/hud/Hud") 
+	var control_node = get_node("/root/Play/hud/Hud")
 	control_node.connect("changement_etat", Callable(self, "calculer_etat"))
-	
 	rng.randomize()
-	
-func _input(_event: InputEvent) -> void:
-	if(Input.is_action_just_pressed("sauvegarder")):
-		var url = "https://simstation-33519-default-rtdb.europe-west1.firebasedatabase.app/users/"+Global.user["nom"]+".json"
-		var data = {"time":Global.user["time"], "habitants": Global.population.size(), "stats":Global.stats}
-		var json_data = JSON.stringify(data)
-		
-		var error = http_request.request(
-			url,
-			["Content-Type: application/json"],
-			HTTPClient.METHOD_PUT,
-			json_data
-		)
-		
-		if error != OK:
-			print("Erreur envoi Firebase:", error)
 
 func _process(_delta):
 	if not fin_partie and (
+		Global.stats["bonheur"] <= 0 or
 		Global.stats["sante"] <= 0 or
-		Global.stats["efficacite"] >= 100 or
-		Global.stats["bonheur"] <= 0
+		Global.stats["efficacite"] <= 0
 	):
 		fin_partie = true
-		print("FIN DE LA PARTIE")
+		print("PARTIE FINI")
+
+# Calcule les stats brutes
+func calculer_stats_brutes() -> Array:
+	var stats = [0.0, 0.0, 0.0]  # bonheur, santé, efficacité
+	var nb_pop = Global.population.size()
+	if nb_pop == 0:
+		return [0.0, 0.0, 0.0] 
+
+	var zero_bonheur = 0
+	var zero_sante = 0
+	var zero_efficacite = 0
+
+	for h in Global.population:
+		if h.get("bonheur", 0) == 0:
+			zero_bonheur += 1
+		if h.get("sante", 0) == 0:
+			zero_sante += 1
+		if h.get("efficacite", 0) == 0:
+			zero_efficacite += 1
+
+	if zero_bonheur > nb_pop * 0.5:
+		stats[0] = 0.0
+	else:
+		var bonheur_total = 0.0
+		for h in Global.population:
+			bonheur_total += float(h.get("bonheur", 0))
+		stats[0] = (bonheur_total / float(nb_pop) + _calculer_bonheur_batiments()) / 2.0
+
+	if zero_sante > nb_pop * 0.5:
+		stats[1] = 0.0
+	else:
+		var sante_total = 0.0
+		for h in Global.population:
+			sante_total += float(h.get("sante", 0))
+		stats[1] = sante_total / float(nb_pop)
+
+	if zero_efficacite > nb_pop * 0.5:
+		stats[2] = 0.0
+	else:
+		var efficacite_total = 0.0
+		for h in Global.population:
+			efficacite_total += float(h.get("efficacite", 0))
+		stats[2] = efficacite_total / float(nb_pop)
+
+	return stats
+
+# Appliquer la matrice d'influence
+func appliquer_matrice_influence(stats_brutes: Array) -> Array:
+	var stats_finales = [0.0, 0.0, 0.0]
+	for i in range(3):
+		for j in range(3):
+			stats_finales[i] += stats_brutes[j] * matrice_influence[j][i]
+		stats_finales[i] += noise_variation()
+	return stats_finales
 
 func calculer_etat():
-	print("Signal reçu")
-	var matrice_stats = calculer_matrice_stats()
-	Global.stats["bonheur"] = clamp(int(round(matrice_stats[0])), MIN_SCORE, MAX_SCORE)
-	Global.stats["sante"] = clamp(int(round(matrice_stats[1])), MIN_SCORE, MAX_SCORE)
-	Global.stats["efficacite"] = clamp(int(round(matrice_stats[2])), MIN_SCORE, MAX_SCORE)
+	var stats_brutes = calculer_stats_brutes()
+	var stats_finales = appliquer_matrice_influence(stats_brutes)
+	Global.stats["bonheur"] = clamp(int(round(stats_finales[0])), MIN_SCORE, MAX_SCORE)
+	Global.stats["sante"] = clamp(int(round(stats_finales[1])), MIN_SCORE, MAX_SCORE)
+	Global.stats["efficacite"] = clamp(int(round(stats_finales[2])), MIN_SCORE, MAX_SCORE)
 	if DEBUG_MODE:
 		print_debug_stats()
 
@@ -65,41 +101,6 @@ func print_debug_stats():
 
 func noise_variation() -> float:
 	return rng.randf_range(RANDOM_VARIATION_MIN, RANDOM_VARIATION_MAX)
-
-func calculer_matrice_stats() -> Array:
-	# Matrice 2D : [ [bonheur_pop, bonheur_bat], [sante_pop, sante_bat], [efficacite_pop, efficacite_bat] ]
-	var matrice = [
-		[0.0, DEFAULT_BONHEUR_BATIMENT],  # bonheur
-		[0.0, 0.0],                        # santé
-		[0.0, 0.0]                         # efficacité
-	]
-
-	#Bonheur
-	var bonheur_habitants = 0.0
-	for h in Global.population:
-		bonheur_habitants += float(h.get("bonheur", 0))
-	var nb_pop = max(1, Global.population.size())
-	matrice[0][0] = bonheur_habitants / float(nb_pop)
-	matrice[0][1] = _calculer_bonheur_batiments()
-
-	#Santé
-	var sante_brute = 0.0
-	for h in Global.population:
-		sante_brute += float(h.get("sante", 0))
-	matrice[1][0] = sante_brute / float(nb_pop)
-
-	#Efficacité
-	var efficacite_brute = 0.0
-	for h in Global.population:
-		efficacite_brute += float(h.get("efficacite", 0))
-	matrice[2][0] = efficacite_brute / float(nb_pop)
-
-	#Calcul final des stats combinées
-	var bonheur_total = matrice[0][0] + _squash_score(matrice[0][1])
-	var sante_finale = matrice[1][0] + bonheur_total * COEF_BONHEUR_SANTE + noise_variation()
-	var efficacite_finale = matrice[2][0] + sante_finale * COEF_SANTE_EFF + bonheur_total * COEF_BONHEUR_EFF + noise_variation()
-
-	return [bonheur_total, sante_finale, efficacite_finale]
 
 func _calculer_bonheur_batiments() -> float:
 	var bonheur_batiment_total = 0.0
@@ -119,7 +120,3 @@ func _calculer_bonheur_batiments() -> float:
 	if bonheur_batiment_max > 0:
 		return (bonheur_batiment_total / float(bonheur_batiment_max)) * MAX_SCORE
 	return DEFAULT_BONHEUR_BATIMENT
-
-func _squash_score(value: float) -> float:
-	var x = clamp(value / MAX_SCORE, -3.0, 3.0)
-	return MAX_SCORE * (1.0 / (1.0 + exp(-x)) - 0.5) * 2.0
