@@ -32,7 +32,6 @@ func _input(_event: InputEvent) -> void:
 		var data = {"time":Global.user["time"], "habitants": Global.population.size(), "stats":Global.stats}
 		var json_data = JSON.stringify(data)
 		
-		# PUT remplace la valeur, POST ajoute une nouvelle entrée
 		var error = http_request.request(
 			url,
 			["Content-Type: application/json"],
@@ -46,67 +45,67 @@ func _input(_event: InputEvent) -> void:
 func _process(_delta):
 	if not fin_partie and (
 		Global.stats["sante"] <= 0 or
-		Global.stats["efficacite"] >= 100 or  # efficacité max = perte
-		Global.stats["bonheur"] <= 0 or
-		Global.stats["pollution"] >= 100
+		Global.stats["efficacite"] >= 100 or
+		Global.stats["bonheur"] <= 0
 	):
 		fin_partie = true
 		print("FIN DE LA PARTIE")
 
-# Fonctions principales pour calculer petite stats
-
 func calculer_etat():
-	print("Signal recu")
-	var bonheur_total = calculer_bonheur()
-	var sante_finale = calculer_sante(bonheur_total)
-	var efficacite_finale = calculer_efficacite(bonheur_total, sante_finale)
-
-	Global.stats["bonheur"] = clamp(int(round(bonheur_total)), MIN_SCORE, MAX_SCORE)
-	Global.stats["sante"] = clamp(int(round(sante_finale)), MIN_SCORE, MAX_SCORE)
-	Global.stats["efficacite"] = clamp(int(round(efficacite_finale)), MIN_SCORE, MAX_SCORE)
-
+	print("Signal reçu")
+	var matrice_stats = calculer_matrice_stats()
+	Global.stats["bonheur"] = clamp(int(round(matrice_stats[0])), MIN_SCORE, MAX_SCORE)
+	Global.stats["sante"] = clamp(int(round(matrice_stats[1])), MIN_SCORE, MAX_SCORE)
+	Global.stats["efficacite"] = clamp(int(round(matrice_stats[2])), MIN_SCORE, MAX_SCORE)
 	if DEBUG_MODE:
 		print_debug_stats()
 
-# ----- fonctions utilitaires -----
 func print_debug_stats():
-	print("Bonheur:", Global.stats["bonheur"], " | Santé:", Global.stats["sante"],
-		  " | Efficacité:", Global.stats["efficacite"], " | Pollution:", Global.stats.get("pollution", 0))
+	print("Bonheur:", Global.stats["bonheur"], " | Santé:", Global.stats["sante"], " | Efficacité:", Global.stats["efficacite"])
 
 func noise_variation() -> float:
 	return rng.randf_range(RANDOM_VARIATION_MIN, RANDOM_VARIATION_MAX)
 
-# ----- calculs individuels -----
-func calculer_bonheur() -> float:
+func calculer_matrice_stats() -> Array:
+	# Matrice 2D : [ [bonheur_pop, bonheur_bat], [sante_pop, sante_bat], [efficacite_pop, efficacite_bat] ]
+	var matrice = [
+		[0.0, DEFAULT_BONHEUR_BATIMENT],  # bonheur
+		[0.0, 0.0],                        # santé
+		[0.0, 0.0]                         # efficacité
+	]
+
+	#Bonheur
 	var bonheur_habitants = 0.0
 	for h in Global.population:
 		bonheur_habitants += float(h.get("bonheur", 0))
-
 	var nb_pop = max(1, Global.population.size())
-	var bonheur_normalise = bonheur_habitants / float(nb_pop)
+	matrice[0][0] = bonheur_habitants / float(nb_pop)
+	matrice[0][1] = _calculer_bonheur_batiments()
 
-	var batiments_results = _calculer_batiments_scores()
-	var pollution_moyenne = batiments_results[0]
-	var bonheur_batiment_score = batiments_results[1]
+	#Santé
+	var sante_brute = 0.0
+	for h in Global.population:
+		sante_brute += float(h.get("sante", 0))
+	matrice[1][0] = sante_brute / float(nb_pop)
 
-	# stocke pollution (déjà normalisée)
-	Global.stats["pollution"] = int(clamp(pow(pollution_moyenne, 1.2), MIN_SCORE, MAX_SCORE))
+	#Efficacité
+	var efficacite_brute = 0.0
+	for h in Global.population:
+		efficacite_brute += float(h.get("efficacite", 0))
+	matrice[2][0] = efficacite_brute / float(nb_pop)
 
+	#Calcul final des stats combinées
+	var bonheur_total = matrice[0][0] + _squash_score(matrice[0][1])
+	var sante_finale = matrice[1][0] + bonheur_total * COEF_BONHEUR_SANTE + noise_variation()
+	var efficacite_finale = matrice[2][0] + sante_finale * COEF_SANTE_EFF + bonheur_total * COEF_BONHEUR_EFF + noise_variation()
 
-	# Normalisation combinée : on limite l'impact pour éviter valeurs extrêmes
-	var bonheur_total = bonheur_normalise + _squash_score(bonheur_batiment_score)
-	return bonheur_total
+	return [bonheur_total, sante_finale, efficacite_finale]
 
-func _calculer_batiments_scores() -> Array:
-	var pollution_totale = 0.0
-	var batiments_total = 0
+func _calculer_bonheur_batiments() -> float:
 	var bonheur_batiment_total = 0.0
 	var bonheur_batiment_max = 0
-
-	# accès local pour performance
 	var batiments_nombre = Global.batiments_nombre
 	var info_batiments = Global.info_batiments
-
 	for id in batiments_nombre.keys():
 		var nombre = int(batiments_nombre[id])
 		if nombre == 0:
@@ -114,63 +113,13 @@ func _calculer_batiments_scores() -> Array:
 		var def = info_batiments.get(id, null)
 		if def == null:
 			continue
-		# def expected: [nom, pollution, bonheur, ...]
-		var pollution_par_unite = float(def[1])
 		var bonheur_par_unite = float(def[2])
-
-		pollution_totale += pollution_par_unite * nombre
-		batiments_total += nombre
 		bonheur_batiment_total += bonheur_par_unite * nombre
 		bonheur_batiment_max += MAX_SCORE * nombre
-
-	var pollution_moyenne = pollution_totale / batiments_total if batiments_total > 0 else 0.0
-
-	var bonheur_batiment_score = DEFAULT_BONHEUR_BATIMENT
 	if bonheur_batiment_max > 0:
-		bonheur_batiment_score = (bonheur_batiment_total / float(bonheur_batiment_max)) * MAX_SCORE
+		return (bonheur_batiment_total / float(bonheur_batiment_max)) * MAX_SCORE
+	return DEFAULT_BONHEUR_BATIMENT
 
-	return [pollution_moyenne, bonheur_batiment_score]
-
-func calculer_sante(bonheur_total: float) -> float:
-	var sante_brute = 0.0
-	for h in Global.population:
-		sante_brute += float(h.get("sante", 0))
-
-	var nb_pop = max(1, Global.population.size())
-	var sante_moyenne = sante_brute / float(nb_pop)
-
-	var pollution = float(Global.stats.get("pollution", 0))
-
-	var sante_finale = sante_moyenne \
-		- pollution * COEF_POLLUTION_SANTE \
-		+ bonheur_total * COEF_BONHEUR_SANTE \
-		+ noise_variation()
-
-	# bornes raisonnables et squash pour éviter valeurs extrêmes
-	return _clamp_and_squash(sante_finale)
-
-func calculer_efficacite(bonheur_total: float, sante_finale: float) -> float:
-	var efficacite_brute = 0.0
-	for h in Global.population:
-		efficacite_brute += float(h.get("efficacite", 0))
-
-	var nb_pop = max(1, Global.population.size())
-	var efficacite_moyenne = efficacite_brute / float(nb_pop)
-
-	var efficacite_finale = efficacite_moyenne \
-		+ sante_finale * COEF_SANTE_EFF \
-		+ bonheur_total * COEF_BONHEUR_EFF \
-		+ noise_variation()
-
-	return _clamp_and_squash(efficacite_finale)
-
-# ----- fonctions de normalisation et robustesse -----
 func _squash_score(value: float) -> float:
-	# sigmoid-like squash entre 0 et MAX_SCORE pour stabiliser effets extrêmes
 	var x = clamp(value / MAX_SCORE, -3.0, 3.0)
 	return MAX_SCORE * (1.0 / (1.0 + exp(-x)) - 0.5) * 2.0
-
-func _clamp_and_squash(value: float) -> float:
-	# applique une limite douce puis clamp final
-	var softened = _squash_score(value)
-	return clamp(softened, MIN_SCORE, MAX_SCORE)

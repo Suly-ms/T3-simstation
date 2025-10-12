@@ -1,6 +1,6 @@
 extends Node
 
-var user = {"nom":"Fabio","time":3}
+var user = {"nom":"Martin","time":3}
 
 var population = [
 	{"sante": 100, "efficacite": 100, "bonheur": 50}

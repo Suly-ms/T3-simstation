@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=18 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
@@ -10,13 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dpsijbr80dolk" path="res://textures/efficiency_bar_empty.png" id="6_hd3ao"]
 [ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
-[ext_resource type="Texture2D" uid="uid://b4ky2alkrr51t" path="res://textures/pollution_bar_empty.png" id="8_mphia"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/shop_button.gd" id="11_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="13_uxdf7"]
 [ext_resource type="Script" uid="uid://d1dt8clvu4sqk" path="res://scripts/drag_building.gd" id="14_5357l"]
 [ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="16_qpprf"]
-[ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scenes/night_mode.gd" id="17_3xg78"]
+[ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scripts/night_mode.gd" id="17_3xg78"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -208,38 +207,6 @@ grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[center][font_size=8]Bonheur"
-
-[node name="PollutionBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(1180, 90)
-scale = Vector2(2.875, 2.875)
-texture = ExtResource("8_mphia")
-region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
-
-[node name="FilledBarPollution" type="Sprite2D" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
-position = Vector2(-29.231, -27.26)
-texture = ExtResource("5_047uy")
-centered = false
-region_enabled = true
-region_rect = Rect2(34.007, 45.353, 83.8639, 54.51)
-script = ExtResource("7_mphia")
-
-[node name="Pollution_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/PollutionBarEmpty"]
-anchors_preset = -1
-anchor_left = 0.6
-anchor_top = 1.0
-anchor_right = 0.6
-anchor_bottom = 1.0
-offset_left = -95.9728
-offset_top = -48.7826
-offset_right = -13.0272
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
-bbcode_enabled = true
-text = "[center][font_size=8]Pollution
-"
 
 [node name="shop_button" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
