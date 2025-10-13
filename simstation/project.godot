@@ -12,8 +12,16 @@ config_version=5
 
 config/name="SimStation"
 run/main_scene="uid://byhx4nqhp22jo"
+<<<<<<< HEAD
 config/features=PackedStringArray("4.4", "Forward Plus")
+=======
+config/features=PackedStringArray("4.5", "Forward Plus")
+>>>>>>> main
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 
@@ -56,3 +64,7 @@ ui_down={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
