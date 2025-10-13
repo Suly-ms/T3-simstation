@@ -16,29 +16,26 @@ var batiments_nombre = {
 	"generateur_petrole": 3
 }
 
-# [Santé, Pollution, Bonheur, Description]
+# [Santé, Bonheur, Description]
 var info_batiments = {
-	"dortoir": [100, 5, 80, "Permet de se reposer tranquillement"],  
-	"cantine": [80, 10, 70, "Fournit de la nourriture aux habitants"],
-	"labo_recherche": [50, 15, 60, "Permet de faire des recherches scientifiques"], 
-	"salle_sport": [70, 5, 85, "Améliore la condition physique des habitants"],  
-	"salle_repos": [90, 2, 90, "Endroit calme pour se détendre"],    
-	"panneaux solaires": [90, 2, 90, "Génère de l'électricité avec le Soleil"],   
-	"generateur_petrole": [50, 50, -20, "Génère de l'électricité avec du pétrole"] 
+	"dortoir": [100, 80, "Permet de se reposer tranquillement"],  
+	"cantine": [80, 70, "Fournit de la nourriture aux habitants"],
+	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques"], 
+	"salle_sport": [70, 85, "Améliore la condition physique des habitants"],  
+	"salle_repos": [90, 90, "Endroit calme pour se détendre"],    
+	"panneaux solaires": [90, 90, "Génère de l'électricité avec le Soleil"],   
+	"generateur_petrole": [50, -20, "Génère de l'électricité avec du pétrole"] 
 }
 
 var stats = {
 	"sante": 0,
 	"efficacite": 0,
 	"bonheur": 0,
-	"pollution": 0
+	"argent": 0,
+	"nombre de tours": 0
 }
 
 var environnement = {
 	"heure": 0,        # 0 = Jour, 1 = Nuit
-	"temperature": 30  # °C
-}
-
-var tour = {
-	"nombre de tours": 0,       # chaque tours 3 mois 
+	"temperature": 0  # °C
 }

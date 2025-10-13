@@ -9,9 +9,9 @@ const RANDOM_VARIATION_MAX := 5.0
 
 # Matrice d'influence
 var matrice_influence = [
-	[0.0,   0.2,  0.3],  # Influence du bonheur
-	[0.3,   0.0,  0.1],  # Influence de la santé
-	[0.1,   0.2,  0.0]   # Influence de l'efficacité
+	[0.0,   0.8,  0.6],  # Influence du bonheur
+	[0.6,   0.0,  0.3],  # Influence de la santé
+	[0.7,   0.6,  0.0]   # Influence de l'efficacité
 ]
 
 var rng := RandomNumberGenerator.new()
@@ -97,7 +97,7 @@ func calculer_etat():
 		print_debug_stats()
 
 func print_debug_stats():
-	print("Bonheur:", Global.stats["bonheur"], " | Santé:", Global.stats["sante"], " | Efficacité:", Global.stats["efficacite"])
+	print("Bonheur:", Global.stats["bonheur"], "  Santé:", Global.stats["sante"], "  Efficacité:", Global.stats["efficacite"])
 
 func noise_variation() -> float:
 	return rng.randf_range(RANDOM_VARIATION_MIN, RANDOM_VARIATION_MAX)
