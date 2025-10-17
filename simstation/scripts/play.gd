@@ -22,6 +22,7 @@ func _ready() -> void:
 	calculer_etat()
 	var control_node = get_node("/root/Play/hud/Hud")
 	control_node.connect("changement_etat", Callable(self, "calculer_etat"))
+	control_node.connect("passer_mois", Callable(self, "passer_mois"))
 	rng.randomize()
 
 func _process(_delta):
@@ -120,3 +121,6 @@ func _calculer_bonheur_batiments() -> float:
 	if bonheur_batiment_max > 0:
 		return (bonheur_batiment_total / float(bonheur_batiment_max)) * MAX_SCORE
 	return DEFAULT_BONHEUR_BATIMENT
+	
+func passer_mois() :
+	Global.stat["nombre_de_mois"]+=3;

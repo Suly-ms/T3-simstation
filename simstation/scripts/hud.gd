@@ -1,6 +1,7 @@
 extends Control
 
 signal changement_etat
+signal passer_mois
 
 func _on_ajouter_population_pressed():
 	Global.population.append({
@@ -17,3 +18,6 @@ func _on_ajouter_batiment_pressed():
 func _on_ajouter_temperature_pressed():
 	Global.environnement["temperature"] += 1
 	emit_signal("changement_etat")
+	
+func _on_passer_mois_pressed() -> void:
+	emit_signal("passer_mois")

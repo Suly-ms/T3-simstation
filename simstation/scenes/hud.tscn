@@ -104,6 +104,24 @@ text = "[right][font_size=24]3 000 000 $"
 scroll_active = false
 script = SubResource("GDScript_mphia")
 
+[node name="NombreMois" type="RichTextLabel" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.97
+anchor_top = 0.2
+anchor_right = 0.97
+anchor_bottom = 0.2
+offset_left = -181.40002
+offset_top = 48.6
+offset_right = -0.4000244
+offset_bottom = 83.6
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+bbcode_enabled = true
+text = "[right][font_size=24]0 Mois"
+scroll_active = false
+script = SubResource("GDScript_mphia")
+
 [node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
 layout_mode = 1
 anchors_preset = 5
@@ -289,8 +307,17 @@ offset_right = 907.0
 offset_bottom = 293.0
 text = "Ajouter température"
 
+[node name="PasserMois" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1628.0
+offset_top = 201.0
+offset_right = 1876.0
+offset_bottom = 272.0
+text = "Passer au 3 mois suivant"
+
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
 [connection signal="pressed" from="AjouterPopulation" to="." method="_on_ajouter_population_pressed"]
 [connection signal="pressed" from="AjouterBatiment" to="." method="_on_ajouter_batiment_pressed"]
 [connection signal="pressed" from="AjouterTemperature" to="." method="_on_ajouter_temperature_pressed"]
+[connection signal="pressed" from="PasserMois" to="." method="_on_passer_mois_pressed"]

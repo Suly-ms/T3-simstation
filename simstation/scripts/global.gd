@@ -32,7 +32,7 @@ var stats = {
 	"efficacite": 0,
 	"bonheur": 0,
 	"argent": 0,
-	"nombre de tours": 0
+	"nombre_de_mois": 0
 }
 
 var environnement = {
