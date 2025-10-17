@@ -18,12 +18,7 @@ func _process(_delta):
 #et place automatiquement le batiement
 func _physics_process(delta: float) -> void:
 	if dragging:
-		var tween = get_tree().create_tween()
-		tween.tween_property(batiment_instance, "position",get_world_mouse_position() - mouse_offset , delay * delta)
-	if automatic_placement and !map.is_placable(batiment_instance)[0]:
-		global_vector = (map.is_placable(batiment_instance)[1] + global_vector) /2
-		var tween = get_tree().create_tween()
-		tween.tween_property(batiment_instance, "position", batiment_instance.position - global_vector * Vector2(speed_ap, speed_ap), delay * delta)
+		grid_placement(delta)
 	else:
 		automatic_placement = false
 	if !dragging and  batiment_instance and is_square:
@@ -43,9 +38,10 @@ func _input(event):
 				add_building_map()
 				dragging = true
 				mouse_offset = Vector2(0,0)
+				GridDrawer.enable_grid()
 		elif dragging:
+			GridDrawer.disable_grid()
 			dragging = false
-			place_building()
 
 
 #fonction qui renvoie la position general du pointeur de la souris 
@@ -65,17 +61,6 @@ func find_building_scene() -> Resource:
 	else:
 		return null
 
-#fonction pour placer le batiment et qui verifie si l'emplacement choisis 
-#est libre sinon decale le batiment
-func place_building():
-	dragging = false
-	if map.is_placable(batiment_instance)[0]:
-		print(map.is_placable(batiment_instance)[1])
-		batiment_instance.position = get_world_mouse_position() - mouse_offset
-	else:
-		automatic_placement = true
-
-
 
 #fonction pour ajouter le batiment dans la map et le mettre dans le bon dossiers des batiments
 func add_building_map():
@@ -85,3 +70,16 @@ func add_building_map():
 #attendre les secondes en parametre
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
+	
+#gere quand le batiment est glisser sur la map il doit suivre l'aimentation de la grille
+func grid_placement(delta) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(batiment_instance, "position",get_grid_point() , delay * delta)
+ 
+
+ #fise un des coordonée sur la grille
+func get_grid_point() -> Vector2:
+	var new_point : Vector2
+	new_point.x = int(get_world_mouse_position().x) - int(get_world_mouse_position().x) % GridDrawer.get_offset() 
+	new_point.y = int(get_world_mouse_position().y) - int(get_world_mouse_position().y) % GridDrawer.get_offset() 
+	return new_point

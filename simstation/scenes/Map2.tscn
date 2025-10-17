@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cnd66etwire0l"]
+[gd_scene load_steps=10 format=4 uid="uid://cnd66etwire0l"]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://uxk73ab1jk6e" path="res://assets/snow/spritesheet.png" id="1_pn7st"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cam7p7d4largs" path="res://assets/snow/isometric-tiny-polar-rocks__b552125a.png" id="3_p3a57"]
 [ext_resource type="Texture2D" uid="uid://ci3eu2es5oban" path="res://assets/snow/isometric-tiny-polar-rocks__2fe54bc3.png" id="4_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://bml1vcld6rjy4" path="res://assets/snow/isometric-polar-rocks__78edce47.png" id="5_i4jx2"]
+[ext_resource type="Script" uid="uid://dsfdqffjckho4" path="res://scripts/grid_drawer.gd" id="7_p3a57"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mg43x"]
 texture = ExtResource("1_pn7st")
@@ -23,6 +24,10 @@ sources/12 = SubResource("TileSetAtlasSource_mg43x")
 [node name="Node2D" type="Node2D" groups=["buildings"]]
 script = ExtResource("1_o7eqr")
 metadata/_edit_vertical_guides_ = [-330.0]
+
+[node name="gridContainer" type="Node2D" parent="."]
+z_index = 15
+script = ExtResource("7_p3a57")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -249,8 +254,3 @@ position = Vector2(2029.5986, -992.5093)
 texture = ExtResource("5_i4jx2")
 
 [node name="buildings" type="Node" parent="."]
-
-[node name="GridContainer" type="GridContainer" parent="."]
-offset_right = 659.0
-offset_bottom = 447.0
-columns = 7

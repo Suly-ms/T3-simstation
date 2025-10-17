@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bobhrar4pirpv"]
+[gd_scene load_steps=7 format=3 uid="uid://btmc5b0ev1dpa"]
 
 [ext_resource type="ButtonGroup" uid="uid://bairrufpuwok0" path="res://batiments/group.tres" id="1_2q0k6"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="1_i5n2j"]
 [ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/batiment_btn.gd" id="2_byio2"]
 [ext_resource type="Texture2D" uid="uid://dbwuwk82lxckt" path="res://assets/batiments/cafet/hover.png" id="2_okowy"]
-[ext_resource type="PackedScene" uid="uid://du2r3b86tqr30" path="res://batiments/square.tscn" id="5_prhg7"]
+[ext_resource type="PackedScene" uid="uid://c0jibdhlllmec" path="res://batiments/square.tscn" id="5_prhg7"]
 
 [sub_resource type="BitMap" id="BitMap_npxuh"]
 

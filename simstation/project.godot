@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameManager="*res://scripts/game_manager.gd"
 Global="*res://scripts/global.gd"
 BitMapUtil="*res://scripts/bit_map_util.gd"
+GridDrawer="*res://scripts/grid_drawer.gd"
 
 [display]
 
