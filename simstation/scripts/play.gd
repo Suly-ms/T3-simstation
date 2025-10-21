@@ -123,4 +123,4 @@ func _calculer_bonheur_batiments() -> float:
 	return DEFAULT_BONHEUR_BATIMENT
 	
 func passer_mois() :
-	Global.stat["nombre_de_mois"]+=3;
+	Global.stats["nombre_de_mois"]+=3;

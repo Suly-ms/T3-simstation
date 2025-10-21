@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=17 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
@@ -16,26 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="16_qpprf"]
 [ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scripts/night_mode.gd" id="17_3xg78"]
-
-[sub_resource type="GDScript" id="GDScript_mphia"]
-script/source = "extends RichTextLabel
-
-const BASE_RES = Vector2(1920, 1080)
-
-func _ready():
-	_resize()
-	get_viewport().connect(\"size_changed\", Callable(self, \"_resize\"))
-
-func _resize():
-	var screen_size = get_viewport_rect().size
-	var scale_factor = min(
-		screen_size.x / BASE_RES.x,
-		screen_size.y / BASE_RES.y
-	)
-	
-	# On applique uniquement l'échelle
-	self.scale = Vector2(scale_factor, scale_factor)
-"
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -102,7 +82,7 @@ theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[right][font_size=24]3 000 000 $"
 scroll_active = false
-script = SubResource("GDScript_mphia")
+script = ExtResource("3_mphia")
 
 [node name="NombreMois" type="RichTextLabel" parent="CanvasLayer/background"]
 layout_mode = 1
@@ -120,7 +100,7 @@ theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
 text = "[right][font_size=24]0 Mois"
 scroll_active = false
-script = SubResource("GDScript_mphia")
+script = ExtResource("3_mphia")
 
 [node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
 layout_mode = 1
