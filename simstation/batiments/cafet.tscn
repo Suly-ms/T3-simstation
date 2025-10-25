@@ -2,7 +2,7 @@
 
 [ext_resource type="ButtonGroup" uid="uid://bairrufpuwok0" path="res://batiments/group.tres" id="1_2q0k6"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="1_i5n2j"]
-[ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/batiment_btn.gd" id="2_byio2"]
+[ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/building.gd" id="2_byio2"]
 [ext_resource type="Texture2D" uid="uid://dbwuwk82lxckt" path="res://assets/batiments/cafet/hover.png" id="2_okowy"]
 [ext_resource type="PackedScene" uid="uid://c0jibdhlllmec" path="res://batiments/square.tscn" id="5_prhg7"]
 
@@ -10,10 +10,15 @@
 
 [node name="cafet_btns" type="TextureButton"]
 z_index = 4
-offset_left = 266.0
-offset_top = 219.0
-offset_right = 375.42578
-offset_bottom = 317.07324
+anchors_preset = -1
+anchor_left = -0.135
+anchor_top = -0.20500001
+anchor_right = -0.135
+anchor_bottom = -0.20500001
+offset_left = 260.2
+offset_top = 223.40001
+offset_right = 360.2
+offset_bottom = 323.40002
 scale = Vector2(4, 4)
 pivot_offset = Vector2(86.356445, 73.890625)
 size_flags_stretch_ratio = 1.6
@@ -28,7 +33,19 @@ script = ExtResource("2_byio2")
 [node name="square" parent="." instance=ExtResource("5_prhg7")]
 visible = true
 z_index = 3
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.120000005
+anchor_top = 0.049000002
+anchor_right = 0.120000005
+anchor_bottom = 0.049000002
+offset_left = 0.017333984
+offset_top = 0.017967701
+offset_right = 100.017334
+offset_bottom = 100.01797
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(2.517334, 4.4179688)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

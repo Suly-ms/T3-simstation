@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://cnd66etwire0l"]
 
-[ext_resource type="Script" path="res://scripts/map.gd" id="1_o7eqr"]
+[ext_resource type="Script" uid="uid://bqfn5lgoa0svc" path="res://scripts/map.gd" id="1_o7eqr"]
 [ext_resource type="Texture2D" uid="uid://uxk73ab1jk6e" path="res://assets/snow/spritesheet.png" id="1_pn7st"]
 [ext_resource type="Texture2D" uid="uid://s1rhej03yoa7" path="res://assets/snow/isometric-tiny-polar-rocks__d762299a.png" id="2_cswph"]
 [ext_resource type="Texture2D" uid="uid://cam7p7d4largs" path="res://assets/snow/isometric-tiny-polar-rocks__b552125a.png" id="3_p3a57"]

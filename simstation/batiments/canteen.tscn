@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://qlt4wdswfbrg"]
+
+[ext_resource type="PackedScene" uid="uid://btmc5b0ev1dpa" path="res://batiments/cafet.tscn" id="1_wrtvx"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_7dsia"]
+
+[node name="Canteen" type="Node"]
+
+[node name="cafet_btns" parent="." instance=ExtResource("1_wrtvx")]
+offset_left = 604.2
+offset_top = 429.40002
+offset_right = 704.2
+offset_bottom = 529.4
+button_group = SubResource("ButtonGroup_7dsia")

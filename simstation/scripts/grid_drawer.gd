@@ -1,42 +1,48 @@
 extends Node2D
 
-var rows = 100
-var collumns = 100
-var width_line = 20
-var offset = 300
-var lenght_x = 10000
-var lenght_y = 10000
-var start_position = Vector2(-20000, -20000)
+@export var rows := 100
+@export var columns := 100
+@export var line_width := 1.0
+@export var offset := 100.0
+@export var start_position := Vector2.ZERO
+@export var line_color := Color.BLACK
 
-func _process(delta):
-	#queue_redraw() # Demande à redessiner chaque frame
-	pass
+func _ready() -> void:
+	z_index = 1000
+	visible = false
+	queue_redraw()
 
 func _draw():
+	if not visible:
+		return
 	
-	#dessine les lignes et les collones 
-	var center_y = Vector2(start_position.x, -lenght_y)
-	var end_y = Vector2(start_position.x,lenght_y )
-	for i in collumns:
-		draw_line(center_y, end_y , Color.BLACK, 5)
-		center_y += Vector2(offset,0)
-		end_y += Vector2(offset,0)
-		
-	var center_x = Vector2(-lenght_x, start_position.x)
-	var end_x = Vector2(lenght_x,start_position.x )
-	for i in collumns:
-		draw_line(center_x, end_x , Color.BLACK, 5)
-		center_x += Vector2(0, offset)
-		end_x += Vector2(0, offset)
+	var half_width = columns * offset * 0.5
+	var half_height = rows * offset * 0.5
+	
+	# Draw columns
+	for i in range(columns + 1):
+		var x = start_position.x - half_width + i * offset
+		draw_line(Vector2(x, start_position.y - half_height),
+				  Vector2(x, start_position.y + half_height),
+				  line_color, line_width)
+	
+	# Draw rows
+	for j in range(rows + 1):
+		var y = start_position.y - half_height + j * offset
+		draw_line(Vector2(start_position.x - half_width, y),
+				  Vector2(start_position.x + half_width, y),
+				  line_color, line_width )
 
 func enable_grid():
-	self.visible = true
+	visible = true
+	queue_redraw()
 
 func disable_grid():
-	self.visible = false
-	
-func get_offset() -> int:
+	visible = false
+	queue_redraw()
+
+func get_offset() -> float:
 	return offset
-	
+
 func get_start_position() -> Vector2:
 	return start_position

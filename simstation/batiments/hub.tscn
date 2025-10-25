@@ -3,16 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="1_0xwq6"]
 [ext_resource type="ButtonGroup" uid="uid://bairrufpuwok0" path="res://batiments/group.tres" id="1_2slj6"]
 [ext_resource type="Texture2D" uid="uid://dxee5jcu773ka" path="res://assets/batiments/hub/hover.png" id="2_2slj6"]
-[ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/batiment_btn.gd" id="4_iji3d"]
-[ext_resource type="PackedScene" path="res://batiments/square.tscn" id="5_dr8sm"]
+[ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/building.gd" id="4_iji3d"]
+[ext_resource type="PackedScene" uid="uid://c0jibdhlllmec" path="res://batiments/square.tscn" id="5_dr8sm"]
 
 [sub_resource type="BitMap" id="BitMap_npxuh"]
 
 [node name="textureButtons" type="TextureButton" groups=["buildings"]]
-offset_left = 235.0
-offset_top = -5.0
-offset_right = 479.75
-offset_bottom = 170.25
+anchors_preset = -1
+anchor_left = -0.25300002
+anchor_top = -0.25100002
+anchor_right = -0.25300002
+anchor_bottom = -0.25100002
+offset_left = 356.76004
+offset_top = 157.08002
+offset_right = 601.51
+offset_bottom = 332.33002
 scale = Vector2(4, 4)
 pivot_offset = Vector2(126.453125, 81.46484)
 size_flags_stretch_ratio = 1.6
@@ -29,7 +34,16 @@ script = ExtResource("4_iji3d")
 [node name="square" parent="." instance=ExtResource("5_dr8sm")]
 visible = true
 z_index = 3
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012
+anchor_top = 0.12200001
+anchor_right = 0.012
+anchor_bottom = 0.12200001
+offset_left = -0.5971563
+offset_top = -4.781868
+offset_right = 249.40285
+offset_bottom = 145.21814
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
