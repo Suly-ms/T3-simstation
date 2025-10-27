@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4jerstc7r4mv"]
+
+[ext_resource type="Script" uid="uid://cj5xsabl6ifa6" path="res://scripts/arbre_recherche_graphique.gd" id="1_cpw16"]
+
+[node name="ArbreRecherche" type="Node2D"]
+script = ExtResource("1_cpw16")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 778.0
+offset_top = 92.0
+offset_right = 1142.0
+offset_bottom = 143.0
+bbcode_enabled = true
+text = "[center][font_size=30]Arbre de recherche"

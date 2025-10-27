@@ -21,9 +21,9 @@ func _process(_delta: float) -> void:
 
 func _on_ajouter_population_pressed():
 	Global.population.append({
-		"sante": 10,
-		"efficacite": 10,
-		"bonheur": 10
+		"sante": 0,
+		"efficacite": 0,
+		"bonheur": 0
 	})
 	emit_signal("changement_etat")
 
