@@ -1,7 +1,8 @@
 extends Node2D
 
 var tree: SearchTree
-var node_positions = {} # {NodeData: Vector2}
+var node_positions = {}
+var current_menu = null 
 
 # Espacements
 const X_SPACING = 150
@@ -16,6 +17,11 @@ func _ready():
 	var etape4 = tree.add_child(etape2, 4, 25, 12, "Envoyer les carottes au laboratoire central.")
 	var etape5 = tree.add_child(etape3, 5, 30, 15, "Rédiger le rapport préliminaire.")
 	var etape6 = tree.add_child(etape3, 6, 10, 3, "Vérifier la qualité des données.")
+	
+	var hover_timer = Timer.new()
+	add_child(hover_timer)
+	hover_timer.wait_time = 0.3
+	hover_timer.one_shot = true
 
 	_calculate_positions(tree.root, Vector2(0, 0), 0)
 
@@ -87,12 +93,26 @@ func _draw_node_recursive(node: SearchTree.NodeData):
 	var btn = Button.new() # ou créez plutôt une scène de bouton
 	btn.set_position(pos - Vector2(50, 50)/2)
 	btn.set_size(Vector2(50, 50))
-	btn.pressed.connect(func(): afficher_menu_node(pos - Vector2(50, 50)/2, node))
+	btn.mouse_entered.connect(func(): ajouter_menu_node(pos - Vector2(50, 50)/2, node))
+	btn.mouse_exited.connect(func(): supprimer_menu())
 	add_child(btn)
 	var default_font = ThemeDB.fallback_font
 	var default_font_size = ThemeDB.fallback_font_size
-	draw_string(default_font, pos + Vector2(-6, 5), str(node.key), HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size, Color.WHITE)
-	draw_string(default_font, pos + Vector2(-6, 5), str(node.key), HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size, Color.WHITE)
+	var texte = Label.new()
+	texte.set_position(pos + Vector2(-6, -11))
+	texte.text = str(node.key)
+	add_child(texte)
 
-func afficher_menu_node(pos: Vector2, node: SearchTree.NodeData):
-	print("Coût de recherche: %d, Temps nécessaire: %d" % [node.research_cost, node.time_cost])
+func ajouter_menu_node(pos: Vector2, node: SearchTree.NodeData):
+	if current_menu:
+		current_menu.queue_free()
+	var menu = Panel.new()
+	menu.set_size(Vector2(150, 200))
+	menu.set_position(pos)
+	add_child(menu)
+	current_menu = menu
+
+func supprimer_menu():
+	if current_menu:
+		current_menu.queue_free()
+		current_menu = null
