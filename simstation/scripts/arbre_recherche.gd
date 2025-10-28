@@ -3,25 +3,30 @@ class_name SearchTree
 
 # --- noeud de l’arbre ---
 class NodeData:
-	var value
-	var children = []
+	var key: int
+	var research_cost: int
+	var time_cost: int
+	var description: String
+	var children: Array = []
+	var parent: NodeData
 
-	func _init(v):
-		value = v
-
-	func add_child_node(child: NodeData):
-		children.append(child)
+	func _init(k: int, r_cost: int, t_cost: int, desc: String):
+		key = k
+		research_cost = r_cost
+		time_cost = t_cost
+		description = desc
 
 # --- logique de l’arbre ---
-var root: NodeData = null
+var root: NodeData
 
-func create_root(value):
-	root = NodeData.new(value)
+func create_root(k: int, r_cost: int, t_cost: int, desc: String) -> NodeData:
+	root = NodeData.new(k, r_cost, t_cost, desc)
 	return root
 
-func add_child(parent: NodeData, value):
-	var child = NodeData.new(value)
-	parent.add_child_node(child)
+func add_child(parent: NodeData, k: int, r_cost: int, t_cost: int, desc: String) -> NodeData:
+	var child = NodeData.new(k, r_cost, t_cost, desc)
+	child.parent = parent
+	parent.children.append(child)
 	return child
 
 func depth_first_search(target, node: NodeData = null) -> NodeData:

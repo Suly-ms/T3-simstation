@@ -6,17 +6,16 @@ var node_positions = {} # {NodeData: Vector2}
 # Espacements
 const X_SPACING = 150
 const Y_SPACING = 100
-const NODE_RADIUS = 20
+const NODE_RADIUS = 25
 
 func _ready():
 	tree = SearchTree.new()
-	var a = tree.create_root("A")
-	var b = tree.add_child(a, "B")
-	var c = tree.add_child(a, "C")
-	var d = tree.add_child(b, "D")
-	var e = tree.add_child(b, "E")
-	var f = tree.add_child(c, "F")
-	var g = tree.add_child(c, "G")
+	var root = tree.create_root(1, 10, 5, "Établir le camp de base et installer les équipements.")
+	var etape2 = tree.add_child(root, 2, 20, 10, "Forer la glace pour prélever des carottes.")
+	var etape3 = tree.add_child(root, 3, 15, 7, "Analyser les échantillons sur place.")
+	var etape4 = tree.add_child(etape2, 4, 25, 12, "Envoyer les carottes au laboratoire central.")
+	var etape5 = tree.add_child(etape3, 5, 30, 15, "Rédiger le rapport préliminaire.")
+	var etape6 = tree.add_child(etape3, 6, 10, 3, "Vérifier la qualité des données.")
 
 	_calculate_positions(tree.root, Vector2(0, 0), 0)
 
@@ -79,12 +78,21 @@ func _draw_node_recursive(node: SearchTree.NodeData):
 	# tracer les liens
 	for child in node.children:
 		var child_pos = node_positions[child]
-		draw_line(pos, child_pos, Color(0.6, 0.6, 0.6), 2)
+		var start_pos = pos + Vector2(0, NODE_RADIUS)
+		var end_pos = child_pos - Vector2(0, NODE_RADIUS)
+		draw_line(start_pos, end_pos, Color(0.6, 0.6, 0.6), 2)
 		_draw_node_recursive(child)
 
 	# dessiner le nœud
-	draw_circle(pos, NODE_RADIUS, Color(0.2, 0.4, 0.9))
-	draw_circle(pos, NODE_RADIUS, Color.WHITE, 2)
+	var btn = Button.new() # ou créez plutôt une scène de bouton
+	btn.set_position(pos - Vector2(50, 50)/2)
+	btn.set_size(Vector2(50, 50))
+	btn.pressed.connect(func(): afficher_menu_node(pos - Vector2(50, 50)/2, node))
+	add_child(btn)
 	var default_font = ThemeDB.fallback_font
 	var default_font_size = ThemeDB.fallback_font_size
-	draw_string(default_font, pos + Vector2(-6, 5), str(node.value), HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size, Color.WHITE)
+	draw_string(default_font, pos + Vector2(-6, 5), str(node.key), HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size, Color.WHITE)
+	draw_string(default_font, pos + Vector2(-6, 5), str(node.key), HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size, Color.WHITE)
+
+func afficher_menu_node(pos: Vector2, node: SearchTree.NodeData):
+	print("Coût de recherche: %d, Temps nécessaire: %d" % [node.research_cost, node.time_cost])
