@@ -3,14 +3,14 @@ class_name SearchTree
 
 # --- noeud de l’arbre ---
 class NodeData:
-	var key: int
+	var key: String
 	var research_cost: int
 	var time_cost: int
 	var description: String
 	var children: Array = []
 	var parent: NodeData
 
-	func _init(k: int, r_cost: int, t_cost: int, desc: String):
+	func _init(k: String, r_cost: int, t_cost: int, desc: String):
 		key = k
 		research_cost = r_cost
 		time_cost = t_cost
@@ -19,11 +19,11 @@ class NodeData:
 # --- logique de l’arbre ---
 var root: NodeData
 
-func create_root(k: int, r_cost: int, t_cost: int, desc: String) -> NodeData:
+func create_root(k: String, r_cost: int, t_cost: int, desc: String) -> NodeData:
 	root = NodeData.new(k, r_cost, t_cost, desc)
 	return root
 
-func add_child(parent: NodeData, k: int, r_cost: int, t_cost: int, desc: String) -> NodeData:
+func add_child(parent: NodeData, k: String, r_cost: int, t_cost: int, desc: String) -> NodeData:
 	var child = NodeData.new(k, r_cost, t_cost, desc)
 	child.parent = parent
 	parent.children.append(child)
