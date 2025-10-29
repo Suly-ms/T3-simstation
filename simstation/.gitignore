@@ -1,3 +1,52 @@
 # Godot 4+ specific ignores
 .godot/
-/android/
+.android/
+
+# Godot import and export folders
+.import/
+.export/
+.mono/
+
+# Editor settings and metadata
+.editor_settings-3.tres
+.editor_settings-4.tres
+.editor_settings.tres
+project_metadata.cfg
+project_metadata*
+project.godot.tmp
+
+# Build and export artifacts
+build/
+bin/
+exports/
+export.cfg
+export_presets.cfg
+
+# Import metadata
+*.import
+*.translation
+*.translation.import
+*.tscn.import
+*.scn.import
+*.escn.import
+*.res.import
+
+# IDEs and tools
+.vscode/
+.idea/
+
+# Temporary / backup / logs
+*.tmp
+*.bak
+*.old
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python or C# cache
+__pycache__/
+*.pyc
+*.pyo
