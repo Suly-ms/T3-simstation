@@ -33,7 +33,8 @@ var stats = {
 	"bonheur": 0,
 	"argent": 0,
 	"nombre_de_mois": 0,
-	"date": {"jour":0, "mois":0, "annee":0}
+	"date": {"jour":0, "mois":0, "annee":0},
+	"recherche": 20
 }
 
 var environnement = {

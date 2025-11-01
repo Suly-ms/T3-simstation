@@ -4,7 +4,7 @@ class_name SearchTree
 # --- noeud de l’arbre ---
 class NodeData:
 	var key: String
-	var research_cost: int
+	var money: int
 	var time_cost: int
 	var description: String
 	var children: Array = []
@@ -33,7 +33,7 @@ func depth_first_search(target, node: NodeData = null) -> NodeData:
 	if node == null:
 		node = root
 
-	if node.value == target:
+	if node.key == target:
 		return node
 
 	for child in node.children:
@@ -51,7 +51,7 @@ func breadth_first_search(target) -> NodeData:
 
 	while queue.size() > 0:
 		var current = queue.pop_front()
-		if current.value == target:
+		if current.key == target:
 			return current
 		for child in current.children:
 			queue.append(child)

@@ -132,4 +132,6 @@ func ajouter_retirer_menu_node(pos: Vector2, node: SearchTree.NodeData):
 	current_menu = menu
 
 func faire_recherche(nom_recherche: String):
-	pass
+	print("Ancien points de money :"+str(Global.stats["argent"]))
+	Global.stats["money"] -= tree.breadth_first_search(nom_recherche).research_cost
+	print("Nouveau points de money :"+str(Global.stats["argent"]))
