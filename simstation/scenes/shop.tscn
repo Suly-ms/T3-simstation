@@ -42,25 +42,25 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -417.5
-offset_top = 131.0
-offset_right = 358.5
-offset_bottom = 278.0
+offset_left = -388.0
+offset_top = 120.0
+offset_right = 388.0
+offset_bottom = 274.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.8450926, 0.4876687, 0.28295222, 1)
+theme_override_colors/default_color = Color(4.0670484e-06, 0.58114326, 0.10395806, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 bbcode_enabled = true
-text = "[center][font_size=64]Boutique"
+text = "[center][font_size=86]Boutique"
 
 [node name="Exit_button" type="TextureButton" parent="CanvasLayer/background"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -125.0
-offset_top = 41.0
-offset_right = -61.0
-offset_bottom = 105.0
+offset_left = -132.5
+offset_top = 35.0
+offset_right = -58.0
+offset_bottom = 109.5
 grow_horizontal = 0
 texture_normal = ExtResource("3_ajxib")
 texture_pressed = ExtResource("4_y6sft")
