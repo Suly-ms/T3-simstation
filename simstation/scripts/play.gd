@@ -1,113 +1,122 @@
 extends Node2D
 
-# Coeff
-const COEF_POLLUTION_SANTE = 1.5
-const COEF_BONHEUR_SANTE = 0.8
-const COEF_SANTE_EFF = 0.5
-const COEF_BONHEUR_EFF = 0.3
-const BONHEUR_BATIMENT_PAR_DEFAUT = 50
-const DEBUG_MODE = true
-
 var fin_partie = false
-var rng = RandomNumberGenerator.new()
+const MAX_SCORE := 100
+const MIN_SCORE := 0
+const DEFAULT_BONHEUR_BATIMENT := 50.0
+const RANDOM_VARIATION_MIN := -5.0
+const RANDOM_VARIATION_MAX := 5.0
+
+# Matrice d'influence
+var matrice_influence = [
+	[0.0,   0.2,  0.3],  # Influence du bonheur
+	[0.3,   0.0,  0.1],  # Influence de la santé
+	[0.1,   0.2,  0.0]   # Influence de l'efficacité
+]
+
+var rng := RandomNumberGenerator.new()
+var DEBUG_MODE := true
+@onready var http_request: HTTPRequest = $HTTPRequest
 
 func _ready() -> void:
 	calculer_etat()
+	var control_node = get_node("/root/Play/hud/Hud")
+	control_node.connect("changement_etat", Callable(self, "calculer_etat"))
+	rng.randomize()
 
 func _process(_delta):
 	if not fin_partie and (
-		Global.stats["sante"] <= 0 or
-		Global.stats["efficacite"] >= 100 or  # efficacité max = perte
 		Global.stats["bonheur"] <= 0 or
-		Global.stats["pollution"] >= 100
+		Global.stats["sante"] <= 0 or
+		Global.stats["efficacite"] <= 0
 	):
 		fin_partie = true
-		print("FIN DE LA PARTIE")
+		print("PARTIE FINI")
 
+# Calcule les stats brutes
+func calculer_stats_brutes() -> Array:
+	var stats = [0.0, 0.0, 0.0]  # bonheur, santé, efficacité
+	var nb_pop = Global.population.size()
+	if nb_pop == 0:
+		return [0.0, 0.0, 0.0] 
 
-func _on_button_pressed() -> void:
-	Global.population.append({
-		"sante": rng.randi_range(10, 100),
-		"efficacite": rng.randi_range(50, 100),
-		"bonheur": 0
-	})
-	calculer_etat()
+	var zero_bonheur = 0
+	var zero_sante = 0
+	var zero_efficacite = 0
 
-# Fonctions principales pour calculer petite stats
+	for h in Global.population:
+		if h.get("bonheur", 0) == 0:
+			zero_bonheur += 1
+		if h.get("sante", 0) == 0:
+			zero_sante += 1
+		if h.get("efficacite", 0) == 0:
+			zero_efficacite += 1
+
+	if zero_bonheur > nb_pop * 0.5:
+		stats[0] = 0.0
+	else:
+		var bonheur_total = 0.0
+		for h in Global.population:
+			bonheur_total += float(h.get("bonheur", 0))
+		stats[0] = (bonheur_total / float(nb_pop) + _calculer_bonheur_batiments()) / 2.0
+
+	if zero_sante > nb_pop * 0.5:
+		stats[1] = 0.0
+	else:
+		var sante_total = 0.0
+		for h in Global.population:
+			sante_total += float(h.get("sante", 0))
+		stats[1] = sante_total / float(nb_pop)
+
+	if zero_efficacite > nb_pop * 0.5:
+		stats[2] = 0.0
+	else:
+		var efficacite_total = 0.0
+		for h in Global.population:
+			efficacite_total += float(h.get("efficacite", 0))
+		stats[2] = efficacite_total / float(nb_pop)
+
+	return stats
+
+# Appliquer la matrice d'influence
+func appliquer_matrice_influence(stats_brutes: Array) -> Array:
+	var stats_finales = [0.0, 0.0, 0.0]
+	for i in range(3):
+		for j in range(3):
+			stats_finales[i] += stats_brutes[j] * matrice_influence[j][i]
+		stats_finales[i] += noise_variation()
+	return stats_finales
 
 func calculer_etat():
-	var bonheur_total = calculer_bonheur()
-	var sante_finale = calculer_sante(bonheur_total)
-	var efficacite_finale = calculer_efficacite(bonheur_total, sante_finale)
-
-	Global.stats["bonheur"] = clamp(int(round(bonheur_total)), 0, 100)
-	Global.stats["sante"] = clamp(int(round(sante_finale)), 0, 100)
-	Global.stats["efficacite"] = clamp(int(round(efficacite_finale)), 0, 100)
-
+	var stats_brutes = calculer_stats_brutes()
+	var stats_finales = appliquer_matrice_influence(stats_brutes)
+	Global.stats["bonheur"] = clamp(int(round(stats_finales[0])), MIN_SCORE, MAX_SCORE)
+	Global.stats["sante"] = clamp(int(round(stats_finales[1])), MIN_SCORE, MAX_SCORE)
+	Global.stats["efficacite"] = clamp(int(round(stats_finales[2])), MIN_SCORE, MAX_SCORE)
 	if DEBUG_MODE:
-		print("Bonheur:", Global.stats["bonheur"], " | Santé:", Global.stats["sante"], " | Efficacité:", Global.stats["efficacite"], " | Pollution:", Global.stats["pollution"])
+		print_debug_stats()
 
-func calculer_bonheur() -> float:
-	var bonheur_habitants = 0
-	for h in Global.population:
-		bonheur_habitants += h["bonheur"]
+func print_debug_stats():
+	print("Bonheur:", Global.stats["bonheur"], " | Santé:", Global.stats["sante"], " | Efficacité:", Global.stats["efficacite"])
 
-	var nb_pop = max(1, Global.population.size())
-	var bonheur_normalise = float(bonheur_habitants) / nb_pop
+func noise_variation() -> float:
+	return rng.randf_range(RANDOM_VARIATION_MIN, RANDOM_VARIATION_MAX)
 
-	var pollution_totale = 0
-	var batiments_total = 0
-	var bonheurBatiment_total = 0
-	var bonheurBatiment_max = 0
-
-	for id in Global.batiments_nombre.keys():
-		var nombre = Global.batiments_nombre[id]
+func _calculer_bonheur_batiments() -> float:
+	var bonheur_batiment_total = 0.0
+	var bonheur_batiment_max = 0
+	var batiments_nombre = Global.batiments_nombre
+	var info_batiments = Global.info_batiments
+	for id in batiments_nombre.keys():
+		var nombre = int(batiments_nombre[id])
 		if nombre == 0:
 			continue
-		var def = Global.info_batiments[id]
-		pollution_totale += def[1] * nombre
-		batiments_total += nombre
-		bonheurBatiment_total += def[2] * nombre
-		bonheurBatiment_max += 100 * nombre
-
-	var pollution_moyenne = pollution_totale / batiments_total if batiments_total > 0 else 0
-	Global.stats["pollution"] = int(clamp(pow(pollution_moyenne, 1.2), 0, 100))
-
-	var bonheurBatiment_score = 0.0
-	if bonheurBatiment_max > 0:
-		bonheurBatiment_score = (float(bonheurBatiment_total) / bonheurBatiment_max) * 100
-	else:
-		bonheurBatiment_score = BONHEUR_BATIMENT_PAR_DEFAUT
-
-
-	return bonheur_normalise + bonheurBatiment_score
-
-func calculer_sante(bonheur_total: float) -> float:
-	var sante_brute = 0
-	for h in Global.population:
-		sante_brute += h["sante"]
-
-	var nb_pop = max(1, Global.population.size())
-	var sante_moyenne = float(sante_brute) / nb_pop
-
-	var sante_finale = sante_moyenne \
-		- Global.stats["pollution"] * COEF_POLLUTION_SANTE \
-		+ bonheur_total * COEF_BONHEUR_SANTE \
-		+ rng.randf_range(-2, 2)
-
-	return sante_finale
-
-func calculer_efficacite(bonheur_total: float, sante_finale: float) -> float:
-	var efficacite_brute = 0
-	for h in Global.population:
-		efficacite_brute += h["efficacite"]
-
-	var nb_pop = max(1, Global.population.size())
-	var efficacite_moyenne = float(efficacite_brute) / nb_pop
-
-	var efficacite_finale = efficacite_moyenne \
-		+ sante_finale * COEF_SANTE_EFF \
-		+ bonheur_total * COEF_BONHEUR_EFF \
-		+ rng.randf_range(-2, 2)
-
-	return efficacite_finale
+		var def = info_batiments.get(id, null)
+		if def == null:
+			continue
+		var bonheur_par_unite = float(def[2])
+		bonheur_batiment_total += bonheur_par_unite * nombre
+		bonheur_batiment_max += MAX_SCORE * nombre
+	if bonheur_batiment_max > 0:
+		return (bonheur_batiment_total / float(bonheur_batiment_max)) * MAX_SCORE
+	return DEFAULT_BONHEUR_BATIMENT

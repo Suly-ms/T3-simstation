@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ms5p2chwkqwp" path="res://menu_pictures/placeholder.jpg" id="2_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://b0r2s7mgokugb" path="res://menu_pictures/logo.png" id="3_oa1go"]
 [ext_resource type="Texture2D" uid="uid://dn22i8u0wu05f" path="res://menu_pictures/button.png" id="4_tbmy8"]
-[ext_resource type="FontFile" uid="uid://brcrbwcxqryrw" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://dbt5nrlsv1j6t" path="res://menu_pictures/button_hover.png" id="5_rtw2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
