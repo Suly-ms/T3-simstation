@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://lmtjpoquxf34" path="res://assets/tileset2/Terrain/Misc/Ice_Circle.png" id="11_ck68k"]
 [ext_resource type="Texture2D" uid="uid://ctrox6ip3xx2p" path="res://assets/tileset2/Terrain/Misc/Ice_Square.png" id="12_waxcj"]
 [ext_resource type="Texture2D" uid="uid://c1yiham1dwhew" path="res://assets/tileset2/Terrain/Ice/Ice.png" id="13_hpvou"]
-[ext_resource type="PackedScene" uid="uid://bobhrar4pirpv" path="res://batiments/cafet.tscn" id="15_djx7b"]
+[ext_resource type="PackedScene" uid="uid://bobhrar4pirpv" path="res://batiments/cantine.tscn" id="15_djx7b"]
 [ext_resource type="PackedScene" uid="uid://dghm26exahua8" path="res://batiments/hub.tscn" id="15_sxh8t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lajc7"]

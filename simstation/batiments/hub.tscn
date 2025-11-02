@@ -4,7 +4,7 @@
 [ext_resource type="ButtonGroup" uid="uid://bairrufpuwok0" path="res://batiments/group.tres" id="1_2slj6"]
 [ext_resource type="Texture2D" uid="uid://dxee5jcu773ka" path="res://assets/batiments/hub/hover.png" id="2_2slj6"]
 [ext_resource type="Script" uid="uid://cpmijgquee48m" path="res://scripts/batiment_btn.gd" id="4_iji3d"]
-[ext_resource type="PackedScene" uid="uid://du2r3b86tqr30" path="res://batiments/square.tscn" id="5_dr8sm"]
+[ext_resource type="PackedScene" uid="uid://du2r3b86tqr30" path="res://batiments/labo_recherche.tscn" id="5_dr8sm"]
 
 [sub_resource type="BitMap" id="BitMap_npxuh"]
 
