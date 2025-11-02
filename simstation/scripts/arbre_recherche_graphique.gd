@@ -9,11 +9,15 @@ const X_SPACING = 100
 const Y_SPACING = 100
 const NODE_RADIUS = 5
 
+var timer = Timer.new()
+@onready var timer_label = $Panel/time_recherche
+
 func _ready():
 	tree = SearchTree.new()
 	var root = tree.create_root("Nouveau départ", 10, 5, "Établir le camp de base et installer les équipements.")
-	var etape2 = tree.add_child(root, "Echantillons", 20, 10, "Forer la glace pour prélever des carottes.")
-	var etape3 = tree.add_child(etape2, "Analyser les échantillons", 15, 7, "Analyser les échantillons sur place.")
+	var etape2_1 = tree.add_child(root, "Matériel", 20, 10, "Préparer le matériel pour le forage")
+	var etape2_2 = tree.add_child(root, "Echantillons", 20, 10, "Forer la glace pour prélever des carottes.")
+	var etape3 = tree.add_child(etape2_2, "Analyser les échantillons", 15, 7, "Analyser les échantillons sur place.")
 	var etape4 = tree.add_child(etape3, "Envoyer les échantillons", 25, 12, "Envoyer les carottes au laboratoire central.")
 	var etape5 = tree.add_child(etape4, "Vérifier la qualité", 10, 3, "Vérifier la qualité des données.")
 	var etape6 = tree.add_child(etape5, "Rédiger rapport", 30, 15, "Rédiger le rapport préliminaire.")
@@ -24,6 +28,10 @@ func _ready():
 	hover_timer.one_shot = true
 
 	_calculate_positions(tree.root, Vector2(0, 0), 0)
+
+func _process(_delta):
+	if(timer_label.is_visible_in_tree()):
+		timer_label.text=str(int(timer.time_left))
 
 # --- Calcul des positions des nœuds ---
 func _calculate_positions(node: SearchTree.NodeData, pos: Vector2, depth: int):
@@ -57,9 +65,9 @@ func _center_tree():
 	
 	# Décale tous les nœuds pour centrer l’arbre dans la vue
 	var viewport_center = get_viewport_rect().size / 2.0
-	for key in node_positions.keys():
-		node_positions[key] -= tree_center
-		node_positions[key] += viewport_center
+	for nom in node_positions.keys():
+		node_positions[nom] -= tree_center
+		node_positions[nom] += viewport_center
 
 func _get_subtree_width(node: SearchTree.NodeData) -> int:
 	if node.children.size() == 0:
@@ -92,46 +100,72 @@ func _draw_node_recursive(node: SearchTree.NodeData):
 	var btn = Button.new() 
 	var texte = Label.new()
 	
-	texte.text = str(node.key)
+	texte.text = str(node.nom)
 	btn.set_position(pos - Vector2(50, 50)/2)
 	btn.set_size(texte.get_minimum_size()+Vector2(10,10))
-	btn.pressed.connect(func(): ajouter_retirer_menu_node(Vector2(pos.x+texte.size.x-10, pos.y), node))
 	btn.add_child(texte)
 	texte.set_position(Vector2(5,5))
 	add_child(btn)
-	var default_font = ThemeDB.fallback_font
-	var default_font_size = ThemeDB.fallback_font_size
-	add_child(texte)
+	
+	if node.parent and not node.parent.debloque:
+		btn.disabled = true
+		btn.modulate = Color(0.5, 0.5, 0.5)
+	else:
+		btn.disabled = false
+		btn.modulate = Color(0, 1, 0)
+		btn.pressed.connect(func(): ajouter_retirer_menu_node(Vector2(pos.x + texte.size.x - 10, pos.y), node))
 
 func ajouter_retirer_menu_node(pos: Vector2, node: SearchTree.NodeData):
 	if current_menu:
 		current_menu.queue_free()
+		
 	var menu = Panel.new()
 	var nom = RichTextLabel.new()
-	var faire_recherche = Button.new()
-	menu.set_size(Vector2(300, 100))
-	faire_recherche.set_size(Vector2(50, 20))
-	faire_recherche.text = "Rechercher"
-	faire_recherche.set_position(Vector2(0, menu.size.y+5))
-	faire_recherche.pressed.connect(func(): faire_recherche(node.key))
+	var bouton_recherche = Button.new()
 	
 	nom.bbcode_enabled = true
-	nom.text = "[b]Description[/b] : "+node.description+"\n[b]Coût en recherche[/b] : "+str(node.research_cost)+"\n[b]Temps nécessaire[/b] : "+str(node.time_cost)
 	nom.autowrap_mode = TextServer.AUTOWRAP_WORD
 	nom.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	nom.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	nom.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	nom.size = menu.size
+	nom.size = Vector2(300, 100)
 	nom.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	menu.set_position(Vector2(pos.x, pos.y+10))
+	
+	menu.set_size(Vector2(300, 100))
 	menu.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	menu.set_position(pos + Vector2(0, 10))
+	
+	if node.debloque:
+		nom.text = "[b]Description[/b] : " + node.description
+	else:
+		bouton_recherche.text = "Rechercher"
+		bouton_recherche.set_size(Vector2(50, 20))
+		bouton_recherche.set_position(Vector2(0, menu.size.y + 5))
+		bouton_recherche.pressed.connect(func(): faire_recherche(node))
+		menu.add_child(bouton_recherche)
+		nom.text = "[b]Description[/b] : " + node.description + \
+			"\n[b]Argent gagné[/b] : " + str(node.money) + \
+			"\n[b]Temps nécessaire[/b] : " + str(node.time_cost)
+	
 	menu.add_child(nom)
-	menu.add_child(faire_recherche)
 	add_child(menu)
 	current_menu = menu
 
-func faire_recherche(nom_recherche: String):
-	print("Ancien points de money :"+str(Global.stats["argent"]))
-	Global.stats["money"] -= tree.breadth_first_search(nom_recherche).research_cost
-	print("Nouveau points de money :"+str(Global.stats["argent"]))
+func faire_recherche(node):
+	if current_menu:
+		current_menu.queue_free()
+	timer = Timer.new()
+	timer.wait_time = node.time_cost
+	timer.one_shot = true
+	node.debloque = true
+	add_child(timer)
+	timer.timeout.connect(func():
+		timer_label.visible=false
+		Global.stats["argent"] += node.money
+		Global.recherche_debloque.append(node.nom)
+		print(Global.recherche_debloque)
+		queue_redraw()  
+		timer.queue_free()
+	)
+	timer.start()
+	timer_label.visible=true

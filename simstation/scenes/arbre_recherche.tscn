@@ -9,10 +9,19 @@ script = ExtResource("1_cpw16")
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="titre" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
 offset_left = 778.0
 offset_top = 92.0
 offset_right = 1142.0
 offset_bottom = 143.0
 bbcode_enabled = true
 text = "[center][font_size=30]Arbre de recherche"
+
+[node name="time_recherche" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 1764.0
+offset_top = 30.0
+offset_right = 1874.0
+offset_bottom = 131.0

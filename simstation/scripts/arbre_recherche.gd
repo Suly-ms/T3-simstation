@@ -3,18 +3,20 @@ class_name SearchTree
 
 # --- noeud de l’arbre ---
 class NodeData:
-	var key: String
+	var nom: String
 	var money: int
 	var time_cost: int
 	var description: String
+	var debloque: bool
 	var children: Array = []
 	var parent: NodeData
 
 	func _init(k: String, r_cost: int, t_cost: int, desc: String):
-		key = k
-		research_cost = r_cost
+		nom = k
+		money = r_cost
 		time_cost = t_cost
 		description = desc
+		debloque = false
 
 # --- logique de l’arbre ---
 var root: NodeData
@@ -33,7 +35,7 @@ func depth_first_search(target, node: NodeData = null) -> NodeData:
 	if node == null:
 		node = root
 
-	if node.key == target:
+	if node.nom == target:
 		return node
 
 	for child in node.children:
@@ -51,7 +53,7 @@ func breadth_first_search(target) -> NodeData:
 
 	while queue.size() > 0:
 		var current = queue.pop_front()
-		if current.key == target:
+		if current.nom == target:
 			return current
 		for child in current.children:
 			queue.append(child)

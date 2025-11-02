@@ -6,6 +6,8 @@ var population = [
 	{"sante": 100, "efficacite": 100, "bonheur": 50}
 ]
 
+var recherche_debloque = []
+
 var batiments_nombre = {
 	"dortoir": 5, 
 	"cantine": 1, 
