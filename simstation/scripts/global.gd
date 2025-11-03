@@ -10,6 +10,8 @@ var population = [
 	{"sante": 100, "efficacite": 100, "bonheur": 50}
 ]
 
+var recherche_debloque = []
+
 var argent = 3000000
 
 var batiment_en_cours_achat = ""
