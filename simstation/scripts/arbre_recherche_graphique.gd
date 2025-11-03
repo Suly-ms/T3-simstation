@@ -1,4 +1,6 @@
 extends Node2D
+signal exit_button(shop_name)
+signal argent_changed(argent)
 
 var tree: SearchTree
 var node_positions = {}
@@ -162,6 +164,7 @@ func faire_recherche(node):
 	timer.timeout.connect(func():
 		timer_label.visible=false
 		Global.argent += node.money
+		emit_signal("argent_changed", Global.argent)
 		Global.recherche_debloque.append(node.nom)
 		print(Global.recherche_debloque)
 		queue_redraw()  
@@ -169,3 +172,6 @@ func faire_recherche(node):
 	)
 	timer.start()
 	timer_label.visible=true
+
+func _on_exit_button_pressed() -> void:
+	emit_signal("exit_button", "ArbreRecherche")

@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
 [ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://scripts/HUD/resize_state_bar.gd" id="4_0i1j5"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
-[ext_resource type="Texture2D" uid="uid://dfdn3i5s5y4j7" path="res://textures/bar/filled_bar.png" id="5_047uy"]
-[ext_resource type="Texture2D" uid="uid://dko1p3xonfuc" path="res://textures/bar/health_bar_empty.png" id="5_uo2fv"]
-[ext_resource type="Texture2D" uid="uid://dpsijbr80dolk" path="res://textures/bar/efficiency_bar_empty.png" id="6_hd3ao"]
-[ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/bar/happiness_bar_empty.png" id="7_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://b0c4yjwwtojdb" path="res://textures/bar/filled_bar.png" id="5_047uy"]
+[ext_resource type="Texture2D" uid="uid://denqcilf40pnt" path="res://textures/bar/health_bar_empty.png" id="5_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://bib0axjdoqxcf" path="res://textures/bar/efficiency_bar_empty.png" id="6_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://6yammkj4wwfh" path="res://textures/bar/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/button_action.gd" id="11_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="13_uxdf7"]
@@ -302,8 +302,7 @@ offset_bottom = 1130.0
 mouse_filter = 2
 color = Color(0, 0.03529412, 0.03529412, 0.8627451)
 
-[node name="Recherches" type="Button" parent="."]
-layout_mode = 0
+[node name="recherche_button" type="Button" parent="CanvasLayer"]
 offset_left = 1713.0
 offset_top = 197.0
 offset_right = 1871.0
@@ -311,6 +310,6 @@ offset_bottom = 267.0
 text = "Recherches"
 script = ExtResource("11_0m4u7")
 
-[connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
 [connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
-[connection signal="pressed" from="Recherches" to="Recherches" method="_on_pressed_recherches"]
+[connection signal="pressed" from="CanvasLayer/recherche_button" to="CanvasLayer/recherche_button" method="_on_pressed_recherches"]
