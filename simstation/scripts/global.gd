@@ -10,7 +10,7 @@ var population = [
 	{"sante": 100, "efficacite": 100, "bonheur": 50}
 ]
 
-var argent = 20000
+var argent = 3000000
 
 var batiment_en_cours_achat = ""
 
@@ -27,10 +27,10 @@ var inventaire = {
 }
 
 var batiments_prix = {
-	"hub": 0, 
+	"hub": 94837175, 
 	"dortoir": 10000, 
-	"cantine": 10000, 
-	"labo_recherche": 10000, 
+	"cantine": 50000, 
+	"labo_recherche": 100000, 
 	"salle_sport": 10000, 
 	"salle_repos": 10000, 
 	"panneaux solaires": 10000,

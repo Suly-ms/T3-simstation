@@ -52,7 +52,7 @@ offset_top = 120.0
 offset_right = 388.0
 offset_bottom = 274.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(4.0670484e-06, 0.58114326, 0.10395806, 1)
+theme_override_colors/default_color = Color(0.84635025, 0.50801367, 0.06611052, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 bbcode_enabled = true
 text = "[center][font_size=86]Boutique"
@@ -122,8 +122,8 @@ stretch_mode = 0
 script = ExtResource("12_44xle")
 
 [node name="labo_recherche" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Batiments"]
-position = Vector2(1173.5, 350)
-scale = Vector2(0.988571, 0.988571)
+position = Vector2(1164.5, 318)
+scale = Vector2(0.7828009, 0.7828009)
 texture = ExtResource("14_gobkm")
 region_enabled = true
 region_rect = Rect2(60, 71.5, 395, 357)
@@ -134,21 +134,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -110.54993
-offset_top = -96.706604
-offset_right = -17.450073
-offset_bottom = -68.0
+offset_left = -352.07312
+offset_top = -167.93536
+offset_right = -254.74255
+offset_bottom = -139.22876
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(3.15, 3.15)
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 text = "10 000€"
 
 [node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Batiments/labo_recherche"]
-offset_left = 35.588318
-offset_top = 34.998455
-offset_right = 151.98773
-offset_bottom = 151.39787
+offset_left = 146.90839
+offset_top = 181.39987
+offset_right = 514.81805
+offset_bottom = 549.30945
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("9_heatd")
 texture_pressed = ExtResource("10_44xle")
@@ -157,8 +158,8 @@ stretch_mode = 0
 script = ExtResource("12_44xle")
 
 [node name="hub" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Batiments"]
-position = Vector2(745.5, 341)
-scale = Vector2(1.532848, 1.532848)
+position = Vector2(744.5, 317)
+scale = Vector2(1.4823332, 1.4823333)
 texture = ExtResource("15_j14q8")
 region_enabled = true
 region_rect = Rect2(7, 9.5, 240, 176)
@@ -169,21 +170,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -110.54993
-offset_top = -96.706604
-offset_right = -17.450073
-offset_bottom = -68.0
+offset_left = -229.2872
+offset_top = -80.2051
+offset_right = -105.569496
+offset_bottom = -52.805138
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.65, 1.65)
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 text = "10 000€"
+scroll_active = false
 
 [node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Batiments/hub"]
-offset_left = 35.588318
-offset_top = 34.998455
-offset_right = 151.98773
-offset_bottom = 151.39787
+offset_left = 105.91407
+offset_top = 89.72339
+offset_right = 299.01855
+offset_bottom = 282.82788
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("9_heatd")
 texture_pressed = ExtResource("10_44xle")
