@@ -36,13 +36,28 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if get_rect().has_point(to_local(event.position)):
-				is_square = true
-				map.show_square()
-				var batiment = find_building_scene()
-				batiment_instance = batiment.instantiate()
-				add_building_map()
-				dragging = true
-				mouse_offset = Vector2(0,0)
+
+				var nom_batiment = self.name
+				if Global.inventaire[nom_batiment] > 0:
+					# il reste au moins 1 exemplaire on peut placer
+					is_square = true
+					map.show_square()
+					var batiment = find_building_scene()
+					batiment_instance = batiment.instantiate()
+					add_building_map()
+					dragging = true
+					mouse_offset = Vector2(0,0)
+					
+					# On decremente de 1 dans l'inventaire
+					Global.inventaire[nom_batiment] -= 1
+					
+					# Decremente le label (affichage du nombre restant)
+					var nb_label = self.get_node("nombre")
+					nb_label.text = str(Global.inventaire[nom_batiment])
+					
+				else:
+					print("Aucun ", nom_batiment, " disponible dans l'inventaire.")
+
 		elif dragging:
 			dragging = false
 			place_building()

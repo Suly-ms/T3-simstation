@@ -161,7 +161,7 @@ func faire_recherche(node):
 	add_child(timer)
 	timer.timeout.connect(func():
 		timer_label.visible=false
-		Global.stats["argent"] += node.money
+		Global.argent += node.money
 		Global.recherche_debloque.append(node.nom)
 		print(Global.recherche_debloque)
 		queue_redraw()  

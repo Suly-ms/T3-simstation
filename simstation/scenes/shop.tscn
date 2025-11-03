@@ -1,14 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvvtj6x6hcber"]
+[gd_scene load_steps=16 format=3 uid="uid://dvvtj6x6hcber"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_xfvoa"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_1l46r"]
-[ext_resource type="Texture2D" uid="uid://bjxe817lfm12v" path="res://textures/exit_button.png" id="3_1l46r"]
-[ext_resource type="Texture2D" uid="uid://dmg6e66utbo2u" path="res://textures/exit_button_click.png" id="4_2fc2m"]
-[ext_resource type="Texture2D" uid="uid://d1ytjptrjyd4n" path="res://textures/exit_button_hover.png" id="4_032fp"]
-[ext_resource type="Script" uid="uid://ca8j6a3vliaoo" path="res://scripts/exit_button.gd" id="6_8r1wq"]
+[ext_resource type="Script" uid="uid://dyxsjxpvsie0m" path="res://scripts/shop/shop.gd" id="2_24it5"]
+[ext_resource type="Texture2D" uid="uid://dat3l15h0eg75" path="res://textures/shop/shop_background.png" id="2_y6sft"]
+[ext_resource type="Texture2D" uid="uid://bjxe817lfm12v" path="res://textures/exit_button/exit_button.png" id="3_ajxib"]
+[ext_resource type="Texture2D" uid="uid://cx3uxake8s48b" path="res://textures/exit_button/exit_button_click.png" id="5_heatd"]
+[ext_resource type="Texture2D" uid="uid://d1ytjptrjyd4n" path="res://textures/exit_button/exit_button_hover.png" id="5_m4ofw"]
+[ext_resource type="Script" uid="uid://ca8j6a3vliaoo" path="res://scripts/shop/exit_button.gd" id="6_8r1wq"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="7_ajxib"]
-
-[sub_resource type="GDScript" id="GDScript_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://dk7cdu5fvnckv" path="res://textures/shop/buy_button/buy_button.png" id="9_heatd"]
+[ext_resource type="Texture2D" uid="uid://c0cjn0qnqu7so" path="res://textures/shop/buy_button/buy_button_hover.png" id="10_1v8qu"]
+[ext_resource type="Texture2D" uid="uid://bji6nwdiuy0fm" path="res://textures/shop/buy_button/buy_button_click.png" id="10_44xle"]
+[ext_resource type="Script" uid="uid://kvefqd8225od" path="res://scripts/shop/buy_button.gd" id="12_44xle"]
+[ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="14_gobkm"]
+[ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="15_j14q8"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -18,17 +24,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_xfvoa")
-script = SubResource("GDScript_hd3ao")
+script = ExtResource("2_24it5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="background" type="Panel" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.2
-anchor_right = 0.8
-anchor_bottom = 1.0
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -752.5
+offset_top = -540.0
+offset_right = 752.5
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_y6sft")
 
 [node name="Boutique_text" type="RichTextLabel" parent="CanvasLayer/background"]
 layout_mode = 1
@@ -36,42 +48,30 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -388.0
-offset_top = 8.0
+offset_top = 120.0
 offset_right = 388.0
-offset_bottom = 155.0
+offset_bottom = 274.0
 grow_horizontal = 2
+theme_override_colors/default_color = Color(0.84635025, 0.50801367, 0.06611052, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 bbcode_enabled = true
-text = "[center][font_size=84]Boutique"
+text = "[center][font_size=86]Boutique"
 
 [node name="Exit_button" type="TextureButton" parent="CanvasLayer/background"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -112.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = 112.0
+offset_left = -132.5
+offset_top = 35.0
+offset_right = -58.0
+offset_bottom = 109.5
 grow_horizontal = 0
-texture_normal = ExtResource("3_1l46r")
-texture_pressed = ExtResource("4_2fc2m")
-texture_hover = ExtResource("4_032fp")
+texture_normal = ExtResource("3_ajxib")
+texture_pressed = ExtResource("5_heatd")
+texture_hover = ExtResource("5_m4ofw")
 stretch_mode = 0
 script = ExtResource("6_8r1wq")
-
-[node name="bar" type="Panel" parent="CanvasLayer/background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2
-anchor_right = 0.8
-anchor_bottom = 1.0
-offset_left = -253.40002
-offset_top = 144.0
-offset_right = 235.39996
-offset_bottom = -919.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/background"]
 layout_mode = 1
@@ -79,20 +79,21 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 163.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/background/ScrollContainer"]
+[node name="Batiments" type="Control" parent="CanvasLayer/background/ScrollContainer"]
 layout_mode = 2
 
-[node name="Cafet_image" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Control"]
-position = Vector2(204, 215)
+[node name="cantine" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Batiments"]
+position = Vector2(310.00003, 306)
 scale = Vector2(2.5429685, 2.5429685)
 texture = ExtResource("7_ajxib")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 136.4823)
 
-[node name="Cost_button" type="RichTextLabel" parent="CanvasLayer/background/ScrollContainer/Control/Cafet_image"]
+[node name="Cost_text" type="RichTextLabel" parent="CanvasLayer/background/ScrollContainer/Batiments/cantine"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -104,13 +105,97 @@ offset_right = -17.450073
 offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 text = "10 000€"
 
-[node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Control/Cafet_image/Cost_button"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Batiments/cantine"]
+offset_left = 35.588318
+offset_top = 34.998455
+offset_right = 151.98773
+offset_bottom = 151.39787
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+script = ExtResource("12_44xle")
+
+[node name="labo_recherche" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Batiments"]
+position = Vector2(1164.5, 318)
+scale = Vector2(0.7828009, 0.7828009)
+texture = ExtResource("14_gobkm")
+region_enabled = true
+region_rect = Rect2(60, 71.5, 395, 357)
+
+[node name="Cost_text" type="RichTextLabel" parent="CanvasLayer/background/ScrollContainer/Batiments/labo_recherche"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -352.07312
+offset_top = -167.93536
+offset_right = -254.74255
+offset_bottom = -139.22876
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3.15, 3.15)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+text = "10 000€"
+
+[node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Batiments/labo_recherche"]
+offset_left = 146.90839
+offset_top = 181.39987
+offset_right = 514.81805
+offset_bottom = 549.30945
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+script = ExtResource("12_44xle")
+
+[node name="hub" type="Sprite2D" parent="CanvasLayer/background/ScrollContainer/Batiments"]
+position = Vector2(744.5, 317)
+scale = Vector2(1.4823332, 1.4823333)
+texture = ExtResource("15_j14q8")
+region_enabled = true
+region_rect = Rect2(7, 9.5, 240, 176)
+
+[node name="Cost_text" type="RichTextLabel" parent="CanvasLayer/background/ScrollContainer/Batiments/hub"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -229.2872
+offset_top = -80.2051
+offset_right = -105.569496
+offset_bottom = -52.805138
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.65, 1.65)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+text = "10 000€"
+scroll_active = false
+
+[node name="Buy_button" type="TextureButton" parent="CanvasLayer/background/ScrollContainer/Batiments/hub"]
+offset_left = 105.91407
+offset_top = 89.72339
+offset_right = 299.01855
+offset_bottom = 282.82788
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+script = ExtResource("12_44xle")
 
 [connection signal="pressed" from="CanvasLayer/background/Exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/background/Exit_button" to="CanvasLayer/background/Exit_button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/background/ScrollContainer/Batiments/cantine/Buy_button" to="CanvasLayer/background/ScrollContainer/Batiments/cantine/Buy_button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/background/ScrollContainer/Batiments/labo_recherche/Buy_button" to="CanvasLayer/background/ScrollContainer/Batiments/labo_recherche/Buy_button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/background/ScrollContainer/Batiments/hub/Buy_button" to="CanvasLayer/background/ScrollContainer/Batiments/hub/Buy_button" method="_on_pressed"]

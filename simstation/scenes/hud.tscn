@@ -1,21 +1,41 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=18 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
 [ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://scripts/HUD/resize_state_bar.gd" id="4_0i1j5"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
-[ext_resource type="Texture2D" uid="uid://dfdn3i5s5y4j7" path="res://textures/filled_bar.png" id="5_047uy"]
-[ext_resource type="Texture2D" uid="uid://dko1p3xonfuc" path="res://textures/health_bar_empty.png" id="5_uo2fv"]
-[ext_resource type="Texture2D" uid="uid://dpsijbr80dolk" path="res://textures/efficiency_bar_empty.png" id="6_hd3ao"]
-[ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/happiness_bar_empty.png" id="7_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://dfdn3i5s5y4j7" path="res://textures/bar/filled_bar.png" id="5_047uy"]
+[ext_resource type="Texture2D" uid="uid://dko1p3xonfuc" path="res://textures/bar/health_bar_empty.png" id="5_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://dpsijbr80dolk" path="res://textures/bar/efficiency_bar_empty.png" id="6_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://bicfj5uhoomq4" path="res://textures/bar/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
-[ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/shop_button.gd" id="11_0m4u7"]
+[ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/button_action.gd" id="11_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="13_uxdf7"]
 [ext_resource type="Script" uid="uid://d1dt8clvu4sqk" path="res://scripts/drag_building.gd" id="14_5357l"]
 [ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="15_iypfu"]
 [ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="16_qpprf"]
 [ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scripts/night_mode.gd" id="17_3xg78"]
+
+[sub_resource type="GDScript" id="GDScript_mphia"]
+script/source = "extends RichTextLabel
+
+const BASE_RES = Vector2(1920, 1080)
+
+func _ready():
+	_resize()
+	get_viewport().connect(\"size_changed\", Callable(self, \"_resize\"))
+
+func _resize():
+	var screen_size = get_viewport_rect().size
+	var scale_factor = min(
+		screen_size.x / BASE_RES.x,
+		screen_size.y / BASE_RES.y
+	)
+	
+	# On applique uniquement l'échelle
+	self.scale = Vector2(scale_factor, scale_factor)
+"
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -80,27 +100,9 @@ offset_bottom = 34.6
 grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("4_6fi6k")
 bbcode_enabled = true
-text = "[right][font_size=24]3 000 000 $"
+text = "[right][font_size=24]1 000 000 €"
 scroll_active = false
-script = ExtResource("3_mphia")
-
-[node name="NombreMois" type="RichTextLabel" parent="CanvasLayer/background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.97
-anchor_top = 0.2
-anchor_right = 0.97
-anchor_bottom = 0.2
-offset_left = -181.40002
-offset_top = 48.6
-offset_right = -0.4000244
-offset_bottom = 83.6
-grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
-bbcode_enabled = true
-text = "[right][font_size=24]0 Mois"
-scroll_active = false
-script = ExtResource("3_mphia")
+script = SubResource("GDScript_mphia")
 
 [node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
 layout_mode = 1
@@ -223,13 +225,28 @@ script = ExtResource("11_0m4u7")
 [node name="dragBuilding" type="Panel" parent="CanvasLayer"]
 offset_left = 204.0
 offset_top = 348.0
-offset_right = 345.0
+offset_right = 395.0
 offset_bottom = 808.0
 
-[node name="cafet" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+[node name="cantine" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
 position = Vector2(71, 62)
 texture = ExtResource("13_uxdf7")
 script = ExtResource("14_5357l")
+
+[node name="nombre" type="RichTextLabel" parent="CanvasLayer/dragBuilding/cantine"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -155.0
+offset_right = 39.0
+offset_bottom = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "2"
 
 [node name="hub" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
 position = Vector2(67, 186)
@@ -237,11 +254,33 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_iypfu")
 script = ExtResource("14_5357l")
 
-[node name="lab" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
+[node name="nombre" type="RichTextLabel" parent="CanvasLayer/dragBuilding/hub"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -298.0
+offset_right = -6.0
+offset_bottom = -182.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "1"
+
+[node name="labo_recherche" type="Sprite2D" parent="CanvasLayer/dragBuilding"]
 position = Vector2(66, 273)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("16_qpprf")
 script = ExtResource("14_5357l")
+
+[node name="nombre" type="RichTextLabel" parent="CanvasLayer/dragBuilding/labo_recherche"]
+offset_left = 316.0
+offset_right = 436.0
+offset_bottom = 124.0
+bbcode_enabled = true
+text = "1"
 
 [node name="nightMode" type="Button" parent="CanvasLayer"]
 offset_left = 1533.0
@@ -263,41 +302,15 @@ offset_bottom = 1130.0
 mouse_filter = 2
 color = Color(0, 0.03529412, 0.03529412, 0.8627451)
 
-[node name="AjouterPopulation" type="Button" parent="."]
+[node name="Recherches" type="Button" parent="."]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 201.0
-offset_right = 263.0
-offset_bottom = 292.0
-text = "Ajouter population"
-
-[node name="AjouterBatiment" type="Button" parent="."]
-layout_mode = 0
-offset_left = 296.0
-offset_top = 201.0
-offset_right = 533.0
-offset_bottom = 290.0
-text = "Ajouter batiment"
-
-[node name="AjouterTemperature" type="Button" parent="."]
-layout_mode = 0
-offset_left = 603.0
-offset_top = 201.0
-offset_right = 907.0
-offset_bottom = 293.0
-text = "Ajouter température"
-
-[node name="PasserMois" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1628.0
-offset_top = 201.0
-offset_right = 1876.0
-offset_bottom = 272.0
-text = "Passer au 3 mois suivant"
+offset_left = 1713.0
+offset_top = 197.0
+offset_right = 1871.0
+offset_bottom = 267.0
+text = "Recherches"
+script = ExtResource("11_0m4u7")
 
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
-[connection signal="pressed" from="AjouterPopulation" to="." method="_on_ajouter_population_pressed"]
-[connection signal="pressed" from="AjouterBatiment" to="." method="_on_ajouter_batiment_pressed"]
-[connection signal="pressed" from="AjouterTemperature" to="." method="_on_ajouter_temperature_pressed"]
-[connection signal="pressed" from="PasserMois" to="." method="_on_passer_mois_pressed"]
+[connection signal="pressed" from="Recherches" to="Recherches" method="_on_pressed_recherches"]
