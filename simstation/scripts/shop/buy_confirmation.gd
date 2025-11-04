@@ -1,6 +1,6 @@
 extends Control
 
-@onready var message_label = $CanvasLayer/background/message
+@onready var message_label = $message
 
 func _ready():
 	var nom_batiment = Global.batiment_en_cours_achat

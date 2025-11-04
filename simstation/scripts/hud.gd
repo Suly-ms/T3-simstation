@@ -1,7 +1,7 @@
 extends Control
 
-@onready var argent_label = $CanvasLayer/background/argent
-@onready var batiments_container = $CanvasLayer/dragBuilding
+@onready var argent_label = $argent
+@onready var batiments_container = $dragBuilding
 
 func _ready():
 	# Connecte les signaux

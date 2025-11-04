@@ -11,7 +11,6 @@ func set_current_map(map: Node):  # Changé de Node2D à Node
 func get_current_map() -> Node:  # Changé de Node2D à Node
 	return current_map
 	
-	
 func set_current_zoom_cam(zoom_cam : Vector2):
 	zoom_cam = zoom_cam
 

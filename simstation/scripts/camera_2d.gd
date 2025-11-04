@@ -10,7 +10,7 @@ var dragging: bool = false
 var last_mouse_pos: Vector2 = Vector2.ZERO
 var current_mouse_pos: Vector2 = Vector2.ZERO
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	GameManager.set_current_zoom_cam(zoom)
 
 

@@ -20,8 +20,6 @@ var DEBUG_MODE := true
 
 func _ready() -> void:
 	calculer_etat()
-	var control_node = get_node("/root/Play/hud/Hud")
-	control_node.connect("changement_etat", Callable(self, "calculer_etat"))
 	rng.randomize()
 
 func _process(_delta):

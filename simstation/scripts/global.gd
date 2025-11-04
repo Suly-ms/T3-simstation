@@ -14,8 +14,6 @@ var recherche_debloque = []
 
 var argent = 3000000
 
-var batiment_en_cours_achat = ""
-
 # ce que le joueur possède
 var inventaire = {
 	"hub": 1,

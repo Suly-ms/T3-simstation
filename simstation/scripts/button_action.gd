@@ -3,6 +3,7 @@ extends Button
 const BASE_RES = Vector2(1920, 1080)
 
 func _ready():
+	Global.connect("afficher_scene", Callable(self, "load_scene"))
 	_resize()
 	get_viewport().connect("size_changed", Callable(self, "_resize"))
 
@@ -34,7 +35,6 @@ func load_scene(chemin_scene, nom_node):
 		node.visible = !node.visible  
 
 	Global.camera_enable = !Global.camera_enable
-
 
 func exit_button(nom_node):
 	var play_scene = get_tree().current_scene

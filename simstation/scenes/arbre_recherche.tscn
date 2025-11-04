@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://e212qo50r3w0" path="res://scripts/arbre_recherche_graphique.gd" id="1_cpw16"]
 [ext_resource type="Texture2D" uid="uid://cylls3socsgs7" path="res://textures/exit_button/exit_button.png" id="2_fs7f5"]
-[ext_resource type="Texture2D" uid="uid://c8ccaedh3swai" path="res://textures/exit_button/exit_button_click.png" id="3_b42bv"]
+[ext_resource type="Texture2D" uid="uid://cx3uxake8s48b" path="res://textures/exit_button/exit_button_click.png" id="3_b42bv"]
 [ext_resource type="Texture2D" uid="uid://balx3ryt63vbj" path="res://textures/exit_button/exit_button_hover.png" id="4_5ubeo"]
 
 [node name="ArbreRecherche" type="Node2D"]
