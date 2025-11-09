@@ -1,6 +1,4 @@
 extends Control
-signal exit_button(shop_name)
-signal afficher_scene(chemin_scene, nom_node)
 
 @onready var batiments_container = $background/ScrollContainer/Batiments
 
@@ -10,23 +8,31 @@ func _ready():
 func remplir_labels():
 	for batiment_node in batiments_container.get_children():
 		var cost_label = batiment_node.get_node("Cost_text")
-		var batiment_name = batiment_node.name  
-		
+		var batiment_name = batiment_node.name
 		var prix = Global.batiments_prix[batiment_name]
-		cost_label.bbcode_text = Global.format_money(prix) + " €"  
+		cost_label.bbcode_text = Global.format_money(prix) + " €"
 
 func _on_exit_button_pressed() -> void:
-	emit_signal("exit_button", "Shop")
+	var play_scene = get_tree().current_scene
+	var hud = play_scene.get_node("hud")
 
-func buy_button(nom_batiment):
-	if (Global.argent - Global.batiments_prix[nom_batiment] >= 0):
-		print("Bouton cliqué : ", nom_batiment) 
-		var prix = Global.batiments_prix[nom_batiment]
-		Global.modifier_argent(-prix)
-		Global.modifier_batiment(nom_batiment, 1)
-	else :
-		print("Vous n'avez pas les fonds nécessaires")
+	if hud.has_node("Shop"):
+		hud.get_node("Shop").visible = false
+		Global.camera_enable = !Global.camera_enable
 
 func _on_buy_button_pressed() -> void:
-	emit_signal("afficher_scene", "res://scenes/buy_confirmation.tscn", "BuyConfirmation")
-	buy_button("cantine")
+	var arbre_scene = load("res://scenes/buy_confirmation.tscn")
+	var play_scene = get_tree().current_scene
+	var hud = play_scene.get_node("hud/Hud") 
+
+	if not hud.has_node("BuyConfirmation"):
+		var instance = arbre_scene.instantiate()
+		instance.name = "BuyConfirmation"
+		instance.batiment = "cantine"
+		hud.add_child(instance)
+
+	else:
+		var node = hud.get_node("BuyConfirmation")
+		node.visible = !node.visible  
+
+	Global.camera_enable = !Global.camera_enable

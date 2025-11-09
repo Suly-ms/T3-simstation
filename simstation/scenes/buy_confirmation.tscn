@@ -1,47 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4kukl2esgxwp"]
+[gd_scene load_steps=8 format=3 uid="uid://d4kukl2esgxwp"]
 
 [ext_resource type="Texture2D" uid="uid://dlejyupcimywy" path="res://textures/confirm_button/confirm_button.png" id="1_0bhau"]
-[ext_resource type="Script" uid="uid://cvi665bq2axlg" path="res://scripts/shop/buy_confirmation.gd" id="1_vv2ij"]
+[ext_resource type="Script" uid="uid://cc0lawlrgjo1q" path="res://scripts/buy_confirmation.gd" id="1_vv2ij"]
 [ext_resource type="Texture2D" uid="uid://bhreawsqu0rw5" path="res://textures/confirm_button/confirm_button_click.png" id="2_vv2ij"]
 [ext_resource type="Texture2D" uid="uid://be86q7isitlic" path="res://textures/confirm_button/confirm_button_hover.png" id="3_4pj0v"]
-[ext_resource type="Texture2D" uid="uid://bjxe817lfm12v" path="res://textures/exit_button/exit_button.png" id="4_b7ln2"]
+[ext_resource type="Texture2D" uid="uid://cylls3socsgs7" path="res://textures/exit_button/exit_button.png" id="4_b7ln2"]
 [ext_resource type="Texture2D" uid="uid://cx3uxake8s48b" path="res://textures/exit_button/exit_button_click.png" id="5_4r87u"]
-[ext_resource type="Script" uid="uid://b8lhogpuh6khw" path="res://scripts/shop/confirm_buy.gd" id="5_b7ln2"]
-[ext_resource type="Texture2D" uid="uid://d1ytjptrjyd4n" path="res://textures/exit_button/exit_button_hover.png" id="6_r20lg"]
-[ext_resource type="Script" uid="uid://b05egdx1oibkv" path="res://scripts/cancel_button.gd" id="8_4pj0v"]
+[ext_resource type="Texture2D" uid="uid://balx3ryt63vbj" path="res://textures/exit_button/exit_button_hover.png" id="6_r20lg"]
 
 [node name="BuyConfirmation" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_vv2ij")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="anti_click" type="Panel" parent="CanvasLayer"]
-modulate = Color(18.892157, 18.892157, 18.892157, 0)
-self_modulate = Color(1, 1, 1, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6434.5
-offset_top = -4913.0
-offset_right = 6434.5
-offset_bottom = 4913.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="background" type="Panel" parent="CanvasLayer"]
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 270.0
 offset_top = 343.0
-offset_right = -327.0
+offset_right = 1603.0
 offset_bottom = 667.0
 grow_horizontal = 2
 
-[node name="message" type="RichTextLabel" parent="CanvasLayer/background"]
+[node name="message" type="RichTextLabel" parent="background"]
 layout_mode = 0
 offset_right = 1324.0
 offset_bottom = 94.0
@@ -49,9 +31,8 @@ bbcode_enabled = true
 text = "[center][font_size=56]Voulez vous vraiment acheter le batiment : King Kong ?"
 fit_content = true
 scroll_active = false
-script = ExtResource("1_vv2ij")
 
-[node name="confirm_button" type="TextureButton" parent="CanvasLayer/background"]
+[node name="confirm_button" type="TextureButton" parent="background"]
 layout_mode = 0
 offset_left = 299.0
 offset_top = 177.0
@@ -61,9 +42,8 @@ texture_normal = ExtResource("1_0bhau")
 texture_pressed = ExtResource("2_vv2ij")
 texture_hover = ExtResource("3_4pj0v")
 stretch_mode = 0
-script = ExtResource("5_b7ln2")
 
-[node name="cancel_button" type="TextureButton" parent="CanvasLayer/background"]
+[node name="cancel_button" type="TextureButton" parent="background"]
 layout_mode = 0
 offset_left = 818.0
 offset_top = 173.0
@@ -73,7 +53,6 @@ texture_normal = ExtResource("4_b7ln2")
 texture_pressed = ExtResource("5_4r87u")
 texture_hover = ExtResource("6_r20lg")
 stretch_mode = 0
-script = ExtResource("8_4pj0v")
 
-[connection signal="pressed" from="CanvasLayer/background/confirm_button" to="CanvasLayer/background/confirm_button" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/background/cancel_button" to="CanvasLayer/background/cancel_button" method="_on_pressed"]
+[connection signal="pressed" from="background/confirm_button" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="background/cancel_button" to="." method="_on_cancel_button_pressed"]

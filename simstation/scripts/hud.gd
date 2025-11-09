@@ -1,7 +1,7 @@
 extends Control
 
-@onready var argent_label = $argent
-@onready var batiments_container = $dragBuilding
+@onready var argent_label = $CanvasLayer/background/argent
+@onready var batiments_container = $CanvasLayer/dragBuilding
 
 func _ready():
 	# Connecte les signaux
@@ -18,9 +18,15 @@ func _on_argent_changed(new_value):
 		argent_label.bbcode_text = "[right][font_size=24]" + Global.format_money(new_value) + " €"
 
 func _on_batiment_changed(nom, new_value):
-	if batiments_container:
-		var batiment_node = batiments_container.get_node(nom)
-		if batiment_node:
-			var nombre_label = batiment_node.get_node("nombre")
-			if nombre_label:
-				nombre_label.bbcode_text = str(new_value)
+	if not batiments_container:
+		return
+
+	if not batiments_container.has_node(nom):
+		return
+
+	var batiment_node = batiments_container.get_node(nom)
+	if not batiment_node.has_node("nombre"):
+		return
+
+	var nombre_label = batiment_node.get_node("nombre")
+	nombre_label.bbcode_text = str(new_value)

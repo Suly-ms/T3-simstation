@@ -3,7 +3,6 @@ extends Button
 const BASE_RES = Vector2(1920, 1080)
 
 func _ready():
-	Global.connect("afficher_scene", Callable(self, "load_scene"))
 	_resize()
 	get_viewport().connect("size_changed", Callable(self, "_resize"))
 
@@ -21,14 +20,14 @@ func _on_pressed_recherches():
 func load_scene(chemin_scene, nom_node):
 	var arbre_scene = load(chemin_scene)
 	var play_scene = get_tree().current_scene
-	var hud = play_scene.get_node("hud")
+	var hud = play_scene.get_node("hud/Hud") 
 
 	if not hud.has_node(nom_node):
 		var instance = arbre_scene.instantiate()
 		instance.name = nom_node
 		hud.add_child(instance)
-		
 		instance.connect("exit_button", Callable(self, "exit_button"))
+		instance.connect("afficher_scene", Callable(self, "_on_afficher_scene"))
 
 	else:
 		var node = hud.get_node(nom_node)
@@ -43,3 +42,6 @@ func exit_button(nom_node):
 	if hud.has_node(nom_node):
 		hud.get_node(nom_node).visible = false
 		Global.camera_enable = !Global.camera_enable
+
+func _on_afficher_scene(chemin_scene, nom_node):
+	load_scene(chemin_scene, nom_node)
