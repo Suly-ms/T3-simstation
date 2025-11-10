@@ -17,13 +17,13 @@ var argent = 3000000
 # ce que le joueur possède
 var inventaire = {
 	"hub": 1,
-	"dortoir": 1, 
+	"dortoir": 0, 
 	"cantine": 1, 
-	"labo_recherche": 1, 
-	"salle_sport": 1, 
-	"salle_repos": 1, 
-	"panneaux solaires": 1,
-	"generateur_petrole": 1
+	"labo_recherche": 0, 
+	"salle_sport": 0, 
+	"salle_repos": 0, 
+	"panneaux solaires": 0,
+	"generateur_petrole": 0
 }
 
 var batiments_prix = {

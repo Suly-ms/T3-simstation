@@ -23,7 +23,7 @@ func _on_exit_button_pressed() -> void:
 func _on_buy_button_pressed() -> void:
 	var arbre_scene = load("res://scenes/buy_confirmation.tscn")
 	var play_scene = get_tree().current_scene
-	var hud = play_scene.get_node("hud/Hud") 
+	var hud = play_scene.get_node("hud") 
 
 	if not hud.has_node("BuyConfirmation"):
 		var instance = arbre_scene.instantiate()

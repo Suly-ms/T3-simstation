@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dyxsjxpvsie0m" path="res://scripts/shop/shop.gd" id="2_24it5"]
 [ext_resource type="Texture2D" uid="uid://moekfwxe0kww" path="res://textures/shop/shop_background.png" id="2_y6sft"]
 [ext_resource type="Texture2D" uid="uid://cylls3socsgs7" path="res://textures/exit_button/exit_button.png" id="3_ajxib"]
-[ext_resource type="Texture2D" uid="uid://cx3uxake8s48b" path="res://textures/exit_button/exit_button_click.png" id="5_heatd"]
+[ext_resource type="Texture2D" uid="uid://c8ccaedh3swai" path="res://textures/exit_button/exit_button_click.png" id="5_heatd"]
 [ext_resource type="Texture2D" uid="uid://balx3ryt63vbj" path="res://textures/exit_button/exit_button_hover.png" id="5_m4ofw"]
 [ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="7_ajxib"]
 [ext_resource type="Texture2D" uid="uid://dk7cdu5fvnckv" path="res://textures/shop/buy_button/buy_button.png" id="9_heatd"]

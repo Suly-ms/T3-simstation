@@ -1,5 +1,4 @@
 extends Node2D
-signal exit_button(shop_name)
 signal argent_changed(argent)
 
 var tree: SearchTree
@@ -174,4 +173,9 @@ func faire_recherche(node):
 	timer_label.visible=true
 
 func _on_exit_button_pressed() -> void:
-	emit_signal("exit_button", "ArbreRecherche")
+	var play_scene = get_tree().current_scene
+	var hud = play_scene.get_node("hud")
+
+	if hud.has_node("ArbreRecherche"):
+		hud.get_node("ArbreRecherche").visible = false
+		Global.camera_enable = !Global.camera_enable

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bhreawsqu0rw5" path="res://textures/confirm_button/confirm_button_click.png" id="2_vv2ij"]
 [ext_resource type="Texture2D" uid="uid://be86q7isitlic" path="res://textures/confirm_button/confirm_button_hover.png" id="3_4pj0v"]
 [ext_resource type="Texture2D" uid="uid://cylls3socsgs7" path="res://textures/exit_button/exit_button.png" id="4_b7ln2"]
-[ext_resource type="Texture2D" uid="uid://cx3uxake8s48b" path="res://textures/exit_button/exit_button_click.png" id="5_4r87u"]
+[ext_resource type="Texture2D" uid="uid://c8ccaedh3swai" path="res://textures/exit_button/exit_button_click.png" id="5_4r87u"]
 [ext_resource type="Texture2D" uid="uid://balx3ryt63vbj" path="res://textures/exit_button/exit_button_hover.png" id="6_r20lg"]
 
 [node name="BuyConfirmation" type="Control"]
