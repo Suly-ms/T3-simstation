@@ -162,8 +162,7 @@ func faire_recherche(node):
 	add_child(timer)
 	timer.timeout.connect(func():
 		timer_label.visible=false
-		Global.argent += node.money
-		emit_signal("argent_changed", Global.argent)
+		Global.modifier_argent(Global.argent + node.money)
 		Global.recherche_debloque.append(node.nom)
 		print(Global.recherche_debloque)
 		queue_redraw()  

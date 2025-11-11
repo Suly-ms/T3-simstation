@@ -22,7 +22,7 @@ var inventaire = {
 	"labo_recherche": 0, 
 	"salle_sport": 0, 
 	"salle_repos": 0, 
-	"panneaux solaires": 0,
+	"panneaux_solaires": 0,
 	"generateur_petrole": 0
 }
 
@@ -33,7 +33,7 @@ var batiments_prix = {
 	"labo_recherche": 100000, 
 	"salle_sport": 10000, 
 	"salle_repos": 10000, 
-	"panneaux solaires": 10000,
+	"panneaux_solaires": 10000,
 	"generateur_petrole": 10000
 }
 
@@ -44,7 +44,7 @@ var batiments_nombre = {
 	"labo_recherche": 5, 
 	"salle_sport": 1, 
 	"salle_repos": 1, 
-	"panneaux solaires": 3,
+	"panneaux_solaires": 3,
 	"generateur_petrole": 3
 }
 
@@ -55,7 +55,7 @@ var info_batiments = {
 	"labo_recherche": [50, 15, 60, "Permet de faire des recherches scientifiques"], 
 	"salle_sport": [70, 5, 85, "Améliore la condition physique des habitants"],  
 	"salle_repos": [90, 2, 90, "Endroit calme pour se détendre"],    
-	"panneaux solaires": [90, 2, 90, "Génère de l'électricité avec le Soleil"],   
+	"panneaux_solaires": [90, 2, 90, "Génère de l'électricité avec le Soleil"],   
 	"generateur_petrole": [50, 50, -20, "Génère de l'électricité avec du pétrole"] 
 }
 
@@ -79,7 +79,6 @@ func modifier_argent(delta: int) -> void:
 	argent += delta
 	emit_signal("argent_changed", argent)
 
-	
 func modifier_batiment(nom: String, delta: int) -> void:
 	if inventaire.has(nom):
 		inventaire[nom] += delta
