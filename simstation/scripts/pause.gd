@@ -18,7 +18,19 @@ func _on_resume_button_pressed() -> void:
 		pause_menu.queue_free() 
 
 func _on_option_button_pressed() -> void:
-	pass # Replace with function body.
+	var options_scene = load("res://scenes/options.tscn")
+	var play_scene = get_tree().current_scene
+	var hud = play_scene.get_node("hud")
+
+	if not hud.has_node("Options"):
+		var instance = options_scene.instantiate()
+		instance.name = "Options"
+		hud.add_child(instance)
+	else:
+		var node = hud.get_node("Options")
+		node.visible = !node.visible
+
+	Global.camera_enable = !Global.camera_enable
 
 
 func _on_menu_button_pressed() -> void:

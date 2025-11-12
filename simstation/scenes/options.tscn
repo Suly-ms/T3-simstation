@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=3 uid="uid://cffhw5w7xcqjp"]
+
+[ext_resource type="Texture2D" uid="uid://moekfwxe0kww" path="res://textures/shop/shop_background.png" id="1_1sggn"]
+[ext_resource type="Script" uid="uid://dh7g2uv6wrydj" path="res://scripts/options.gd" id="1_e6vpq"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_e6vpq"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e6vpq")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -673.25
+offset_top = -475.0
+offset_right = 673.25
+offset_bottom = 475.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1sggn")
+
+[node name="Retour_button" type="Button" parent="background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -222.0
+offset_right = 120.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_e6vpq")
+theme_override_font_sizes/font_size = 35
+text = "Retour"
+
+[node name="Options_text" type="RichTextLabel" parent="background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.5
+offset_top = 108.0
+offset_right = 307.5
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_e6vpq")
+bbcode_enabled = true
+text = "[center][font_size=70]Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -98.75
+offset_right = 332.0
+offset_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Musique_text" type="Label" parent="background/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_e6vpq")
+theme_override_font_sizes/font_size = 30
+text = "Musique"
+
+[node name="Musique_slider" type="HSlider" parent="background/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Effet_text" type="Label" parent="background/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_e6vpq")
+theme_override_font_sizes/font_size = 30
+text = "Effets  sonores"
+
+[node name="Effet_slider" type="HSlider" parent="background/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Pleinecran_button" type="CheckButton" parent="background/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_e6vpq")
+theme_override_font_sizes/font_size = 30
+text = "Plein  écran"
+
+[connection signal="pressed" from="background/Retour_button" to="." method="_on_retour_button_pressed"]
+[connection signal="value_changed" from="background/VBoxContainer/VBoxContainer/Musique_slider" to="." method="_on_musique_slider_value_changed"]
+[connection signal="value_changed" from="background/VBoxContainer/VBoxContainer2/Effet_slider" to="." method="_on_effet_slider_value_changed"]
+[connection signal="toggled" from="background/VBoxContainer/Pleinecran_button" to="." method="_on_check_button_toggled"]

@@ -28,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_aicil")
 
-[node name="Boutique_text" type="RichTextLabel" parent="background"]
+[node name="Pause_text" type="RichTextLabel" parent="background"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -41,7 +41,7 @@ grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_jn4bt")
 bbcode_enabled = true
-text = "[center][font_size=70]Options"
+text = "[center][font_size=70]Pause"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="background"]
 layout_mode = 1
