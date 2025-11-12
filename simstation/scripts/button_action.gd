@@ -6,6 +6,13 @@ func _on_pressed_shop() -> void:
 func _on_pressed_recherches():
 	load_scene("res://scenes/arbre_recherche.tscn", "ArbreRecherche")
 
+func _on_pressed_pause():
+	load_scene("res://scenes/pause.tscn", "Pause")
+
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("pause"):
+		_on_pressed_pause()
+
 func load_scene(chemin_scene, nom_node):
 	var arbre_scene = load(chemin_scene)
 	var play_scene = get_tree().current_scene

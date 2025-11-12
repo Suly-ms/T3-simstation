@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://4wx3fpdnps7x"]
+
+[ext_resource type="Script" uid="uid://bnhtj0jj88m17" path="res://scripts/pause.gd" id="1_m0klm"]
+[ext_resource type="Texture2D" uid="uid://moekfwxe0kww" path="res://textures/shop/shop_background.png" id="2_aicil"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_jn4bt"]
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m0klm")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -673.25
+offset_top = -475.0
+offset_right = 673.25
+offset_bottom = 475.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_aicil")
+
+[node name="Boutique_text" type="RichTextLabel" parent="background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.5
+offset_top = 108.0
+offset_right = 307.5
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_jn4bt")
+bbcode_enabled = true
+text = "[center][font_size=70]Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -87.5
+offset_right = 332.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="Resume_button" type="Button" parent="background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jn4bt")
+theme_override_font_sizes/font_size = 50
+text = "Continuer"
+
+[node name="Option_button" type="Button" parent="background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jn4bt")
+theme_override_font_sizes/font_size = 50
+text = "Options"
+
+[node name="Menu_button" type="Button" parent="background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jn4bt")
+theme_override_font_sizes/font_size = 50
+text = "Menu  principal"
+
+[connection signal="pressed" from="background/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="background/VBoxContainer/Option_button" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="background/VBoxContainer/Menu_button" to="." method="_on_menu_button_pressed"]
