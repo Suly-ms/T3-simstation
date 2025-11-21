@@ -1,48 +1,55 @@
-extends Node
+extends Node2D
 
-@onready var node_buildings : Node = $buildings
-@onready var node_decorations : Node = $decor
+# Assure-toi que ce chemin pointe bien vers le nœud parent de tes bâtiments
+@onready var buildings_layer = $Batiments 
 
 func _ready():
-	GameManager.set_current_map(self)
+	add_to_group("Map")
 
+# Ajoute le bâtiment temporairement
+func add_temp_building(node: Node2D):
+	buildings_layer.add_child(node)
 
-'''func place_building(name : String, position : Vector2):
-	var batiment = load("res://batiments/"+ self.name +".tscn")
-	var batiment_instance = batiment.instantiate()
-	node_buildings.add_child(batiment_instance)
-	batiment_instance.position = position'''
+# Valide le placement
+func validate_building(node: Node2D):
+	print("Bâtiment placé : ", node.name)
+	# Ici, tu pourras ajouter la sauvegarde
 
-
-#on parcour tous les enfant de node_building sauf le dernier qui est le batiment que l'on vient de placer
-func is_placable(btn1 : TextureButton) -> Array:
-	var children = node_buildings.get_children()
-	for i in range(children.size() - 1): 
-		var btn2 : TextureButton = children[i]
-		if btn1.get_rect().intersects(btn2.get_rect()):
-			var vector = get_vector(btn1, btn2)
-			return [false, vector]
-	return [true, Vector2(0,0)]
-
-#retourne le vecteur de deplacement si les batiments se superpose
-func get_vector(btn1 : TextureButton, btn2 : TextureButton):
-	var center1 = btn1.get_rect().get_center()
-	var center2 = btn2.get_rect().get_center()
-	var vector = Vector2(center2.x - center1.x, center2.y - center1.y)
-	vector /= 100
-	return vector
+func is_placable(ghost_building: Node2D) -> bool:
+	# 1. On calcule le rectangle global du fantôme via notre fonction helper
+	var ghost_rect = get_global_rect_of(ghost_building).grow(-2.0)
 	
-#affiche pour tout les batiments les  carré deffinissant leurs zones placable
-func show_square():
-	var children = node_buildings.get_children()
-	for btn in children:
-		if(btn.get_child(0)):
-			btn.get_child(0).visible = true
+	for building in buildings_layer.get_children():
+		if building == ghost_building: continue 
+		
+		# On vérifie si l'objet est un Sprite ou un truc qui a une texture
+		if building.has_method("get_rect"):
+			var other_rect = get_global_rect_of(building).grow(-2.0)
+			
+			if ghost_rect.intersects(other_rect):
+				return false # Collision !
+				
+	return true
+	
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		
+		var batiment_clique = get_building_under_mouse()
+		
+		if batiment_clique:
+			# ON EMET LE SIGNAL VIA GLOBAL
+			print("Clic détecté, envoi du signal pour : ", batiment_clique.name)
+			Global.demande_ouverture_info.emit(batiment_clique.name)
 
+func get_building_under_mouse() -> Node2D:
+	var mouse_pos = get_global_mouse_position()
+	var enfants = buildings_layer.get_children()
+	enfants.reverse() 
+	
+	for batiment in enfants:
+		if get_global_rect_of(batiment).has_point(mouse_pos):
+			return batiment
+	return null
 
-#supprime l'affichage pour tout les batiments les carré deffinissant leurs zones placable
-func delete_square():
-	var children = node_buildings.get_children()
-	for btn in children: 
-		if(btn.get_child(0)):
-			btn.get_child(0).visible = false
+func get_global_rect_of(node: Node2D) -> Rect2:
+	return node.get_global_transform() * node.get_rect()
