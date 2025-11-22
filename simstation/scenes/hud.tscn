@@ -311,6 +311,15 @@ offset_right = 171.0
 offset_bottom = 101.0
 text = "Santé"
 
+[node name="LabelDescription" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 142.0
+offset_right = 171.0
+offset_bottom = 247.0
+text = "Description"
+autowrap_mode = 2
+
 [node name="BtnFermer" type="Button" parent="InfoPanel"]
 layout_mode = 0
 offset_left = 166.0
