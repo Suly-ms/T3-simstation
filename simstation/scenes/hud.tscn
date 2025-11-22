@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://6yammkj4wwfh" path="res://textures/bar/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/button_action.gd" id="11_0m4u7"]
+[ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://scripts/info_panel.gd" id="14_eld54"]
 [ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scripts/night_mode.gd" id="17_3xg78"]
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://scripts/InventaireUI.gd" id="17_uxdf7"]
 
@@ -266,8 +267,10 @@ script = ExtResource("17_uxdf7")
 
 [node name="ScrollInventaire" type="ScrollContainer" parent="Inventaire"]
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 552.0
+offset_left = 13.0
+offset_top = 58.0
+offset_right = 141.0
+offset_bottom = 610.0
 
 [node name="MarginInventaire" type="MarginContainer" parent="Inventaire/ScrollInventaire"]
 layout_mode = 2
@@ -275,6 +278,54 @@ layout_mode = 2
 [node name="GridInventaire" type="GridContainer" parent="Inventaire/ScrollInventaire/MarginInventaire"]
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1688.0
+offset_top = 314.0
+offset_right = 1891.0
+offset_bottom = 580.0
+script = ExtResource("14_eld54")
+
+[node name="LabelNom" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 19.0
+offset_right = 145.0
+offset_bottom = 60.0
+text = "Nom"
+
+[node name="LabelBonheur" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 101.0
+offset_right = 171.0
+offset_bottom = 142.0
+text = "Bonheur"
+
+[node name="LabelSante" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 60.0
+offset_right = 171.0
+offset_bottom = 101.0
+text = "Santé"
+
+[node name="LabelDescription" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 142.0
+offset_right = 171.0
+offset_bottom = 247.0
+text = "Description"
+autowrap_mode = 2
+
+[node name="BtnFermer" type="Button" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 166.0
+offset_right = 203.0
+offset_bottom = 36.0
+text = "X"
 
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
 [connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]

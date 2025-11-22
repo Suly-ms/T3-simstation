@@ -1,7 +1,6 @@
 extends Node
 
 func _ready():
-	connect("pressed", Callable(self, "_on_pressed"))
 	if self.texture_normal:
 		self.size = self.texture_normal.get_size()
 		var img = self.texture_normal.get_image()
@@ -13,9 +12,6 @@ func _ready():
 		self.get_child(0).size = self.size
 		print(self.get_child(0).size)
 		print(self.size)
-
-func _on_pressed() -> void:
-	print(self.name)
 
 func _on_mouse_entered() -> void:
 	pass # Replace with function body.

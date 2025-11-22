@@ -1,78 +1,117 @@
 extends TextureRect
 
-var batiment_instance = null
-var map = null
-var dragging = false
-@export var delay = 0.0001
-@export var speed_ap = 10
-var mouse_offset : Vector2 = Vector2.ZERO
-var automatic_placement = false
-var global_vector : Vector2 = Vector2(1,1)
-var is_square = false
+# --- PARAMÈTRES ---
+@export var grid_size : int = 64 # Adapte à ta TileMap (souvent 32, 64 ou 128)
 
-func _process(_delta):
-	if map == null:
-		map = GameManager.get_current_map()
+# --- VARIABLES ---
+var batiment_instance : Node2D = null # Ce sera notre Sprite
+var map_ref = null
+var dragging : bool = false
 
-func _physics_process(delta: float) -> void:
-	if dragging and batiment_instance:
-		var tween = get_tree().create_tween()
-		tween.tween_property(batiment_instance, "position", get_world_mouse_position() - mouse_offset, delay * delta)
+func _ready():
+	# Optionnel : changer le curseur quand on survole
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
-	if automatic_placement and batiment_instance and !map.is_placable(batiment_instance)[0]:
-		global_vector = (map.is_placable(batiment_instance)[1] + global_vector) / 2
-		var tween = get_tree().create_tween()
-		tween.tween_property(batiment_instance, "position", batiment_instance.position - global_vector * Vector2(speed_ap, speed_ap), delay * delta)
-	else:
-		automatic_placement = false
-
-	if not dragging and batiment_instance and is_square:
-		map.delete_square()
-		is_square = false
-
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed and get_rect().has_point(get_local_mouse_position()):
-			var nom_batiment = name
-			if Global.inventaire[nom_batiment] > 0:
-				is_square = true
-				map.show_square()
-
-				var batiment = find_building_scene()
-				if batiment:
-					batiment_instance = batiment.instantiate()
-					add_building_map()
-					dragging = true
-					mouse_offset = Vector2.ZERO
-
-					Global.modifier_batiment(nom_batiment, -1)
-			else:
-				print("Aucun ", nom_batiment, " disponible dans l'inventaire.")
-
-		elif dragging:
-			dragging = false
-			place_building()
-
-func get_world_mouse_position() -> Vector2:
-	var camera = get_viewport().get_camera_2d()
-	if camera:
-		return camera.get_global_mouse_position()
-	else:
-		return get_global_mouse_position()
-
-func find_building_scene() -> Resource:
-	var path = "res://batiments/%s.tscn" % name
-	if FileAccess.file_exists(path):
-		return load(path)
+func _get_drag_data(_at_position):
+	# Fonction native de Godot pour le Drag&Drop UI, mais ici on fait un système custom
+	# On retourne l'info pour bloquer le drag natif si besoin, ou on laisse vide.
 	return null
 
-func place_building():
-	if map.is_placable(batiment_instance)[0]:
-		batiment_instance.position = get_world_mouse_position() - mouse_offset
-	else:
-		automatic_placement = true
+func _gui_input(event):
+	# Détection du clic gauche sur le bouton de l'inventaire
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		# On vérifie s'il y a du stock
+		if Global.inventaire.get(name, 0) > 0:
+			start_dragging()
+		else:
+			print("Pas assez de ressources !")
 
-func add_building_map():
-	if map and map.get_child_count() >= 3:
-		var folder_buildings = map.get_child(2)
-		folder_buildings.add_child(batiment_instance)
+func _input(event):
+	# Gestion globale (quand on lâche la souris n'importe où)
+	if dragging and batiment_instance:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+				place_building() # Relâchement = Poser
+			elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+				cancel_placement() # Clic droit = Annuler
+
+func _process(_delta):
+	if dragging and batiment_instance and map_ref:
+		# 1. Récupérer la position souris dans le monde (coordonnées Map)
+		var mouse_global_pos = map_ref.get_global_mouse_position()
+		
+		# 2. Snapping (Aimantation à la grille)
+		var snapped_pos = mouse_global_pos.snapped(Vector2(grid_size, grid_size))
+		
+		# 3. Appliquer la position
+		batiment_instance.global_position = snapped_pos
+		
+		# 4. Feedback visuel (Rouge si occupé, Blanc si libre)
+		update_visual_feedback()
+
+func start_dragging():
+	var maps = get_tree().get_nodes_in_group("Map")
+	if maps.size() > 0:
+		map_ref = maps[0]
+	else:
+		return
+
+	# Création du Sprite (inchangé)
+	batiment_instance = Sprite2D.new()
+	batiment_instance.texture = texture
+	batiment_instance.name = name
+	
+	# --- AJOUT DU CONTOUR GRIS ---
+	var contour = ReferenceRect.new()
+	contour.name = "ContourDeSelection" # On lui donne un nom pour le retrouver
+	contour.editor_only = false # Important : par défaut c'est visible que dans l'éditeur
+	contour.border_color = Color.GRAY # Couleur grise
+	contour.border_width = 2.0 # Épaisseur du trait
+	contour.mouse_filter = Control.MOUSE_FILTER_IGNORE # Très important : pour ne pas bloquer les clics !
+	
+	# On adapte la taille à l'image
+	contour.custom_minimum_size = texture.get_size()
+	contour.size = texture.get_size()
+	# On centre le rectangle (car le Sprite est centré par défaut, mais pas le Rect)
+	contour.position = -texture.get_size() / 2
+	
+	batiment_instance.add_child(contour)
+	# -----------------------------
+
+	map_ref.add_temp_building(batiment_instance)
+	
+	dragging = true
+	Global.modifier_batiment(name, -1)
+
+func place_building():
+	if not batiment_instance: return
+	
+	if map_ref.is_placable(batiment_instance):
+		# SUCCÈS
+		batiment_instance.modulate = Color(1, 1, 1, 1)
+		
+		# --- AJOUT : SUPPRESSION DU CONTOUR ---
+		var contour = batiment_instance.get_node_or_null("ContourDeSelection")
+		if contour:
+			contour.queue_free() # On détruit juste le cadre gris
+		# --------------------------------------
+		
+		map_ref.validate_building(batiment_instance)
+		
+		batiment_instance = null
+		dragging = false
+	else:
+		cancel_placement()
+
+func cancel_placement():
+	if batiment_instance:
+		batiment_instance.queue_free() # On détruit le sprite
+		batiment_instance = null
+		Global.modifier_batiment(name, 1) # On rend la ressource
+	dragging = false
+
+func update_visual_feedback():
+	if map_ref.is_placable(batiment_instance):
+		batiment_instance.modulate = Color(1, 1, 1, 0.7) # Transparent normal
+	else:
+		batiment_instance.modulate = Color(1, 0.2, 0.2, 0.7) # Rouge transparent
