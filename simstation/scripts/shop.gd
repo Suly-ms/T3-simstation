@@ -41,8 +41,6 @@ func acheter_batiment(nom_batiment):
 		var node = hud.get_node("BuyConfirmation")
 		node.visible = !node.visible  
 
-	Global.camera_enable = !Global.camera_enable
-
 
 func _on_buy_button_pressed_dortoir() -> void:
 	acheter_batiment("dortoir")
