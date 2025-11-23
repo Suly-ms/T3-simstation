@@ -61,6 +61,8 @@ func start_dragging():
 	batiment_instance = Sprite2D.new()
 	batiment_instance.texture = texture
 	batiment_instance.name = name
+	batiment_instance.set_meta("type_batiment", name)
+	#print("NOM BATIMENT QUI VIENT DETRE PLACE : "+batiment_instance.name)
 	
 	var contour = ReferenceRect.new()
 	contour.name = "ContourDeSelection" # On lui donne un nom pour le retrouver
