@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://4wx3fpdnps7x"]
 
 [ext_resource type="Script" uid="uid://bnhtj0jj88m17" path="res://scripts/pause.gd" id="1_m0klm"]
-[ext_resource type="Texture2D" uid="uid://moekfwxe0kww" path="res://textures/shop/shop_background.png" id="2_aicil"]
+[ext_resource type="Texture2D" uid="uid://cqwsm3uxbo3v1" path="res://assets/shop/shop_background.png" id="2_aicil"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_jn4bt"]
 
 [node name="Pause" type="Control"]
