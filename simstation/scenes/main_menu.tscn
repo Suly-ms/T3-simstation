@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byhx4nqhp22jo"]
+[gd_scene load_steps=9 format=3 uid="uid://byhx4nqhp22jo"]
 
 [ext_resource type="Script" uid="uid://c4e02x7hylkmt" path="res://scripts/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Texture2D" uid="uid://ms5p2chwkqwp" path="res://menu_pictures/placeholder.jpg" id="2_rtw2f"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dn22i8u0wu05f" path="res://menu_pictures/button.png" id="4_tbmy8"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://dbt5nrlsv1j6t" path="res://menu_pictures/button_hover.png" id="5_rtw2f"]
+[ext_resource type="AudioStream" uid="uid://i702nadbvxuy" path="res://assets/sons/musiques/dark_souls_main_theme.mp3" id="7_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0.294118, 0.635294, 0.721569, 0.603922)
@@ -131,6 +132,11 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_jk1qb")
 theme_override_font_sizes/font_size = 100
 text = "QUITTER"
+
+[node name="MusiqueDeFond" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_oa1go")
+volume_db = 3.0
+autoplay = true
 
 [connection signal="pressed" from="Panel/btnJouer" to="." method="_on_btn_jouer_pressed"]
 [connection signal="pressed" from="Panel/btnQuitter" to="." method="_on_btn_quitter_pressed"]
