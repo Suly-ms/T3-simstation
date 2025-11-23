@@ -23,7 +23,6 @@ script = ExtResource("2_bofkp")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[node name="MusiqueDeFond" type="AudioStreamPlayer2D" parent="."]
+[node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_j27tm")
-volume_db = 3.0
 autoplay = true

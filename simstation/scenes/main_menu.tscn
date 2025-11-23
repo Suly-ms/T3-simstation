@@ -133,9 +133,8 @@ theme_override_fonts/font = ExtResource("5_jk1qb")
 theme_override_font_sizes/font_size = 100
 text = "QUITTER"
 
-[node name="MusiqueDeFond" type="AudioStreamPlayer2D" parent="."]
+[node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_oa1go")
-volume_db = 3.0
 autoplay = true
 
 [connection signal="pressed" from="Panel/btnJouer" to="." method="_on_btn_jouer_pressed"]
