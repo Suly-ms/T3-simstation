@@ -1,5 +1,10 @@
 extends Node2D
 
+# DESCRIPTION :
+# SCRIPT permettant de calculer les stats de la partie à partir de la population, 
+# des batiments, de la température.
+# On utilise une matrice d'affluence afin de calculer au mieux quelle stats influe sur quelle stats
+
 var fin_partie = false
 const MAX_SCORE := 100
 const MIN_SCORE := 0

@@ -1,5 +1,15 @@
 extends Button
 
+# DESCRIPTION :
+# Script de gestion de l'interface utilisateur (UI) et de la navigation entre les différents menus.
+# Il permet de charger dynamiquement des scènes (Shop, Arbre de recherche, Pause) dans le HUD,
+# ou de basculer leur visibilité si elles sont déjà instanciées, tout en gérant l'activation de la caméra.
+# Les fonctions disponibles sont :
+# _on_pressed_shop, _on_pressed_recherches, _on_pressed_pause : Fonctions liées aux boutons pour ouvrir les menus correspondants.
+# _physics_process : Surveille les entrées joueur pour déclencher le menu pause via le clavier.
+# load_scene : Fonction générique qui instancie une scène dans le HUD ou inverse sa visibilité (toggle), et bloque/débloque la caméra.
+# exit_button : Force la fermeture d'un menu spécifique (le rend invisible) et réactive la caméra.
+
 func _on_pressed_shop() -> void:
 	load_scene("res://scenes/shop.tscn", "Shop")
 

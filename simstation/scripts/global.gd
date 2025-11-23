@@ -1,5 +1,10 @@
 extends Node
 
+# DESCRIPTION :
+# Global qui sert à stocker les infos du joueur, des stats de la partie, des batiments, 
+# de la population, de l'argent et du nombre de tour de la partie.
+# A l'avenir, les fonction vont bouger dans un autre script global.
+
 signal argent_changed(new_value)
 signal batiment_changed(batiment_name, new_value)
 signal demande_ouverture_info(nom_batiment)

@@ -1,5 +1,9 @@
 extends Panel
 
+# DESCRIPTION :
+# Script permettant d'afficher un panel d'information d'un batiment quand on clique dessus
+# On y affiche : le nom, la santé, le bonheur et une descrption
+
 @onready var label_nom = $LabelNom
 @onready var label_bonheur = $LabelBonheur
 @onready var label_sante = $LabelSante
