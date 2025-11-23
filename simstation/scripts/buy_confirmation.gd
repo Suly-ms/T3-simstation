@@ -4,7 +4,7 @@ extends Control
 var batiment = ""
 
 func _ready():
-	message_label.bbcode_text = "[center][font_size=56]Voulez-vous vraiment acheter ce batiment ?"
+	message_label.bbcode_text = "[center][font_size=56]Voulez-vous vraiment acheter le batiment : " + batiment + " ?"
 
 func _on_confirm_button_pressed() -> void:
 	var prix = Global.batiments_prix.get(batiment)

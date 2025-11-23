@@ -1,18 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvvtj6x6hcber"]
+[gd_scene load_steps=18 format=3 uid="uid://dvvtj6x6hcber"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_xfvoa"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_1l46r"]
 [ext_resource type="Script" uid="uid://dyxsjxpvsie0m" path="res://scripts/shop.gd" id="2_24it5"]
 [ext_resource type="Texture2D" uid="uid://moekfwxe0kww" path="res://textures/shop/shop_background.png" id="2_y6sft"]
 [ext_resource type="Texture2D" uid="uid://cylls3socsgs7" path="res://textures/exit_button/exit_button.png" id="3_ajxib"]
-[ext_resource type="Texture2D" uid="uid://cx3uxake8s48b" path="res://textures/exit_button/exit_button_click.png" id="5_heatd"]
+[ext_resource type="Texture2D" uid="uid://c8ccaedh3swai" path="res://textures/exit_button/exit_button_click.png" id="5_heatd"]
 [ext_resource type="Texture2D" uid="uid://balx3ryt63vbj" path="res://textures/exit_button/exit_button_hover.png" id="5_m4ofw"]
-[ext_resource type="Texture2D" uid="uid://cs6cjbl108kwr" path="res://assets/batiments/cafet/normal.png" id="7_ajxib"]
+[ext_resource type="Texture2D" uid="uid://bhmj86fqxctwe" path="res://assets/batiments/cantine.png" id="8_24it5"]
 [ext_resource type="Texture2D" uid="uid://dk7cdu5fvnckv" path="res://textures/shop/buy_button/buy_button.png" id="9_heatd"]
 [ext_resource type="Texture2D" uid="uid://c0cjn0qnqu7so" path="res://textures/shop/buy_button/buy_button_hover.png" id="10_1v8qu"]
 [ext_resource type="Texture2D" uid="uid://bji6nwdiuy0fm" path="res://textures/shop/buy_button/buy_button_click.png" id="10_44xle"]
-[ext_resource type="Texture2D" uid="uid://c4ugnpb45lggb" path="res://assets/batiments/lab/lab.png" id="14_gobkm"]
-[ext_resource type="Texture2D" uid="uid://dro5txjtlmrvs" path="res://assets/batiments/hub/hubT4.png" id="15_j14q8"]
+[ext_resource type="Texture2D" uid="uid://iy8xdmdxoe2q" path="res://assets/batiments/labo_recherche.png" id="12_7mqwv"]
+[ext_resource type="Texture2D" uid="uid://t3bktt82xfk1" path="res://assets/batiments/dortoir.png" id="13_5u241"]
+[ext_resource type="Texture2D" uid="uid://d0pi2exb502h1" path="res://assets/batiments/generateur_petrole.png" id="14_pqync"]
+[ext_resource type="Texture2D" uid="uid://bocxhr2pnncek" path="res://assets/batiments/salle_repos.png" id="15_yuijs"]
+[ext_resource type="Texture2D" uid="uid://0hpdoyqgkam7" path="res://assets/batiments/panneaux_solaires.png" id="16_aa4hd"]
+[ext_resource type="Texture2D" uid="uid://oco214bncjoq" path="res://assets/batiments/salle_sport.png" id="17_68utx"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -49,7 +53,7 @@ offset_top = 120.0
 offset_right = 388.0
 offset_bottom = 274.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.84635025, 0.50801367, 0.06611052, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
 bbcode_enabled = true
 text = "[center][font_size=86]Boutique"
@@ -74,118 +78,394 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 163.0
-offset_bottom = 37.0
+offset_left = 134.5
+offset_top = 367.0
+offset_right = -137.5
+offset_bottom = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Batiments" type="Control" parent="background/ScrollContainer"]
+[node name="Batiments" type="GridContainer" parent="background/ScrollContainer"]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 90
+theme_override_constants/v_separation = 60
+columns = 2
+
+[node name="dortoir" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/dortoir"]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
-[node name="cantine" type="Sprite2D" parent="background/ScrollContainer/Batiments"]
-position = Vector2(310.00003, 306)
-scale = Vector2(2.5429685, 2.5429685)
-texture = ExtResource("7_ajxib")
-region_enabled = true
-region_rect = Rect2(0, 0, 128, 136.4823)
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/dortoir"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/dortoir"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="dortoir" type="TextureRect" parent="background/ScrollContainer/Batiments/dortoir"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("13_5u241")
+stretch_mode = 6
+
+[node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/dortoir"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/dortoir/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+
+[node name="cantine" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/cantine"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/cantine"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/cantine"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="cantine" type="TextureRect" parent="background/ScrollContainer/Batiments/cantine"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_24it5")
+stretch_mode = 6
 
 [node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/cantine"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.54993
-offset_top = -96.706604
-offset_right = -17.450073
-offset_bottom = -68.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
-text = "10 000€"
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
 
-[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/cantine"]
-offset_left = 35.588318
-offset_top = 34.998455
-offset_right = 151.98773
-offset_bottom = 151.39787
-scale = Vector2(0.25, 0.25)
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/cantine/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
 texture_normal = ExtResource("9_heatd")
 texture_pressed = ExtResource("10_44xle")
 texture_hover = ExtResource("10_1v8qu")
 stretch_mode = 0
 
-[node name="labo_recherche" type="Sprite2D" parent="background/ScrollContainer/Batiments"]
-position = Vector2(1164.5, 318)
-scale = Vector2(0.7828009, 0.7828009)
-texture = ExtResource("14_gobkm")
-region_enabled = true
-region_rect = Rect2(60, 71.5, 395, 357)
+[node name="labo_recherche" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/labo_recherche"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/labo_recherche"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/labo_recherche"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="labo_recherche" type="TextureRect" parent="background/ScrollContainer/Batiments/labo_recherche"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("12_7mqwv")
+stretch_mode = 6
 
 [node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/labo_recherche"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -352.07312
-offset_top = -167.93536
-offset_right = -254.74255
-offset_bottom = -139.22876
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(3.15, 3.15)
-theme_override_colors/default_color = Color(1, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
-text = "10 000€"
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
 
-[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/labo_recherche"]
-offset_left = 146.90839
-offset_top = 181.39987
-offset_right = 514.81805
-offset_bottom = 549.30945
-scale = Vector2(0.25, 0.25)
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/labo_recherche/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
 texture_normal = ExtResource("9_heatd")
 texture_pressed = ExtResource("10_44xle")
 texture_hover = ExtResource("10_1v8qu")
 stretch_mode = 0
 
-[node name="hub" type="Sprite2D" parent="background/ScrollContainer/Batiments"]
-position = Vector2(744.5, 317)
-scale = Vector2(1.4823332, 1.4823333)
-texture = ExtResource("15_j14q8")
-region_enabled = true
-region_rect = Rect2(7, 9.5, 240, 176)
+[node name="salle_sport" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
 
-[node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/hub"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -229.2872
-offset_top = -80.2051
-offset_right = -105.569496
-offset_bottom = -52.805138
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1.65, 1.65)
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/salle_sport"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/salle_sport"]
+layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_1l46r")
-text = "10 000€"
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
 scroll_active = false
+metadata/_edit_use_anchors_ = true
 
-[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/hub"]
-offset_left = 105.91407
-offset_top = 89.72339
-offset_right = 299.01855
-offset_bottom = 282.82788
-scale = Vector2(0.25, 0.25)
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/salle_sport"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="salle_sport" type="TextureRect" parent="background/ScrollContainer/Batiments/salle_sport"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("17_68utx")
+stretch_mode = 6
+
+[node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/salle_sport"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
+
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/salle_sport/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+
+[node name="salle_repos" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/salle_repos"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/salle_repos"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/salle_repos"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="salle_repos" type="TextureRect" parent="background/ScrollContainer/Batiments/salle_repos"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("15_yuijs")
+stretch_mode = 6
+
+[node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/salle_repos"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/salle_repos/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+
+[node name="panneaux_solaires" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/panneaux_solaires"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/panneaux_solaires"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/panneaux_solaires"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="panneaux_solaires" type="TextureRect" parent="background/ScrollContainer/Batiments/panneaux_solaires"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("16_aa4hd")
+stretch_mode = 6
+
+[node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/panneaux_solaires"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
+
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/panneaux_solaires/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_heatd")
+texture_pressed = ExtResource("10_44xle")
+texture_hover = ExtResource("10_1v8qu")
+stretch_mode = 0
+
+[node name="generateur_petrole" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
+custom_minimum_size = Vector2(560, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="separateur" type="ColorRect" parent="background/ScrollContainer/Batiments/generateur_petrole"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Name_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/generateur_petrole"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]Batiment"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="Button" parent="background/ScrollContainer/Batiments/generateur_petrole"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Description"
+
+[node name="generateur_petrole" type="TextureRect" parent="background/ScrollContainer/Batiments/generateur_petrole"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("14_pqync")
+stretch_mode = 6
+
+[node name="Cost_text" type="RichTextLabel" parent="background/ScrollContainer/Batiments/generateur_petrole"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.8527348, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_1l46r")
+bbcode_enabled = true
+text = "[center][font_size=48]10 000€"
+fit_content = true
+
+[node name="Buy_button" type="TextureButton" parent="background/ScrollContainer/Batiments/generateur_petrole/Cost_text"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
 texture_normal = ExtResource("9_heatd")
 texture_pressed = ExtResource("10_44xle")
 texture_hover = ExtResource("10_1v8qu")
 stretch_mode = 0
 
 [connection signal="pressed" from="background/Exit_button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="background/ScrollContainer/Batiments/cantine/Buy_button" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/dortoir/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_dortoir"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/cantine/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_cantine"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/labo_recherche/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_labo_recherche"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/salle_sport/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_salle_sport"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/salle_repos/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_salle_repos"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/panneaux_solaires/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_panneaux_solaires"]
+[connection signal="pressed" from="background/ScrollContainer/Batiments/generateur_petrole/Cost_text/Buy_button" to="." method="_on_buy_button_pressed_generateur_petrole"]

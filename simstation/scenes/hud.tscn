@@ -217,7 +217,7 @@ offset_right = 156.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_6fi6k")
 theme_override_font_sizes/font_size = 24
-text = "Magasin"
+text = "Boutique"
 script = ExtResource("11_0m4u7")
 
 [node name="nightMode" type="Button" parent="CanvasLayer"]

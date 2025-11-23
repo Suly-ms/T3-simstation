@@ -9,7 +9,7 @@
 script = ExtResource("1_bofkp")
 
 [node name="Node2D" parent="." instance=ExtResource("5_65v2a")]
-position = Vector2(100, -196)
+position = Vector2(127, -194)
 
 [node name="hud" type="CanvasLayer" parent="."]
 
