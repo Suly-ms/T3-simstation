@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://scripts/global.gd"
-BitMapUtil="*res://scripts/bit_map_util.gd"
 GameManager="*res://scripts/game_manager.gd"
 
 [display]

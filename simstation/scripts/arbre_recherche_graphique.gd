@@ -1,4 +1,19 @@
 extends Node2D
+
+# DESCRIPTION :
+# Script gérant l'affichage visuel et les interactions de l'interface d'arbre de recherche (UI).
+# Il initialise une instance de SearchTree, définit la structure des recherches (parents/enfants),
+# et gère le rendu graphique (lignes de connexion, boutons) ainsi que la logique de gameplay (temps de recherche, coûts).
+# Les variables principales sont `tree` (la logique de données), `node_positions` (coordonnées visuelles) et `timer` (gestion du temps).
+# Les fonctions disponibles sont :
+# _ready() : Initialise l'arbre, crée les nœuds de recherche spécifiques et lance le calcul des positions.
+# _process(_delta) : Met à jour l'affichage du temps restant lors d'une recherche active.
+# _calculate_positions, _center_tree, _get_subtree_width : Algorithmes pour placer les nœuds visuellement de manière centrée et hiérarchique.
+# _draw et _draw_node_recursive : Dessinent les lignes de connexion et instancient les boutons interactifs pour chaque nœud.
+# ajouter_retirer_menu_node : Affiche un panneau contextuel avec la description et le bouton "Rechercher" lors du clic sur un nœud.
+# faire_recherche : Lance le timer, débloque la recherche à la fin, met à jour l'argent global et rafraîchit l'affichage.
+# _on_exit_button_pressed : Gère la fermeture de l'interface de l'arbre de recherche.
+
 signal argent_changed(argent)
 
 var tree: SearchTree
