@@ -30,13 +30,13 @@ var inventaire = {
 
 var batiments_prix = {
 	"hub": 94837175, 
-	"dortoir": 10000, 
+	"dortoir": 54867, 
 	"cantine": 50000, 
-	"labo_recherche": 100000, 
-	"salle_sport": 10000, 
-	"salle_repos": 10000, 
-	"panneaux_solaires": 10000,
-	"generateur_petrole": 10000
+	"labo_recherche": 646463, 
+	"salle_sport": 957376, 
+	"salle_repos": 75743, 
+	"panneaux_solaires": 88484,
+	"generateur_petrole": 19999
 }
 
 var batiments_nombre = {
@@ -52,14 +52,14 @@ var batiments_nombre = {
 
 # [Santé, Bonheur, Description]
 var info_batiments = {
-	"hub": [100, 50, "Hub principal de la station"],  
-	"dortoir": [100, 80, "Permet de se reposer tranquillement"],  
-	"cantine": [80, 70, "Fournit de la nourriture aux habitants"],
-	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques"], 
-	"salle_sport": [70, 85, "Améliore la condition physique des habitants"],  
-	"salle_repos": [90, 90, "Endroit calme pour se détendre"],    
-	"panneaux_solaires": [90, 90, "Génère de l'électricité avec le Soleil"],   
-	"generateur_petrole": [50, -20, "Génère de l'électricité avec du pétrole"] 
+	"hub": [100, 50, "Hub principal de la station", "Hub"],  # [ Santé, Bonheur, Description, Nom (à afficher) ]
+	"dortoir": [100, 80, "Permet de se reposer tranquillement", "Dortoir"],  
+	"cantine": [80, 70, "Fournit de la nourriture aux habitants", "Cantine"],
+	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques", "Laboratoire de recherche"], 
+	"salle_sport": [70, 85, "Améliore la condition physique des habitants", "Salle de sport"],  
+	"salle_repos": [90, 90, "Endroit calme pour se détendre", "Salle de repos"],    
+	"panneaux_solaires": [90, 90, "Génère de l'électricité avec le Soleil", "Panneau solaire"],   
+	"generateur_petrole": [50, -20, "Génère de l'électricité avec du pétrole", "Générateur de pétrole"] 
 }
 
 var stats = {
