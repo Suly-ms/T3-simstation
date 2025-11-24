@@ -1,7 +1,17 @@
 extends RefCounted
 class_name SearchTree
 
-# --- noeud de l’arbre ---
+# DESCRIPTION :
+# Script de gestion d'un arbre de recherche (SearchTree), étendant RefCounted.
+# Il s'appuie sur une classe interne NodeData qui contient les propriétés d'une recherche :
+# nom, coût en argent, coût en temps, description, état débloqué, ainsi que ses liens (parent/enfants).
+# Les fonctions disponibles sont :
+# _init() : Constructeur de base (implicite ou hérité).
+# create_root : Initialise la racine de l'arbre avec les données spécifiées.
+# add_child : Ajoute un nouveau nœud enfant à un parent donné et met à jour les liens.
+# depth_first_search : Parcourt l'arbre en profondeur pour trouver un nœud par son nom.
+# breadth_first_search : Parcourt l'arbre en largeur pour trouver un nœud par son nom.
+
 class NodeData:
 	var nom: String
 	var money: int
@@ -18,7 +28,6 @@ class NodeData:
 		description = desc
 		debloque = false
 
-# --- logique de l’arbre ---
 var root: NodeData
 
 func create_root(k: String, r_cost: int, t_cost: int, desc: String) -> NodeData:

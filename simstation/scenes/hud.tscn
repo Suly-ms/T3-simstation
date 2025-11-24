@@ -1,16 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
 [ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://scripts/HUD/resize_state_bar.gd" id="4_0i1j5"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
-[ext_resource type="Texture2D" uid="uid://b0c4yjwwtojdb" path="res://textures/bar/filled_bar.png" id="5_047uy"]
-[ext_resource type="Texture2D" uid="uid://denqcilf40pnt" path="res://textures/bar/health_bar_empty.png" id="5_uo2fv"]
-[ext_resource type="Texture2D" uid="uid://bib0axjdoqxcf" path="res://textures/bar/efficiency_bar_empty.png" id="6_hd3ao"]
-[ext_resource type="Texture2D" uid="uid://6yammkj4wwfh" path="res://textures/bar/happiness_bar_empty.png" id="7_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://b0c4yjwwtojdb" path="res://assets/bar/filled_bar.png" id="5_047uy"]
+[ext_resource type="Texture2D" uid="uid://qktnacrtab2g" path="res://assets/bar/health_bar_empty.png" id="5_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://bib0axjdoqxcf" path="res://assets/bar/efficiency_bar_empty.png" id="6_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://by7niniirjjtn" path="res://assets/bar/happiness_bar_empty.png" id="7_0i1j5"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/button_action.gd" id="11_0m4u7"]
+[ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://scripts/info_panel.gd" id="14_eld54"]
 [ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scripts/night_mode.gd" id="17_3xg78"]
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://scripts/InventaireUI.gd" id="17_uxdf7"]
 
@@ -216,7 +217,7 @@ offset_right = 156.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_6fi6k")
 theme_override_font_sizes/font_size = 24
-text = "Magasin"
+text = "Boutique"
 script = ExtResource("11_0m4u7")
 
 [node name="nightMode" type="Button" parent="CanvasLayer"]
@@ -247,6 +248,15 @@ offset_bottom = 267.0
 text = "Recherches"
 script = ExtResource("11_0m4u7")
 
+[node name="pause_button" type="Button" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = 184.0
+offset_right = 214.0
+offset_bottom = 254.0
+text = "Pause
+"
+script = ExtResource("11_0m4u7")
+
 [node name="Inventaire" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 61.0
@@ -257,8 +267,10 @@ script = ExtResource("17_uxdf7")
 
 [node name="ScrollInventaire" type="ScrollContainer" parent="Inventaire"]
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 552.0
+offset_left = 13.0
+offset_top = 58.0
+offset_right = 141.0
+offset_bottom = 610.0
 
 [node name="MarginInventaire" type="MarginContainer" parent="Inventaire/ScrollInventaire"]
 layout_mode = 2
@@ -267,6 +279,55 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1688.0
+offset_top = 314.0
+offset_right = 1891.0
+offset_bottom = 580.0
+script = ExtResource("14_eld54")
+
+[node name="LabelNom" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 19.0
+offset_right = 145.0
+offset_bottom = 60.0
+text = "Nom"
+
+[node name="LabelBonheur" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 101.0
+offset_right = 171.0
+offset_bottom = 142.0
+text = "Bonheur"
+
+[node name="LabelSante" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 60.0
+offset_right = 171.0
+offset_bottom = 101.0
+text = "Santé"
+
+[node name="LabelDescription" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 142.0
+offset_right = 171.0
+offset_bottom = 247.0
+text = "Description"
+autowrap_mode = 2
+
+[node name="BtnFermer" type="Button" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 166.0
+offset_right = 203.0
+offset_bottom = 36.0
+text = "X"
+
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
 [connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
 [connection signal="pressed" from="CanvasLayer/recherche_button" to="CanvasLayer/recherche_button" method="_on_pressed_recherches"]
+[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_button" method="_on_pressed_pause"]

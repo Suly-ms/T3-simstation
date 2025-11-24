@@ -1,48 +1,67 @@
-extends Node
+extends Node2D
 
-@onready var node_buildings : Node = $buildings
-@onready var node_decorations : Node = $decor
+# DESCRIPTION :
+# Script principal de la gestion de la carte (Map). Il sert de conteneur pour les bâtiments 
+# et gère la logique de placement (collisions) ainsi que les interactions (clics) sur les bâtiments existants.
+# La variable `buildings_layer` référence le nœud parent où sont stockés tous les bâtiments.
+# Les fonctions disponibles sont :
+# _ready() : Ajoute ce nœud au groupe "Map" pour qu'il soit détectable par les outils de construction.
+# add_temp_building : Ajoute visuellement le bâtiment en cours de déplacement (ghost) à la scène.
+# validate_building : Confirme le placement final d'un bâtiment (point d'entrée pour la logique de persistance).
+# is_placable : Vérifie si le bâtiment en cours chevauche un bâtiment existant via des calculs d'intersection de rectangles (Rect2).
+# _unhandled_input : Détecte les clics gauche pour sélectionner un bâtiment et émettre le signal global d'information.
+# get_building_under_mouse : Identifie et retourne le bâtiment situé sous le curseur de la souris.
+# get_global_rect_of : Fonction utilitaire qui calcule la zone rectangulaire globale (bounding box) d'un nœud.
+
+@onready var buildings_layer = $Batiments 
 
 func _ready():
-	GameManager.set_current_map(self)
+	add_to_group("Map")
 
+func add_temp_building(node: Node2D):
+	buildings_layer.add_child(node)
 
-'''func place_building(name : String, position : Vector2):
-	var batiment = load("res://batiments/"+ self.name +".tscn")
-	var batiment_instance = batiment.instantiate()
-	node_buildings.add_child(batiment_instance)
-	batiment_instance.position = position'''
+func validate_building(node: Node2D):
+	print("Bâtiment placé : ", node.name)
 
-
-#on parcour tous les enfant de node_building sauf le dernier qui est le batiment que l'on vient de placer
-func is_placable(btn1 : TextureButton) -> Array:
-	var children = node_buildings.get_children()
-	for i in range(children.size() - 1): 
-		var btn2 : TextureButton = children[i]
-		if btn1.get_rect().intersects(btn2.get_rect()):
-			var vector = get_vector(btn1, btn2)
-			return [false, vector]
-	return [true, Vector2(0,0)]
-
-#retourne le vecteur de deplacement si les batiments se superpose
-func get_vector(btn1 : TextureButton, btn2 : TextureButton):
-	var center1 = btn1.get_rect().get_center()
-	var center2 = btn2.get_rect().get_center()
-	var vector = Vector2(center2.x - center1.x, center2.y - center1.y)
-	vector /= 100
-	return vector
+func is_placable(ghost_building: Node2D) -> bool:
+	var ghost_rect = get_global_rect_of(ghost_building).grow(-2.0)
 	
-#affiche pour tout les batiments les  carré deffinissant leurs zones placable
-func show_square():
-	var children = node_buildings.get_children()
-	for btn in children:
-		if(btn.get_child(0)):
-			btn.get_child(0).visible = true
+	for building in buildings_layer.get_children():
+		if building == ghost_building: continue 
+		
+		if building.has_method("get_rect"):
+			var other_rect = get_global_rect_of(building).grow(-2.0)
+			
+			if ghost_rect.intersects(other_rect):
+				return false
+				
+	return true
+	
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		
+		var batiment_clique = get_building_under_mouse()
+		
+		if batiment_clique:
+			var nom_a_envoyer = batiment_clique.name
 
+			# On vérifie si une étiquette "type_batiment" a été collée sur le sprite
+			if batiment_clique.has_meta("type_batiment"):
+				nom_a_envoyer = batiment_clique.get_meta("type_batiment")
+			
+			print("Clic détecté sur : ", batiment_clique.name, " -> Envoi signal : ", nom_a_envoyer)
+			Global.demande_ouverture_info.emit(nom_a_envoyer)
 
-#supprime l'affichage pour tout les batiments les carré deffinissant leurs zones placable
-func delete_square():
-	var children = node_buildings.get_children()
-	for btn in children: 
-		if(btn.get_child(0)):
-			btn.get_child(0).visible = false
+func get_building_under_mouse() -> Node2D:
+	var mouse_pos = get_global_mouse_position()
+	var enfants = buildings_layer.get_children()
+	enfants.reverse() 
+	
+	for batiment in enfants:
+		if get_global_rect_of(batiment).has_point(mouse_pos):
+			return batiment
+	return null
+
+func get_global_rect_of(node: Node2D) -> Rect2:
+	return node.get_global_transform() * node.get_rect()
