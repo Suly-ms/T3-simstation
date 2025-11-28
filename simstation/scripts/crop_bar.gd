@@ -10,12 +10,10 @@ func _process(_delta):
 	# match = switch/case de godot
 	match name: # name c'est le nom du truc appelant
 		"FilledBarHealth":
-			_update_bar(Global.stats["sante"])
+			_update_bar(GlobalScript.get_sante())
 		"FilledBarEfficiency":
-			_update_bar(Global.stats["efficacite"])
+			_update_bar(GlobalScript.get_efficacite())
 		"FilledBarHappiness":
-			_update_bar(Global.stats["bonheur"])
-		"FilledBarPollution":
-			_update_bar(Global.stats["pollution"])
+			_update_bar(GlobalScript.get_bonheur())
 		_: # default
 			print ("Erreur : Pas le bon appelant")

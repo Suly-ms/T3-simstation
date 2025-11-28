@@ -3,12 +3,6 @@ extends Node
 # DESCRIPTION :
 # Global qui sert à stocker les infos du joueur, des stats de la partie, des batiments, 
 # de la population, de l'argent et du nombre de tour de la partie.
-# A l'avenir, les fonction vont bouger dans un autre script global.
-
-signal argent_changed(new_value)
-signal batiment_changed(batiment_name, new_value)
-signal demande_ouverture_info(nom_batiment)
-signal demande_fermeture_info()
 
 var camera_enable = true;
 var user = {"nom":"Martin","time":3}
@@ -71,7 +65,6 @@ var stats = {
 	"sante": 0,
 	"efficacite": 0,
 	"bonheur": 0,
-	"pollution": 0
 }
 
 var environnement = {
@@ -82,25 +75,3 @@ var environnement = {
 var tour = {
 	"nombre de tours": 0,       # chaque tours 3 mois 
 }
-
-func modifier_argent(delta: int) -> void:
-	argent += delta
-	emit_signal("argent_changed", argent)
-
-func modifier_batiment(nom: String, delta: int) -> void:
-	if inventaire.has(nom):
-		inventaire[nom] += delta
-		emit_signal("batiment_changed", nom, inventaire[nom])
-
-
-# Pour avoir un affichage de la thune en millier (1 000 000 et pas 1000000)
-func format_money(value: int) -> String:
-	var s = str(value)
-	var result = ""
-	var count = 0
-	for i in range(s.length() - 1, -1, -1):
-		result = s[i] + result
-		count += 1
-		if count % 3 == 0 and i != 0:
-			result = " " + result  # espace comme séparateur
-	return result

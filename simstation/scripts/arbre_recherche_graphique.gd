@@ -177,7 +177,7 @@ func faire_recherche(node):
 	add_child(timer)
 	timer.timeout.connect(func():
 		timer_label.visible=false
-		Global.modifier_argent(Global.argent + node.money)
+		GlobalScript.modifier_argent(Global.argent + node.money)
 		Global.recherche_debloque.append(node.nom)
 		print(Global.recherche_debloque)
 		queue_redraw()  

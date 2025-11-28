@@ -13,7 +13,7 @@ func remplir_labels():
 		var batiment_name = batiment_node.name
 		var prix = Global.batiments_prix[batiment_name]
 		
-		cost_label.bbcode_text = "[center][font_size=48]" + Global.format_money(prix) + " €"
+		cost_label.bbcode_text = "[center][font_size=48]" + GlobalScript.format_money(prix) + " €"
 		name_label.bbcode_text = "[center][font_size=48]" + Global.info_batiments[batiment_name][3]
 		
 

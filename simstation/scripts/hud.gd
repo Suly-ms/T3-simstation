@@ -8,4 +8,4 @@ func _ready():
 
 func _on_argent_changed(new_value):
 	if argent_label:
-		argent_label.bbcode_text = "[right][font_size=24]" + Global.format_money(new_value) + " €"
+		argent_label.bbcode_text = "[right][font_size=24]" + GlobalScript.format_money(new_value) + " €"

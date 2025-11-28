@@ -36,6 +36,7 @@ func _input(event):
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 				place_building() # Relâchement = Poser
+				GameManager.add_batiment(batiment_instance.name, 1)
 			elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 				cancel_placement() # Clic droit = Annuler
 
@@ -80,7 +81,7 @@ func start_dragging():
 	map_ref.add_temp_building(batiment_instance)
 	
 	dragging = true
-	Global.modifier_batiment(name, -1)
+	GlobalScript.modifier_batiment(name, -1)
 
 func place_building():
 	if not batiment_instance: return
