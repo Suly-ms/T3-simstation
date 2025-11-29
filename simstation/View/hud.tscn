@@ -1,19 +1,19 @@
 [gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
 
-[ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_5ysmq"]
-[ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://scripts/hud.gd" id="2_apjy4"]
-[ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://scripts/HUD/resize_control.gd" id="3_mphia"]
-[ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://scripts/HUD/resize_state_bar.gd" id="4_0i1j5"]
-[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="4_6fi6k"]
-[ext_resource type="Texture2D" uid="uid://e14rlujxv2r6" path="res://assets/bar/filled_bar.png" id="5_047uy"]
-[ext_resource type="Texture2D" uid="uid://b5htmoxepvs57" path="res://assets/bar/health_bar_empty.png" id="5_uo2fv"]
-[ext_resource type="Texture2D" uid="uid://c7orjokudtall" path="res://assets/bar/efficiency_bar_empty.png" id="6_hd3ao"]
-[ext_resource type="Texture2D" uid="uid://dxoevfrf00nn6" path="res://assets/bar/happiness_bar_empty.png" id="7_0i1j5"]
-[ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://scripts/crop_bar.gd" id="7_mphia"]
-[ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://scripts/button_action.gd" id="11_0m4u7"]
-[ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://scripts/info_panel.gd" id="14_eld54"]
-[ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://scripts/night_mode.gd" id="17_3xg78"]
-[ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://scripts/InventaireUI.gd" id="17_uxdf7"]
+[ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
+[ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_o5r0d"]
+[ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://Model/HUD/resize_control.gd" id="4_hc4cx"]
+[ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://Model/HUD/resize_state_bar.gd" id="5_gpgge"]
+[ext_resource type="Texture2D" uid="uid://b5htmoxepvs57" path="res://assets/bar/health_bar_empty.png" id="6_nmx3l"]
+[ext_resource type="Texture2D" uid="uid://e14rlujxv2r6" path="res://assets/bar/filled_bar.png" id="7_s7bk8"]
+[ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://Model/crop_bar.gd" id="8_fj0si"]
+[ext_resource type="Texture2D" uid="uid://c7orjokudtall" path="res://assets/bar/efficiency_bar_empty.png" id="9_1cvsb"]
+[ext_resource type="Texture2D" uid="uid://dxoevfrf00nn6" path="res://assets/bar/happiness_bar_empty.png" id="10_0ig0g"]
+[ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://Model/button_action.gd" id="11_jtq4o"]
+[ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://Model/night_mode.gd" id="12_suiv3"]
+[ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
+[ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -42,8 +42,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_5ysmq")
-script = ExtResource("2_apjy4")
+theme = ExtResource("1_pil5s")
+script = ExtResource("2_ugs5p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -63,10 +63,10 @@ anchor_right = 0.03
 anchor_bottom = 0.2
 offset_right = 183.2
 offset_bottom = 91.0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=24]XX/XX/2025"
-script = ExtResource("3_mphia")
+script = ExtResource("4_hc4cx")
 
 [node name="temperature" type="RichTextLabel" parent="CanvasLayer/background/date"]
 layout_mode = 1
@@ -80,7 +80,7 @@ offset_top = -42.0
 offset_right = 61.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=24]24 C°"
 
@@ -96,7 +96,7 @@ offset_top = -0.400002
 offset_right = -0.400024
 offset_bottom = 34.6
 grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[right][font_size=24]1 000 000 €"
 scroll_active = false
@@ -111,22 +111,22 @@ offset_left = -667.5
 offset_right = 667.5
 offset_bottom = 133.0
 grow_horizontal = 2
-script = ExtResource("4_0i1j5")
+script = ExtResource("5_gpgge")
 
 [node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
 position = Vector2(160, 90)
 scale = Vector2(2.875, 2.875)
-texture = ExtResource("5_uo2fv")
+texture = ExtResource("6_nmx3l")
 region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
 [node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
 position = Vector2(-29.231003, -27.259998)
-texture = ExtResource("5_047uy")
+texture = ExtResource("7_s7bk8")
 centered = false
 region_enabled = true
 region_rect = Rect2(33.999, 45.353, 83.872, 54.51)
-script = ExtResource("7_mphia")
+script = ExtResource("8_fj0si")
 
 [node name="Health_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
 anchors_preset = -1
@@ -140,24 +140,24 @@ offset_right = -13.0272
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=8]Santé"
 
 [node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
 position = Vector2(500, 90)
 scale = Vector2(2.875, 2.875)
-texture = ExtResource("6_hd3ao")
+texture = ExtResource("9_1cvsb")
 region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
 [node name="FilledBarEfficiency" type="Sprite2D" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
 position = Vector2(-29.231, -27.26)
-texture = ExtResource("5_047uy")
+texture = ExtResource("7_s7bk8")
 centered = false
 region_enabled = true
 region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
-script = ExtResource("7_mphia")
+script = ExtResource("8_fj0si")
 
 [node name="Efficiency_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
 anchors_preset = -1
@@ -171,24 +171,24 @@ offset_right = -13.0272
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=8]Efficacité"
 
 [node name="HappinessBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
 position = Vector2(840, 90)
 scale = Vector2(2.875, 2.875)
-texture = ExtResource("7_0i1j5")
+texture = ExtResource("10_0ig0g")
 region_enabled = true
 region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
 
 [node name="FilledBarHappiness" type="Sprite2D" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
 position = Vector2(-29.231, -27.26)
-texture = ExtResource("5_047uy")
+texture = ExtResource("7_s7bk8")
 centered = false
 region_enabled = true
 region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
-script = ExtResource("7_mphia")
+script = ExtResource("8_fj0si")
 
 [node name="Happiness_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
 anchors_preset = -1
@@ -202,7 +202,7 @@ offset_right = -13.0272
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("4_6fi6k")
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=8]Bonheur"
 
@@ -215,10 +215,10 @@ anchor_bottom = 0.9
 offset_top = -54.0
 offset_right = 156.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("4_6fi6k")
+theme_override_fonts/font = ExtResource("3_o5r0d")
 theme_override_font_sizes/font_size = 24
 text = "Boutique"
-script = ExtResource("11_0m4u7")
+script = ExtResource("11_jtq4o")
 
 [node name="nightMode" type="Button" parent="CanvasLayer"]
 offset_left = 1533.0
@@ -230,7 +230,7 @@ text = "Night mode"
 [node name="filtre_night" type="CanvasLayer" parent="CanvasLayer/nightMode"]
 layer = 0
 visible = false
-script = ExtResource("17_3xg78")
+script = ExtResource("12_suiv3")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/nightMode/filtre_night"]
 offset_left = -61.0
@@ -246,7 +246,7 @@ offset_top = 197.0
 offset_right = 1871.0
 offset_bottom = 267.0
 text = "Recherches"
-script = ExtResource("11_0m4u7")
+script = ExtResource("11_jtq4o")
 
 [node name="pause_button" type="Button" parent="CanvasLayer"]
 offset_left = 56.0
@@ -255,7 +255,7 @@ offset_right = 214.0
 offset_bottom = 254.0
 text = "Pause
 "
-script = ExtResource("11_0m4u7")
+script = ExtResource("11_jtq4o")
 
 [node name="Inventaire" type="Control" parent="."]
 anchors_preset = 0
@@ -263,7 +263,7 @@ offset_left = 61.0
 offset_top = 243.0
 offset_right = 189.0
 offset_bottom = 795.0
-script = ExtResource("17_uxdf7")
+script = ExtResource("13_ew7f8")
 
 [node name="ScrollInventaire" type="ScrollContainer" parent="Inventaire"]
 layout_mode = 0
@@ -285,7 +285,7 @@ offset_left = 1688.0
 offset_top = 314.0
 offset_right = 1891.0
 offset_bottom = 580.0
-script = ExtResource("14_eld54")
+script = ExtResource("14_xnmgy")
 
 [node name="LabelNom" type="Label" parent="InfoPanel"]
 layout_mode = 0

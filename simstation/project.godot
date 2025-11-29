@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/Global/global.gd"
-GameManager="*res://scripts/Global/game_manager.gd"
-GlobalScript="*res://scripts/Global/global_script.gd"
-CalculStats="*res://scripts/Global/calcul_stats.gd"
+Global="*res://Model/Global/global.gd"
+GameManager="*res://Controller/game_manager.gd"
+GlobalScript="*res://Controller/global_script.gd"
+CalculStats="*res://Model/Global/calcul_stats.gd"
 
 [display]
 
@@ -32,6 +32,14 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="SimStation"
+
+[file_customization]
+
+folder_colors={
+"res://Controller/": "green",
+"res://Model/": "red",
+"res://View/": "blue"
+}
 
 [input]
 

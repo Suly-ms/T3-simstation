@@ -24,6 +24,27 @@ func get_inventaire() -> Dictionary:
 func get_temperature() -> int:
 	return Global.environnement["temperature"];
 	
+func get_camera() -> bool:
+	return Global.camera_enable
+	
+func get_batiment_prix(nomBatiment) -> int:
+	return Global.batiments_prix[nomBatiment]
+	
+func get_batiment_inventaire(nomBatiment) -> int:
+	return Global.inventaire[nomBatiment];
+	
+func get_batiment_info(nomBatiment):
+	return Global.info_batiments[nomBatiment];
+	
+func get_batiments_counts() -> Dictionary:
+	return Global.batiments_nombre
+
+func get_batiments_data() -> Dictionary:
+	return Global.info_batiments
+
+func get_population() -> Array:
+	return Global.population
+	
 # FONCTION SET
 	
 func set_sante(sante):
@@ -41,10 +62,16 @@ func set_argent(argent):
 func set_stats(stats):
 	Global.stats=stats;
 	
+func set_camera(status):
+	Global.camera_enable = status
+	
 # FONCTIONS ADD
 
 func add_batiment(nomBatiment, nombre):
 	Global.batiments_nombre[nomBatiment] += nombre
+	
+func add_recherche_debloque(recherche_nom):
+	Global.recherche_debloque.append(recherche_nom)
 	
 # AUTRES FONCTIONS
 	
@@ -69,3 +96,12 @@ func format_money(value: int) -> String:
 		if count % 3 == 0 and i != 0:
 			result = " " + result  # espace comme séparateur
 	return result
+	
+func update_population_stats(sante: float, bonheur: float, efficacite: float) -> void:
+	for habitant in Global.population:
+		# Lissage pour éviter les changements trop brusques
+		habitant["sante"] = lerp(float(habitant["sante"]), sante, 0.5)
+		habitant["bonheur"] = lerp(float(habitant["bonheur"]), bonheur, 0.5)
+		habitant["efficacite"] = efficacite
+		
+		print(habitant["sante"], habitant["bonheur"], habitant["efficacite"])

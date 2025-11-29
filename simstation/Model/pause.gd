@@ -4,21 +4,21 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	visible = true
 	get_tree().paused = true  
-	Global.camera_enable = false 
+	GlobalScript.set_camera(false)
 
 func _on_resume_button_pressed() -> void:
 	visible = false
 	get_tree().paused = false
-	Global.camera_enable = true
+	GlobalScript.set_camera(false)
 	
-	var play_scene = get_tree().current_scene	
+	var play_scene = get_tree().current_scene
 	var hud = play_scene.get_node("hud")
 	if hud.has_node("Pause"):
 		var pause_menu = hud.get_node("Pause")
 		pause_menu.queue_free() 
 
 func _on_option_button_pressed() -> void:
-	var options_scene = load("res://scenes/options.tscn")
+	var options_scene = load("res://View/options.tscn")
 	var play_scene = get_tree().current_scene
 	var hud = play_scene.get_node("hud")
 
@@ -30,7 +30,7 @@ func _on_option_button_pressed() -> void:
 		var node = hud.get_node("Options")
 		node.visible = !node.visible
 
-	Global.camera_enable = !Global.camera_enable
+	GlobalScript.set_camera(!GlobalScript.get_camera())
 
 
 func _on_menu_button_pressed() -> void:
@@ -42,6 +42,6 @@ func _on_menu_button_pressed() -> void:
 		var pause_menu = hud.get_node("Pause")
 		pause_menu.queue_free() 
 		
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://View/main_menu.tscn")
 	
 	

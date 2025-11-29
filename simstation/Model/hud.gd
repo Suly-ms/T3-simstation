@@ -3,8 +3,9 @@ extends Control
 @onready var argent_label = $CanvasLayer/background/argent
 
 func _ready():
-	Global.connect("argent_changed", Callable(self, "_on_argent_changed"))	
-	_on_argent_changed(Global.argent)
+	GlobalScript.connect("argent_changed", Callable(self, "_on_argent_changed"))
+	_on_argent_changed(GlobalScript.get_argent())
+	
 
 func _on_argent_changed(new_value):
 	if argent_label:

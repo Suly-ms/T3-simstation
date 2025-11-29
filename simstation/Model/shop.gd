@@ -11,10 +11,10 @@ func remplir_labels():
 		var name_label = batiment_node.get_node("Name_text")
 		
 		var batiment_name = batiment_node.name
-		var prix = Global.batiments_prix[batiment_name]
+		var prix = GlobalScript.get_batiment_prix(batiment_name)
 		
 		cost_label.bbcode_text = "[center][font_size=48]" + GlobalScript.format_money(prix) + " €"
-		name_label.bbcode_text = "[center][font_size=48]" + Global.info_batiments[batiment_name][3]
+		name_label.bbcode_text = "[center][font_size=48]" + GlobalScript.get_batiment_info(batiment_name)[3]
 		
 
 func _on_exit_button_pressed() -> void:
@@ -23,11 +23,11 @@ func _on_exit_button_pressed() -> void:
 
 	if hud.has_node("Shop"):
 		hud.get_node("Shop").visible = false
-		Global.camera_enable = !Global.camera_enable
+		GlobalScript.set_camera(!GlobalScript.get_camera())
 
 
 func acheter_batiment(nom_batiment):
-	var arbre_scene = load("res://scenes/buy_confirmation.tscn")
+	var arbre_scene = load("res://View/buy_confirmation.tscn")
 	var play_scene = get_tree().current_scene
 	var hud = play_scene.get_node("hud") 
 

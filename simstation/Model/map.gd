@@ -51,7 +51,7 @@ func _unhandled_input(event):
 				nom_a_envoyer = batiment_clique.get_meta("type_batiment")
 			
 			print("Clic détecté sur : ", batiment_clique.name, " -> Envoi signal : ", nom_a_envoyer)
-			Global.demande_ouverture_info.emit(nom_a_envoyer)
+			GlobalScript.demande_ouverture_info.emit(nom_a_envoyer)
 
 func get_building_under_mouse() -> Node2D:
 	var mouse_pos = get_global_mouse_position()

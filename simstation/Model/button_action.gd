@@ -11,13 +11,13 @@ extends Button
 # exit_button : Force la fermeture d'un menu spécifique (le rend invisible) et réactive la caméra.
 
 func _on_pressed_shop() -> void:
-	load_scene("res://scenes/shop.tscn", "Shop")
+	load_scene("res://View/shop.tscn", "Shop")
 
 func _on_pressed_recherches():
-	load_scene("res://scenes/arbre_recherche.tscn", "ArbreRecherche")
+	load_scene("res://View/arbre_recherche.tscn", "ArbreRecherche")
 
 func _on_pressed_pause():
-	load_scene("res://scenes/pause.tscn", "Pause")
+	load_scene("res://View/pause.tscn", "Pause")
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -36,7 +36,7 @@ func load_scene(chemin_scene, nom_node):
 		var node = hud.get_node(nom_node)
 		node.visible = !node.visible  
 
-	Global.camera_enable = !Global.camera_enable
+	GlobalScript.set_camera(!GlobalScript.get_camera())
 
 func exit_button(nom_node):
 	var play_scene = get_tree().current_scene
@@ -44,4 +44,4 @@ func exit_button(nom_node):
 
 	if hud.has_node(nom_node):
 		hud.get_node(nom_node).visible = false
-		Global.camera_enable = !Global.camera_enable
+		GlobalScript.set_camera(!GlobalScript.get_camera())

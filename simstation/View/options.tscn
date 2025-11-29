@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cffhw5w7xcqjp"]
 
 [ext_resource type="Texture2D" uid="uid://cqwsm3uxbo3v1" path="res://assets/shop/shop_background.png" id="1_1sggn"]
-[ext_resource type="Script" uid="uid://dh7g2uv6wrydj" path="res://scripts/options.gd" id="1_e6vpq"]
+[ext_resource type="Script" uid="uid://dh7g2uv6wrydj" path="res://Model/options.gd" id="1_e6vpq"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_e6vpq"]
 
 [node name="Options" type="Control"]
