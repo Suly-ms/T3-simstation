@@ -94,6 +94,8 @@ func place_building():
 		
 		map_ref.validate_building(batiment_instance)
 		
+		CalculStats._ajouter_stats_nouveau_batiment(name)
+		
 		batiment_instance = null
 		dragging = false
 	else:

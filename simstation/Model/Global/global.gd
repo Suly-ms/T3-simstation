@@ -52,7 +52,7 @@ var batiments_nombre = {
 # [Santé, Bonheur, Description]
 var info_batiments = {
 	"hub": [100, 50, "Hub principal de la station", "Hub"],  # [ Santé, Bonheur, Description, Nom (à afficher) ]
-	"dortoir": [100, 80, "Permet de se reposer tranquillement", "Dortoir"],  
+	"dortoir": [100, 50, "Permet de se reposer tranquillement", "Dortoir"],  
 	"cantine": [80, 70, "Fournit de la nourriture aux habitants", "Cantine"],
 	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques", "Laboratoire de recherche"], 
 	"salle_sport": [70, 85, "Améliore la condition physique des habitants", "Salle de sport"],  
@@ -62,13 +62,13 @@ var info_batiments = {
 }
 
 var stats = {
-	"sante": 0,
-	"efficacite": 0,
-	"bonheur": 0,
+	"sante": 50,
+	"efficacite": 50,
+	"bonheur": 50,
 }
 
 var environnement = {
-	"temperature": 18  # °C
+	"temperature": -5  # °C
 }
 
 var tour = {

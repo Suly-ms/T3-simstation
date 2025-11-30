@@ -7,6 +7,8 @@ extends Node
 signal argent_changed(new_value)
 signal batiment_changed(batiment_name, new_value)
 signal stats_updated() 
+signal demande_ouverture_info(nom_batiment)
+signal demande_fermeture_info() 
 
 # GET
 
@@ -27,6 +29,7 @@ func get_batiment_info(nom): return Global.info_batiments[nom]
 func get_batiments_counts() -> Dictionary: return Global.batiments_nombre
 func get_batiments_data() -> Dictionary: return Global.info_batiments
 func get_population() -> Array: return Global.population
+func get_batiment_inventaire(nameBat) -> int: return Global.inventaire[nameBat]
 
 # SET
 
@@ -41,12 +44,17 @@ func set_tour(val: int):
 	
 func set_temperature(val: int):
 	Global.environnement["temperature"] = val
+	
+# ADD
 
-# LOGIQUE METIER
+func add_recherche_debloque(recherche_nom):
+	Global.recherche_debloque.append(recherche_nom) 
 
 func add_batiment(nomBatiment, nombre):
 	if Global.batiments_nombre.has(nomBatiment):
 		Global.batiments_nombre[nomBatiment] += nombre
+
+# AUTRE
 
 func modifier_argent(delta: int) -> void:
 	set_argent(get_argent() + delta)
@@ -58,10 +66,9 @@ func modifier_batiment(nom: String, delta: int) -> void:
 		inventaire[nom] += delta
 		emit_signal("batiment_changed", nom, inventaire[nom])
 
-# Applique les stats globales à chaque individu (lissage)
 func update_population_stats(sante: float, bonheur: float, efficacite: float) -> void:
 	for habitant in Global.population:
-		habitant["sante"] = lerp(float(habitant["sante"]), sante, 0.8) # 0.8 car le changement est brutal sur 3 mois
+		habitant["sante"] = lerp(float(habitant["sante"]), sante, 0.8) 
 		habitant["bonheur"] = lerp(float(habitant["bonheur"]), bonheur, 0.8)
 		habitant["efficacite"] = efficacite
 	emit_signal("stats_updated")
