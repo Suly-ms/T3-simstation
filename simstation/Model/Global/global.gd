@@ -68,8 +68,7 @@ var stats = {
 }
 
 var environnement = {
-	"heure": 0,        # 0 = Jour, 1 = Nuit
-	"temperature": 30  # °C
+	"temperature": 18  # °C
 }
 
 var tour = {

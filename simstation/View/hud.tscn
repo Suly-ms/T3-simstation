@@ -327,7 +327,16 @@ offset_right = 203.0
 offset_bottom = 36.0
 text = "X"
 
+[node name="PasserTour" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1655.0
+offset_top = 926.0
+offset_right = 1843.0
+offset_bottom = 1022.0
+text = "Passer tour"
+
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
 [connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
 [connection signal="pressed" from="CanvasLayer/recherche_button" to="CanvasLayer/recherche_button" method="_on_pressed_recherches"]
 [connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_button" method="_on_pressed_pause"]
+[connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
