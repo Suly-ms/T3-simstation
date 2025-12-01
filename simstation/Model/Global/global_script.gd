@@ -29,6 +29,8 @@ func get_batiments_counts() -> Dictionary: return Global.batiments_nombre
 func get_batiments_data() -> Dictionary: return Global.info_batiments
 func get_population() -> Array: return Global.population
 func get_batiment_inventaire(nameBat) -> int: return Global.inventaire[nameBat]
+func get_recherche_en_cours() -> Dictionary: return Global.recherche_en_cours
+func get_recherche_debloque() -> Array: return Global.recherche_debloque
 
 # SET
 
@@ -44,14 +46,25 @@ func set_tour(val: int):
 func set_temperature(val: int):
 	Global.environnement["temperature"] = val
 	
+func set_recherche_en_cours(nomRecherche, tourfin):
+	Global.recherche_en_cours[nomRecherche] = tourfin
+	
 # ADD
 
 func add_recherche_debloque(recherche_nom):
 	Global.recherche_debloque.append(recherche_nom) 
+	
+func add_recherche_en_cours(recherche_nom):
+	Global.recherche_en_cours.append(recherche_nom) 
 
 func add_batiment(nomBatiment, nombre):
 	if Global.batiments_nombre.has(nomBatiment):
 		Global.batiments_nombre[nomBatiment] += nombre
+
+# ERASE
+
+func erase_recherche_en_cours(recherche_nom):
+	Global.recherche_en_cours.erase(recherche_nom) 
 
 # AUTRE
 

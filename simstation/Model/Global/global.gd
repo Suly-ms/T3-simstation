@@ -12,6 +12,7 @@ var population = [
 ]
 
 var recherche_debloque = []
+var recherche_en_cours = {}
 
 var argent = 3000000
 
