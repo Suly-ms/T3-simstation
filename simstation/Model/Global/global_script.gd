@@ -1,8 +1,7 @@
 extends Node
 
-# ------------------------------------------------------------------------------
-# INTERFACE GLOBALE (VERSION TOUR PAR TOUR)
-# ------------------------------------------------------------------------------
+# DESCRIPTION :
+# FLEMME
 
 signal argent_changed(new_value)
 signal batiment_changed(batiment_name, new_value)
@@ -20,7 +19,7 @@ func get_inventaire() -> Dictionary: return Global.inventaire
 func get_camera() -> bool: return Global.camera_enable
 
 # Gestion du temps / Tour
-func get_tour() -> int: return Global.tour["nombre de tours"]
+func get_tour() -> int: return Global.tour
 func get_temperature() -> int: return Global.environnement["temperature"]
 
 # Gestion Batiments
@@ -40,7 +39,7 @@ func set_argent(val): Global.argent = val
 func set_camera(val): Global.camera_enable = val
 
 func set_tour(val: int):
-	Global.tour["nombre de tours"] = val
+	Global.tour = val
 	
 func set_temperature(val: int):
 	Global.environnement["temperature"] = val

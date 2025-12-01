@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Model/Global/global.gd"
 GameManager="*res://Controller/game_manager.gd"
-GlobalScript="*res://Controller/global_script.gd"
+GlobalScript="*res://Model/Global/global_script.gd"
 CalculStats="*res://Model/Global/calcul_stats.gd"
 
 [display]

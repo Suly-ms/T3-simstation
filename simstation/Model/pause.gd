@@ -9,7 +9,7 @@ func _ready():
 func _on_resume_button_pressed() -> void:
 	visible = false
 	get_tree().paused = false
-	GlobalScript.set_camera(false)
+	GlobalScript.set_camera(true)
 	
 	var play_scene = get_tree().current_scene
 	var hud = play_scene.get_node("hud")
