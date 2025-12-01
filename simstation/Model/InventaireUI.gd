@@ -16,15 +16,15 @@ func _ready():
 	await get_tree().process_frame
 	afficher_inventaire()
 	
-	if Global.has_signal("batiment_changed"):
-		Global.connect("batiment_changed", Callable(self, "_on_batiment_changed"))
+	if GlobalScript.has_signal("batiment_changed"):
+		GlobalScript.connect("batiment_changed", Callable(self, "_on_batiment_changed"))
 
 func afficher_inventaire():
 	for child in grid.get_children():
 		child.queue_free()
 
-	for nom_batiment in Global.inventaire.keys():
-		var quantite = Global.inventaire[nom_batiment]
+	for nom_batiment in GlobalScript.get_inventaire().keys():
+		var quantite = GlobalScript.get_inventaire()[nom_batiment]
 		var box = creer_bouton_batiment(nom_batiment, quantite)
 		if box:
 			grid.add_child(box)
@@ -47,7 +47,7 @@ func creer_bouton_batiment(nom_batiment: String, quantite: int) -> Control:
 		icon.texture = PlaceholderTexture2D.new() 
 		printerr("Image manquante pour : ", path_img)
 
-	var drag_script = load("res://scripts/drag_building.gd") 
+	var drag_script = load("res://Model/drag_building.gd") 
 	icon.set_script(drag_script)
 
 	var label = Label.new()

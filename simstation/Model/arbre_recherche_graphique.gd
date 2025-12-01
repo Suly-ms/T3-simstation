@@ -177,9 +177,8 @@ func faire_recherche(node):
 	add_child(timer)
 	timer.timeout.connect(func():
 		timer_label.visible=false
-		Global.modifier_argent(Global.argent + node.money)
-		Global.recherche_debloque.append(node.nom)
-		print(Global.recherche_debloque)
+		GlobalScript.modifier_argent(GlobalScript.get_argent() + node.money)
+		GlobalScript.add_recherche_debloque(node.nom)
 		queue_redraw()  
 		timer.queue_free()
 	)
@@ -192,4 +191,4 @@ func _on_exit_button_pressed() -> void:
 
 	if hud.has_node("ArbreRecherche"):
 		hud.get_node("ArbreRecherche").visible = false
-		Global.camera_enable = !Global.camera_enable
+		GlobalScript.set_camera(!GlobalScript.get_camera())

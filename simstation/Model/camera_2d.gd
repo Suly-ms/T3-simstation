@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	
-	if Global.camera_enable : # desactivation possible (notemment quand on ouvre la boutique)
+	if GlobalScript.get_camera() : # desactivation possible (notemment quand on ouvre la boutique)
 		# --- ZOOM ---
 		var old_zoom: Vector2 = zoom
 		var mouse_pos: Vector2 = get_global_mouse_position()

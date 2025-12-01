@@ -26,7 +26,7 @@ func _get_drag_data(_at_position):
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if Global.inventaire.get(name, 0) > 0:
+		if GlobalScript.get_batiment_inventaire(name) > 0:
 			start_dragging()
 		else:
 			print("Pas assez de ressources !")
@@ -80,7 +80,7 @@ func start_dragging():
 	map_ref.add_temp_building(batiment_instance)
 	
 	dragging = true
-	Global.modifier_batiment(name, -1)
+	GlobalScript.modifier_batiment(name, -1)
 
 func place_building():
 	if not batiment_instance: return
@@ -94,6 +94,8 @@ func place_building():
 		
 		map_ref.validate_building(batiment_instance)
 		
+		CalculStats._ajouter_stats_nouveau_batiment(name)
+		
 		batiment_instance = null
 		dragging = false
 	else:
@@ -103,7 +105,7 @@ func cancel_placement():
 	if batiment_instance:
 		batiment_instance.queue_free() # On détruit le sprite
 		batiment_instance = null
-		Global.modifier_batiment(name, 1)
+		GlobalScript.modifier_batiment(name, 1)
 	dragging = false
 
 func update_visual_feedback():
