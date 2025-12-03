@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dqk628cbpj4y8"]
 
-[ext_resource type="Script" uid="uid://e212qo50r3w0" path="res://scripts/arbre_recherche_graphique.gd" id="1_cpw16"]
+[ext_resource type="Script" uid="uid://e212qo50r3w0" path="res://Model/arbre_recherche_graphique.gd" id="1_cpw16"]
 [ext_resource type="Texture2D" uid="uid://tnma6odo0arh" path="res://assets/exit_button/exit_button.png" id="2_fs7f5"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_5ubeo"]
 [ext_resource type="Texture2D" uid="uid://c60liaujyeegu" path="res://assets/exit_button/exit_button_click.png" id="3_b42bv"]
@@ -12,17 +12,16 @@ script = ExtResource("1_cpw16")
 
 [node name="background" type="TextureRect" parent="."]
 show_behind_parent = true
-offset_left = 374.0
 offset_top = 162.0
-offset_right = 1506.2
+offset_right = 1921.0
 offset_bottom = 1080.0
 texture = ExtResource("5_b42bv")
 
 [node name="titre" type="RichTextLabel" parent="background"]
 layout_mode = 0
-offset_left = 110.0
+offset_left = 504.0
 offset_top = 123.0
-offset_right = 1014.0
+offset_right = 1408.0
 offset_bottom = 198.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_5ubeo")
@@ -58,9 +57,9 @@ offset_bottom = 412.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="background"]
 layout_mode = 0
-offset_left = 101.0
+offset_left = 163.0
 offset_top = 290.0
-offset_right = 1020.0
+offset_right = 1738.0
 offset_bottom = 780.0
 
 [node name="tree_canvas" type="Control" parent="background/ScrollContainer"]

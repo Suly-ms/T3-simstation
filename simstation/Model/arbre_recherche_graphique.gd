@@ -9,7 +9,7 @@ var current_menu = null
 # Mise en page
 const X_SPACING = 300 # Écarté pour les boutons larges
 const Y_SPACING = 150
-const NODE_RADIUS = 5
+const NODE_RADIUS = 30
 
 # Références
 @onready var scrollContainer = $background/ScrollContainer
@@ -99,7 +99,7 @@ func _complete_research(nom_recherche: String):
 		node.debloque = true
 	
 	# 3. Mettre à jour Global
-	GlobalScript.add_recherche_debloqued(nom_recherche)
+	GlobalScript.add_recherche_debloque(nom_recherche)
 	GlobalScript.erase_recherche_en_cours(nom_recherche)
 
 # Fonction helper pour retrouver un noeud par son nom
@@ -138,7 +138,7 @@ func _create_buttons_recursive(node: SearchTree.NodeData):
 	texte.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	texte.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	
-	var button_size = Vector2(180, 40)
+	var button_size = Vector2(180, 60)
 	btn.custom_minimum_size = button_size
 	btn.set_size(button_size)
 	texte.custom_minimum_size = button_size
@@ -166,13 +166,13 @@ func _create_buttons_recursive(node: SearchTree.NodeData):
 	elif node.debloque:
 		btn.disabled = false # On laisse actif pour pouvoir relire la description
 		btn.modulate = Color(0, 1, 0) # VERT
-		btn.pressed.connect(func(): ajouter_retirer_menu_node(btn.position + Vector2(btn.size.x, 0), node))
+		btn.pressed.connect(func(): ajouter_retirer_menu_node(btn.position + Vector2(0, btn.size.y), node))
 		
 	# Cas 4 : Disponible à l'achat (Bleu/Blanc)
 	else:
 		btn.disabled = false
 		btn.modulate = Color(1, 1, 1) # NORMAL
-		btn.pressed.connect(func(): ajouter_retirer_menu_node(btn.position + Vector2(btn.size.x, 0), node))
+		btn.pressed.connect(func(): ajouter_retirer_menu_node(btn.position + Vector2(0, btn.size.y), node))
 	
 	for child in node.children:
 		_create_buttons_recursive(child)
@@ -185,7 +185,7 @@ func ajouter_retirer_menu_node(pos: Vector2, node: SearchTree.NodeData):
 	var bouton_recherche = Button.new()
 	
 	nom.bbcode_enabled = true
-	menu.set_size(Vector2(300, 120))
+	menu.set_size(Vector2(300, 145))
 	tree_canvas.add_child(menu) 
 	menu.set_position(pos)
 	
@@ -198,7 +198,7 @@ func ajouter_retirer_menu_node(pos: Vector2, node: SearchTree.NodeData):
 		# Bouton Lancer Recherche
 		bouton_recherche.text = "Lancer (" + str(node.time_cost) + " tours)"
 		bouton_recherche.set_size(Vector2(280, 30))
-		bouton_recherche.set_position(Vector2(10, 80))
+		bouton_recherche.set_position(Vector2(10, 105))
 		bouton_recherche.pressed.connect(func(): lancer_recherche(node))
 		menu.add_child(bouton_recherche)
 		

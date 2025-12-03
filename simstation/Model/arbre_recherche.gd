@@ -21,7 +21,7 @@ class NodeData:
 	var children: Array = []
 	var parent: NodeData
 
-	func _init(k: String, r_cost: int, t_cost: int, desc: String):
+	func _init(k: String, t_cost: int, r_cost: int, desc: String):
 		nom = k
 		money = r_cost
 		time_cost = t_cost
