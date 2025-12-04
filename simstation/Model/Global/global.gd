@@ -66,6 +66,7 @@ var stats = {
 	"sante": 50,
 	"efficacite": 50,
 	"bonheur": 50,
+	"science": 50
 }
 
 var environnement = {
