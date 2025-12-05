@@ -18,3 +18,21 @@ func get_zoom_cam() -> Vector2:
 	
 func add_batiment(nomBatiment, nombre):
 	GlobalScript.add_batiment(nomBatiment, nombre)
+	
+func ouvrir_recherche():
+	load_scene("res://View/arbre_recherche.tscn", "ArbreRecherche")
+	
+func load_scene(chemin_scene, nom_node):
+	var arbre_scene = load(chemin_scene)
+	var play_scene = get_tree().current_scene
+	var hud = play_scene.get_node("hud") 
+
+	if not hud.has_node(nom_node):
+		var instance = arbre_scene.instantiate()
+		instance.name = nom_node
+		hud.add_child(instance)
+	else:
+		var node = hud.get_node(nom_node)
+		node.visible = !node.visible  
+
+	GlobalScript.set_camera(!GlobalScript.get_camera())

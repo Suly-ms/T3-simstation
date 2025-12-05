@@ -1,47 +1,70 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqk628cbpj4y8"]
+[gd_scene load_steps=7 format=3 uid="uid://dqk628cbpj4y8"]
 
-[ext_resource type="Script" uid="uid://e212qo50r3w0" path="res://Model/arbre_recherche_graphique.gd" id="1_a4jo1"]
-[ext_resource type="Texture2D" uid="uid://tnma6odo0arh" path="res://assets/exit_button/exit_button.png" id="2_t1k60"]
-[ext_resource type="Texture2D" uid="uid://c60liaujyeegu" path="res://assets/exit_button/exit_button_click.png" id="3_avrrt"]
-[ext_resource type="Texture2D" uid="uid://ccgfp7p2mojhr" path="res://assets/exit_button/exit_button_hover.png" id="4_d4bc1"]
+[ext_resource type="Script" uid="uid://e212qo50r3w0" path="res://Model/arbre_recherche_graphique.gd" id="1_cpw16"]
+[ext_resource type="Texture2D" uid="uid://gu3tp3ihrp1s" path="res://assets/side/shop_background.png" id="2_1e8ox"]
+[ext_resource type="Texture2D" uid="uid://tnma6odo0arh" path="res://assets/exit_button/exit_button.png" id="2_fs7f5"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_5ubeo"]
+[ext_resource type="Texture2D" uid="uid://c60liaujyeegu" path="res://assets/exit_button/exit_button_click.png" id="3_b42bv"]
+[ext_resource type="Texture2D" uid="uid://ccgfp7p2mojhr" path="res://assets/exit_button/exit_button_hover.png" id="4_5ubeo"]
 
 [node name="ArbreRecherche" type="Node2D"]
-script = ExtResource("1_a4jo1")
+script = ExtResource("1_cpw16")
 
-[node name="Panel" type="Panel" parent="."]
-offset_right = 1920.0
+[node name="background" type="TextureRect" parent="."]
+show_behind_parent = true
+offset_top = 162.0
+offset_right = 1921.0
 offset_bottom = 1080.0
+texture = ExtResource("2_1e8ox")
 
-[node name="titre" type="RichTextLabel" parent="Panel"]
+[node name="titre" type="RichTextLabel" parent="background"]
 layout_mode = 0
-offset_left = 778.0
-offset_top = 92.0
-offset_right = 1142.0
-offset_bottom = 143.0
+offset_left = 492.0
+offset_top = 49.0
+offset_right = 1396.0
+offset_bottom = 124.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/normal_font = ExtResource("3_5ubeo")
+theme_override_fonts/bold_font = ExtResource("3_5ubeo")
+theme_override_fonts/bold_italics_font = ExtResource("3_5ubeo")
+theme_override_fonts/italics_font = ExtResource("3_5ubeo")
+theme_override_fonts/mono_font = ExtResource("3_5ubeo")
 bbcode_enabled = true
-text = "[center][font_size=30]Arbre de recherche"
+text = "[center][font_size=40]Arbre de recherche"
 
-[node name="time_recherche" type="Label" parent="Panel"]
-visible = false
-layout_mode = 0
-offset_left = 1764.0
-offset_top = 30.0
-offset_right = 1874.0
-offset_bottom = 131.0
-
-[node name="Exit_button" type="TextureButton" parent="Panel"]
+[node name="Exit_button" type="TextureButton" parent="background"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -131.0
-offset_top = 50.0
-offset_right = -56.5
-offset_bottom = 124.5
+offset_left = -229.0
+offset_top = 51.0
+offset_right = -154.5
+offset_bottom = 125.5
 grow_horizontal = 0
-texture_normal = ExtResource("2_t1k60")
-texture_pressed = ExtResource("3_avrrt")
-texture_hover = ExtResource("4_d4bc1")
+texture_normal = ExtResource("2_fs7f5")
+texture_pressed = ExtResource("3_b42bv")
+texture_hover = ExtResource("4_5ubeo")
 stretch_mode = 0
 
-[connection signal="pressed" from="Panel/Exit_button" to="." method="_on_exit_button_pressed"]
+[node name="time_recherche" type="Label" parent="background"]
+visible = false
+layout_mode = 0
+offset_left = 901.0
+offset_top = 311.0
+offset_right = 1011.0
+offset_bottom = 412.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="background"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 138.0
+offset_right = 1685.0
+offset_bottom = 766.0
+
+[node name="tree_canvas" type="Control" parent="background/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="background/Exit_button" to="." method="_on_exit_button_pressed"]

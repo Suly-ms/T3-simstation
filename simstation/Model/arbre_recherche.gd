@@ -15,27 +15,29 @@ class_name SearchTree
 class NodeData:
 	var nom: String
 	var money: int
-	var time_cost: int
+	var tour: int
 	var description: String
 	var debloque: bool
 	var children: Array = []
 	var parent: NodeData
+	var cout_science: int
 
-	func _init(k: String, r_cost: int, t_cost: int, desc: String):
+	func _init(k: String, t: int, gain_s: int, r_cost: int, desc: String):
 		nom = k
-		money = r_cost
-		time_cost = t_cost
+		money = gain_s
+		tour = t
 		description = desc
 		debloque = false
+		cout_science = r_cost
 
 var root: NodeData
 
-func create_root(k: String, r_cost: int, t_cost: int, desc: String) -> NodeData:
-	root = NodeData.new(k, r_cost, t_cost, desc)
+func create_root(k: String, t: int, gain_s: int, r_cost: int, desc: String) -> NodeData:
+	root = NodeData.new(k, t, gain_s, r_cost, desc)
 	return root
 
-func add_child(parent: NodeData, k: String, r_cost: int, t_cost: int, desc: String) -> NodeData:
-	var child = NodeData.new(k, r_cost, t_cost, desc)
+func add_child(parent: NodeData, k: String, t: int, gain_s: int, r_cost: int, desc: String) -> NodeData:
+	var child = NodeData.new(k, t, gain_s, r_cost, desc)
 	child.parent = parent
 	parent.children.append(child)
 	return child
