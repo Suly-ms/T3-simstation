@@ -15,3 +15,4 @@ func _on_argent_changed(new_value):
 
 func _on_passer_tour_pressed():
 	CalculStats.passer_tour()
+	GlobalScript.emit_signal("tour_change")

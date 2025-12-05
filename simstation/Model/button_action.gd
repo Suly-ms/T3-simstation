@@ -13,9 +13,6 @@ extends Button
 func _on_pressed_shop() -> void:
 	load_scene("res://View/shop.tscn", "Shop")
 
-func _on_pressed_recherches():
-	load_scene("res://View/arbre_recherche.tscn", "ArbreRecherche")
-
 func _on_pressed_pause():
 	load_scene("res://View/pause.tscn", "Pause")
 

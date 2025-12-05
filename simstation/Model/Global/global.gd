@@ -12,6 +12,7 @@ var population = [
 ]
 
 var recherche_debloque = []
+var recherche_en_cours = {}
 
 var argent = 3000000
 
@@ -20,7 +21,7 @@ var inventaire = {
 	"hub": 1,
 	"dortoir": 0, 
 	"cantine": 1, 
-	"labo_recherche": 0, 
+	"labo_recherche": 1, 
 	"salle_sport": 0, 
 	"salle_repos": 0, 
 	"panneaux_solaires": 0,
@@ -65,10 +66,11 @@ var stats = {
 	"sante": 50,
 	"efficacite": 50,
 	"bonheur": 50,
+	"science": 50
 }
 
 var environnement = {
 	"temperature": -5  # °C
 }
 
-var tour = 0       # chaque tours 3 mois
+var tour = 1       # chaque tours 3 mois

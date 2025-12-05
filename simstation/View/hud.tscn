@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=15 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c7orjokudtall" path="res://assets/bar/efficiency_bar_empty.png" id="9_1cvsb"]
 [ext_resource type="Texture2D" uid="uid://dxoevfrf00nn6" path="res://assets/bar/happiness_bar_empty.png" id="10_0ig0g"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://Model/button_action.gd" id="11_jtq4o"]
-[ext_resource type="Script" uid="uid://duh3gfg5gvrcg" path="res://Model/night_mode.gd" id="12_suiv3"]
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
 
@@ -220,43 +219,6 @@ theme_override_font_sizes/font_size = 24
 text = "Boutique"
 script = ExtResource("11_jtq4o")
 
-[node name="nightMode" type="Button" parent="CanvasLayer"]
-offset_left = 1533.0
-offset_top = 736.0
-offset_right = 1710.0
-offset_bottom = 880.0
-text = "Night mode"
-
-[node name="filtre_night" type="CanvasLayer" parent="CanvasLayer/nightMode"]
-layer = 0
-visible = false
-script = ExtResource("12_suiv3")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/nightMode/filtre_night"]
-offset_left = -61.0
-offset_top = -39.0
-offset_right = 1986.0
-offset_bottom = 1130.0
-mouse_filter = 2
-color = Color(0, 0.03529412, 0.03529412, 0.8627451)
-
-[node name="recherche_button" type="Button" parent="CanvasLayer"]
-offset_left = 1713.0
-offset_top = 197.0
-offset_right = 1871.0
-offset_bottom = 267.0
-text = "Recherches"
-script = ExtResource("11_jtq4o")
-
-[node name="pause_button" type="Button" parent="CanvasLayer"]
-offset_left = 56.0
-offset_top = 184.0
-offset_right = 214.0
-offset_bottom = 254.0
-text = "Pause
-"
-script = ExtResource("11_jtq4o")
-
 [node name="Inventaire" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 61.0
@@ -279,54 +241,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="InfoPanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 1688.0
-offset_top = 314.0
-offset_right = 1891.0
-offset_bottom = 580.0
-script = ExtResource("14_xnmgy")
-
-[node name="LabelNom" type="Label" parent="InfoPanel"]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 19.0
-offset_right = 145.0
-offset_bottom = 60.0
-text = "Nom"
-
-[node name="LabelBonheur" type="Label" parent="InfoPanel"]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 101.0
-offset_right = 171.0
-offset_bottom = 142.0
-text = "Bonheur"
-
-[node name="LabelSante" type="Label" parent="InfoPanel"]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 60.0
-offset_right = 171.0
-offset_bottom = 101.0
-text = "Santé"
-
-[node name="LabelDescription" type="Label" parent="InfoPanel"]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 142.0
-offset_right = 171.0
-offset_bottom = 247.0
-text = "Description"
-autowrap_mode = 2
-
-[node name="BtnFermer" type="Button" parent="InfoPanel"]
-layout_mode = 0
-offset_left = 166.0
-offset_right = 203.0
-offset_bottom = 36.0
-text = "X"
-
 [node name="PasserTour" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1655.0
@@ -335,8 +249,13 @@ offset_right = 1843.0
 offset_bottom = 1022.0
 text = "Passer tour"
 
+[node name="InfoPanel2" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 1547.0
+offset_top = 342.0
+offset_right = 1655.0
+offset_bottom = 441.0
+script = ExtResource("14_xnmgy")
+
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
-[connection signal="pressed" from="CanvasLayer/nightMode" to="CanvasLayer/nightMode/filtre_night" method="_on_night_mode_pressed"]
-[connection signal="pressed" from="CanvasLayer/recherche_button" to="CanvasLayer/recherche_button" method="_on_pressed_recherches"]
-[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_button" method="_on_pressed_pause"]
 [connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
