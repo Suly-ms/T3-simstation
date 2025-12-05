@@ -14,6 +14,8 @@ const TREE_SPACING = 800
 
 var roots = []
 
+var dernier_tour_connu = -1
+
 # Références
 @onready var scrollContainer = $background/ScrollContainer
 
@@ -21,6 +23,10 @@ var roots = []
 var tree_canvas = Control.new()
 
 func _ready():
+	GlobalScript.connect("tour_change", _on_tour_changed)
+		
+	#set_process(false) # désactive _process, on économise du CPU !
+	
 	scrollContainer.add_child(tree_canvas)
 	tree_canvas.draw.connect(_on_tree_canvas_draw)
 	
@@ -64,8 +70,7 @@ func _ready():
 	for r in roots:
 		_create_buttons_recursive(r)
 
-func _process(_delta):
-	# À chaque frame, on vérifie si une recherche vient de se terminer grâce au changement de tour
+func _on_tour_changed():
 	_check_research_completion()
 
 # Vérifie si des recherches en cours sont finies
@@ -73,20 +78,24 @@ func _check_research_completion():
 	var current_turn = GlobalScript.get_tour()
 	var changes_made = false
 	
-	# On liste les clés pour pouvoir modifier le dictionnaire en itérant
+	# 1. Vérification des recherches terminées
 	var recherches_names = GlobalScript.get_recherche_en_cours().keys()
 	
 	for nom_recherche in recherches_names:
 		var tour_fin = GlobalScript.get_recherche_en_cours()[nom_recherche]
 		
 		if current_turn >= tour_fin:
-			# C'EST FINI !
 			_complete_research(nom_recherche)
 			changes_made = true
 	
-	if changes_made:
-		# On rafraichit l'affichage brutalement mais efficacement
+	# 2. Logique de Refresh optimisée
+	# On refresh SI une recherche est finie OU SI le tour a changé (pour mettre à jour les textes)
+	if changes_made or current_turn != dernier_tour_connu:
 		_refresh_ui()
+		print("UI Mise à jour. Tour : ", current_turn)
+		
+		# TRES IMPORTANT : On met à jour la mémoire pour ne pas refresh à la frame suivante !
+		dernier_tour_connu = current_turn
 
 func _complete_research(nom_recherche: String):
 	print("Recherche terminée : ", nom_recherche)
@@ -186,15 +195,14 @@ func _create_buttons_recursive(node: SearchTree.NodeData):
 	margin_container.add_child(texte)
 	btn.add_child(margin_container)
 	tree_canvas.add_child(btn)
-	
 	# --- LOGIQUE ETAT DU BOUTON ---
 	
 	# Cas 1 : Recherche en cours
 	if node.nom in GlobalScript.get_recherche_en_cours():
 		btn.disabled = true
 		btn.modulate = Color(1.0, 0.569, 0.0, 0.553) # JAUNE = En cours
-		var tours_restants = GlobalScript.get_recherche_en_cours()[node.nom] - GlobalScript.get_tour()
-		texte.text += "\n(" + str(tours_restants) + " tours)"
+		dernier_tour_connu = GlobalScript.get_recherche_en_cours()[node.nom] - GlobalScript.get_tour()
+		texte.text += "\n(" + str(dernier_tour_connu) + " tours)"
 		
 	# Cas 2 : Parent non débloqué (Grisé)
 	elif node.parent and not node.parent.debloque:
@@ -264,16 +272,21 @@ func lancer_recherche(node):
 	_refresh_ui()
 
 func _refresh_ui():
-	# On supprime tout et on recrée (méthode simple et sûre)
+	# On supprime tout
 	for child in tree_canvas.get_children():
 		child.queue_free()
 	
-	# On attend une frame pour le nettoyage
+	# On attend que Godot nettoie la mémoire
 	await get_tree().process_frame 
+	
+	# SECURITÉ : Si le joueur a fermé le menu pendant l'attente, on arrête tout
+	if not is_inside_tree():
+		return
 	
 	# On recrée
 	for r in roots:
 		_create_buttons_recursive(r)
+		
 	tree_canvas.queue_redraw()
 
 # --- FONCTIONS MATHEMATIQUES INCHANGEES ---

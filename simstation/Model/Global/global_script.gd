@@ -8,6 +8,7 @@ signal batiment_changed(batiment_name, new_value)
 signal stats_updated() 
 signal demande_ouverture_info(nom_batiment)
 signal demande_fermeture_info() 
+signal tour_change() 
 
 # GET
 

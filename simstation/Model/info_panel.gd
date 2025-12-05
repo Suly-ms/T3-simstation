@@ -9,6 +9,10 @@ var label_description = Label.new()
 var bouton_rech = Button.new()
 
 func _ready():
+	set_anchors_preset(Control.PRESET_CENTER_RIGHT)
+	offset_right = -20
+	grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	
 	custom_minimum_size.x = 300
 	label_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	styliser_labels()
@@ -51,7 +55,6 @@ func afficher_infos(nom_batiment: String):
 		bouton_rech.show()
 	else:
 		bouton_rech.hide()
-		
 	show() 
 
 func cacher_infos():

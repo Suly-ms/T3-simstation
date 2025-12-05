@@ -36,4 +36,3 @@ func load_scene(chemin_scene, nom_node):
 		node.visible = !node.visible  
 
 	GlobalScript.set_camera(!GlobalScript.get_camera())
-	print("OPEN" + nom_node)
