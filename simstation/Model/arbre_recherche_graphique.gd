@@ -147,6 +147,9 @@ func _create_buttons_recursive(node: SearchTree.NodeData):
 	var texture_path_clic = "res://assets/arbre_recherche/bouton_recherche_clic.png"
 	var texture_img_clic = load(texture_path_clic)
 	
+	var font_path_normal = "res://font/Minecraftia-Regular.ttf"
+	var font_normal = load(font_path_normal)
+	
 	texte.text = str(node.nom)
 	texte.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	texte.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -154,7 +157,11 @@ func _create_buttons_recursive(node: SearchTree.NodeData):
 	texte.set_anchors_preset(Control.PRESET_FULL_RECT)
 	texte.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	texte.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	texte.add_theme_color_override("font_color", Color.BLACK)
+	texte.add_theme_color_override("font_color", Color.WHITE)
+	texte.add_theme_font_override("font", font_normal)
+	texte.add_theme_font_size_override("font_size", 14)
+	texte.add_theme_constant_override("outline_size", 10)
+	texte.add_theme_color_override("font_outline_color", Color.BLACK)
 	
 	margin_container.add_theme_constant_override("margin_left", 10)
 	margin_container.add_theme_constant_override("margin_right", 10)
