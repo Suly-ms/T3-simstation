@@ -110,10 +110,11 @@ offset_left = -667.5
 offset_right = 667.5
 offset_bottom = 133.0
 grow_horizontal = 2
+alignment = 1
 script = ExtResource("5_gpgge")
 
 [node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(160, 90)
+position = Vector2(321.1875, 92.625)
 scale = Vector2(2.875, 2.875)
 texture = ExtResource("6_nmx3l")
 region_enabled = true
@@ -142,9 +143,10 @@ grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=8]Santé"
+metadata/_edit_use_anchors_ = true
 
 [node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(500, 90)
+position = Vector2(661.1875, 92.625)
 scale = Vector2(2.875, 2.875)
 texture = ExtResource("9_1cvsb")
 region_enabled = true
@@ -173,9 +175,10 @@ grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=8]Efficacité"
+metadata/_edit_use_anchors_ = true
 
 [node name="HappinessBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(840, 90)
+position = Vector2(1001.1875, 92.625)
 scale = Vector2(2.875, 2.875)
 texture = ExtResource("10_0ig0g")
 region_enabled = true
@@ -204,6 +207,7 @@ grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=8]Bonheur"
+metadata/_edit_use_anchors_ = true
 
 [node name="shop_button" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
