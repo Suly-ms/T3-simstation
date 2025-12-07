@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3me7m731dxai"
-path="res://.godot/imported/Log_Cabin.png-ecc41dc056f61c02d9ca7ce0609f9743.ctex"
+path="res://.godot/imported/Log_Cabin.png-c44021cf416b04d0c88659072a1de24d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileset2/Decoration/Log_Cabin.png"
-dest_files=["res://.godot/imported/Log_Cabin.png-ecc41dc056f61c02d9ca7ce0609f9743.ctex"]
+source_file="res://assets/tileset2/decoration/Log_Cabin.png"
+dest_files=["res://.godot/imported/Log_Cabin.png-c44021cf416b04d0c88659072a1de24d.ctex"]
 
 [params]
 
