@@ -257,5 +257,15 @@ offset_right = 1655.0
 offset_bottom = 441.0
 script = ExtResource("14_xnmgy")
 
+[node name="BtnGraphiqueStats" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1676.0
+offset_top = 198.0
+offset_right = 1878.0
+offset_bottom = 304.0
+text = "Graphique
+stats"
+
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
 [connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
+[connection signal="pressed" from="BtnGraphiqueStats" to="." method="_on_btn_graphique_stats_pressed"]
