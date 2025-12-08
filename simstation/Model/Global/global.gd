@@ -73,4 +73,4 @@ var environnement = {
 	"temperature": -5  # °C
 }
 
-var tour = 1       # chaque tours 3 mois
+var tour = 0       # chaque tours 3 mois

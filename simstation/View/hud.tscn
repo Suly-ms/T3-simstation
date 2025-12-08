@@ -54,35 +54,21 @@ anchor_bottom = 0.15
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="date" type="RichTextLabel" parent="CanvasLayer/background"]
+[node name="mois" type="RichTextLabel" parent="CanvasLayer/background"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03
 anchor_top = 0.2
 anchor_right = 0.03
 anchor_bottom = 0.2
-offset_right = 183.2
-offset_bottom = 91.0
+offset_left = -10.599998
+offset_top = 6.5999985
+offset_right = 186.79999
+offset_bottom = 51.199997
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
-text = "[center][font_size=24]XX/XX/2025"
+text = "[center][font_size=24]Mois 0"
 script = ExtResource("4_hc4cx")
-
-[node name="temperature" type="RichTextLabel" parent="CanvasLayer/background/date"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -61.5
-offset_top = -42.0
-offset_right = 61.5
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=24]24 C°"
 
 [node name="argent" type="RichTextLabel" parent="CanvasLayer/background"]
 layout_mode = 1
@@ -101,6 +87,23 @@ bbcode_enabled = true
 text = "[right][font_size=24]1 000 000 €"
 scroll_active = false
 script = SubResource("GDScript_mphia")
+
+[node name="temperature" type="RichTextLabel" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -872.3
+offset_top = -80.6
+offset_right = -749.30005
+offset_bottom = -38.6
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=24]24 C°"
 
 [node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
 layout_mode = 1
