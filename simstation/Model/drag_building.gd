@@ -15,7 +15,7 @@ extends TextureRect
 
 @export var grid_size : int = 64
 
-var batiment_instance : Node2D = null
+var batiment_instance : PackedScene = null
 var map_ref = null
 var dragging : bool = false
 var grid_visual_instance : Node2D = null
@@ -67,8 +67,7 @@ func start_dragging():
 	grid_visual_instance.z_index = 1 
 	map_ref.add_child(grid_visual_instance)
 
-	batiment_instance = Sprite2D.new()
-	batiment_instance.texture = texture
+	batiment_instance.size = texture
 	batiment_instance.name = name
 	batiment_instance.set_meta("type_batiment", name)
 	batiment_instance.z_index = 2
