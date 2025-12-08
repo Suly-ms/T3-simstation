@@ -1,60 +1,103 @@
 extends Control
+ 
+var x_espacement = 10
+var y_espacement = 10
 
-const x_espacement = 5
-const MAX_VALUE = 100.0
-const GRAPH_WIDTH = 660     
-const GRAPH_HEIGHT = 325   
-const x_step = 10
+var ligne_sante = Line2D.new()
+var ligne_bonheur = Line2D.new()
+var ligne_efficacite = Line2D.new()
+var ligne_x = Line2D.new()
+var ligne_y = Line2D.new()
 
+@onready var container_interne = Control.new()
 @onready var scrollContainer = $Panel/ScrollContainer
 
-# --- Stockage des données historiques ---
-var historique = {"sante":[],"efficacite":[],"bonheur":[]}
+var taille_x
+var taille_y
 
+var points_sante: Array[Vector2] = []
+var points_bonheur: Array[Vector2] = []
+var points_efficacite: Array[Vector2] = []
 
-# Fonction pour ajouter une nouvelle donnée et mettre à jour le graphique
+func _ready():
+	await get_tree().process_frame
+	taille_x = scrollContainer.size.x
+	taille_y = scrollContainer.size.y
+	
+	ligne_x.width = 5
+	ligne_x.default_color = Color.GRAY
+	var points_x: Array[Vector2] = [Vector2(8,5), Vector2(8, taille_y-5)]
+	ligne_x.set_points(points_x)
+	container_interne.add_child(ligne_x)
+	
+	ligne_y.width = 5
+	ligne_y.default_color = Color.GRAY
+	var points_y: Array[Vector2] = [Vector2(5, taille_y-5), Vector2(taille_x, taille_y-5)]
+	ligne_y.set_points(points_y)
+	container_interne.add_child(ligne_y)
+	
+	ajouter_point_et_mettre_a_jour()
+	GlobalScript.connect("tour_change", ajouter_point_et_mettre_a_jour)
+	
+	ligne_sante.width = 4
+	ligne_sante.default_color = Color.RED
+	ligne_bonheur.width = 4
+	ligne_bonheur.default_color = Color.YELLOW
+	ligne_efficacite.width = 4
+	ligne_efficacite.default_color = Color.BLUE
+	
+	container_interne.add_child(ligne_sante)
+	container_interne.add_child(ligne_bonheur)
+	container_interne.add_child(ligne_efficacite)
+	
+	scrollContainer.add_child(container_interne)
+
 func ajouter_point_et_mettre_a_jour():
-	# 1. Récupérer les nouvelles valeurs
 	var nouvelle_sante = GlobalScript.get_sante()
 	var nouveau_bonheur = GlobalScript.get_bonheur()
 	var nouvelle_efficacite = GlobalScript.get_efficacite()
 	
-	# 2. Ajouter les valeurs à l'historique
-	historique["sante"].append(nouvelle_sante)
-	historique["efficacite"].append(nouvelle_efficacite)
-	historique["bonheur"].append(nouveau_bonheur)
-	_dessiner_ligne()
-
-# Fonction générique pour convertir l'historique en points Line2D
-func _dessiner_ligne():
-	var ligne_sante = Line2D.new()
-	var ligne_bonheur = Line2D.new()
-	var ligne_efficacite = Line2D.new()
-	var points: Array[Vector2] = []
+	var y_sante = taille_y - ((nouvelle_sante * taille_y) / 100.0)
+	var y_efficacite = taille_y - ((nouvelle_efficacite * taille_y) / 100.0)
+	var y_bonheur = taille_y - ((nouveau_bonheur * taille_y) / 100.0)
 	
-	# Sante
-	var line_sante = Line2D.new()
-	var x = float(0) * x_step
-	var normalized_value = historique["sante"].size()
-	var y = GRAPH_HEIGHT - (normalized_value * GRAPH_HEIGHT)
+	var pos_sante = Vector2(x_espacement, y_sante - y_espacement)
+	var pos_efficacite = Vector2(x_espacement, y_efficacite - y_espacement)
+	var pos_bonheur = Vector2(x_espacement, y_bonheur - y_espacement)
 	
-	points.append(Vector2(x, y))
-	line_sante.set_points(points)
+	points_sante.append(pos_sante)
+	points_efficacite.append(pos_efficacite)
+	points_bonheur.append(pos_bonheur)
 	
-	#Bonheur
-	x = float(1) * x_step
-	normalized_value = historique["bonheur"].size() -1
-	y = GRAPH_HEIGHT - (normalized_value * GRAPH_HEIGHT)
+	x_espacement += 100
 	
-	points.append(Vector2(x, y))
+	container_interne.custom_minimum_size.x = x_espacement + 50
 	
-	#Efficacite
-	x = float(2) * x_step
-	normalized_value = historique["efficacite"].size() -1
-	y = GRAPH_HEIGHT - (normalized_value * GRAPH_HEIGHT)
+	if(container_interne.custom_minimum_size.x>=taille_x):
+		ligne_y.set_point_position(1, Vector2(container_interne.custom_minimum_size.x, taille_y - 5))
 	
-	points.append(Vector2(x, y))
-
-# --- Exemple d'utilisation dans un intervalle régulier ---
-func _ready():
-	ajouter_point_et_mettre_a_jour()
+	ligne_sante.set_points(points_sante)
+	ligne_bonheur.set_points(points_bonheur)
+	ligne_efficacite.set_points(points_efficacite)
+	
+	creer_marqueur(pos_sante, Color.RED)
+	creer_marqueur(pos_efficacite, Color.BLUE)
+	creer_marqueur(pos_bonheur, Color.YELLOW)
+	
+	scrollContainer.scroll_horizontal = int(container_interne.custom_minimum_size.x)
+	
+func creer_marqueur(pos: Vector2, couleur: Color):
+	var marqueur = Polygon2D.new()
+	
+	marqueur.polygon = PackedVector2Array([
+		Vector2(0, -6), 
+		Vector2(6, 0), 
+		Vector2(0, 6), 
+		Vector2(-6, 0)
+	])
+	
+	marqueur.position = pos
+	marqueur.color = couleur
+	marqueur.z_index = 1 
+	
+	container_interne.add_child(marqueur)

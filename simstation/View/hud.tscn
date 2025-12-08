@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dxoevfrf00nn6" path="res://assets/bar/happiness_bar_empty.png" id="10_0ig0g"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://Model/button_action.gd" id="11_jtq4o"]
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
+[ext_resource type="PackedScene" uid="uid://r1h4u5yp1lk2" path="res://View/chart_stats.tscn" id="14_o7jfm"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
@@ -249,7 +250,7 @@ offset_right = 1843.0
 offset_bottom = 1022.0
 text = "Passer tour"
 
-[node name="InfoPanel2" type="PanelContainer" parent="."]
+[node name="InfoPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 1547.0
 offset_top = 342.0
@@ -265,6 +266,9 @@ offset_right = 1878.0
 offset_bottom = 304.0
 text = "Graphique
 stats"
+
+[node name="ChartStats" parent="." instance=ExtResource("14_o7jfm")]
+layout_mode = 0
 
 [connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
 [connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
