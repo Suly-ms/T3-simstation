@@ -101,3 +101,6 @@ func creer_marqueur(pos: Vector2, couleur: Color):
 	marqueur.z_index = 1 
 	
 	container_interne.add_child(marqueur)
+
+func _on_exit_button_pressed() -> void:
+	hide()

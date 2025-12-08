@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://r1h4u5yp1lk2"]
+[gd_scene load_steps=6 format=3 uid="uid://r1h4u5yp1lk2"]
 
 [ext_resource type="Script" uid="uid://dgxvotb63m4ye" path="res://Model/chart_stats.gd" id="1_jw5xl"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_ykjvn"]
+[ext_resource type="Texture2D" uid="uid://tnma6odo0arh" path="res://assets/exit_button/exit_button.png" id="3_18e5g"]
+[ext_resource type="Texture2D" uid="uid://c60liaujyeegu" path="res://assets/exit_button/exit_button_click.png" id="4_kwu2s"]
+[ext_resource type="Texture2D" uid="uid://ccgfp7p2mojhr" path="res://assets/exit_button/exit_button_hover.png" id="5_2oelh"]
 
 [node name="ChartStats" type="Control"]
 layout_mode = 3
@@ -31,3 +34,20 @@ offset_bottom = 79.0
 theme_override_fonts/font = ExtResource("2_ykjvn")
 text = "Evolution des stats de la partie"
 horizontal_alignment = 2
+
+[node name="Exit_button" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -58.0
+offset_top = 11.0
+offset_right = -11.5
+offset_bottom = 57.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_18e5g")
+texture_pressed = ExtResource("4_kwu2s")
+texture_hover = ExtResource("5_2oelh")
+stretch_mode = 0
+
+[connection signal="pressed" from="Panel/Exit_button" to="." method="_on_exit_button_pressed"]
