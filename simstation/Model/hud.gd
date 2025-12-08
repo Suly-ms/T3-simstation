@@ -3,6 +3,7 @@ extends Control
 @onready var argent_label = $CanvasLayer/background/argent
 
 func _ready():
+	$ChartStats.hide()
 	GlobalScript.connect("argent_changed", Callable(self, "_on_argent_changed"))
 	_on_argent_changed(GlobalScript.get_argent())
 	CalculStats._calculer_saison_et_meteo()
@@ -16,3 +17,7 @@ func _on_argent_changed(new_value):
 func _on_passer_tour_pressed():
 	CalculStats.passer_tour()
 	GlobalScript.emit_signal("tour_change")
+
+func _on_btn_graphique_stats_pressed() -> void:
+	$ChartStats.show()
+	#GameManager.load_scene("res://View/chart_stats.tscn", "CharStats")
