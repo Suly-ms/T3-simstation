@@ -15,20 +15,17 @@ extends TextureRect
 
 @export var grid_size : int = 64
 
-var batiment_instance : PackedScene = null
+var batiment_instance : Sprite2D = null
 var map_ref = null
 var dragging : bool = false
 var grid_visual_instance : Node2D = null
 
-# Configure le curseur de la souris au survol de l'icône dans l'interface.
 func _ready():
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
-# Surcharge la fonction native de drag & drop pour éviter le comportement par défaut de Godot.
 func _get_drag_data(_at_position):
 	return null
 
-# Détecte le clic initial sur l'interface pour lancer le mode construction si les ressources sont suffisantes.
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if GlobalScript.get_batiment_inventaire(name) > 0:
@@ -36,25 +33,25 @@ func _gui_input(event):
 		else:
 			print("Pas assez de ressources !")
 
-# Gère les clics globaux pendant le déplacement (Clic gauche pour poser, Clic droit pour annuler).
-func _input(event):
+func _unhandled_input(event):
 	if dragging and batiment_instance:
 		if event is InputEventMouseButton:
-			if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed: 
 				place_building()
+				get_viewport().set_input_as_handled() 
 			elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 				cancel_placement()
+				get_viewport().set_input_as_handled()
 
-# Met à jour la position du bâtiment à chaque frame, gère l'aimantation à la grille et le feedback visuel (couleur).
 func _process(_delta):
 	if dragging and batiment_instance and map_ref:
 		var mouse_global_pos = map_ref.get_global_mouse_position()
+		
 		var snapped_pos = mouse_global_pos.snapped(Vector2(grid_size, grid_size))
 		
 		batiment_instance.global_position = snapped_pos
 		update_visual_feedback()
 
-# Initialise le processus de drag : crée le visuel du bâtiment, active la grille et déduit le stock.
 func start_dragging():
 	var maps = get_tree().get_nodes_in_group("Map")
 	if maps.size() > 0:
@@ -66,8 +63,12 @@ func start_dragging():
 	grid_visual_instance.cell_size = grid_size
 	grid_visual_instance.z_index = 1 
 	map_ref.add_child(grid_visual_instance)
-
-	batiment_instance.size = texture
+	
+	var texture_res = load("res://assets/batiments/"+name+".png")
+	
+	batiment_instance = Sprite2D.new()
+	batiment_instance.texture = texture_res 
+	
 	batiment_instance.name = name
 	batiment_instance.set_meta("type_batiment", name)
 	batiment_instance.z_index = 2
@@ -89,7 +90,6 @@ func start_dragging():
 	dragging = true
 	GlobalScript.modifier_batiment(name, -1)
 
-# Tente de valider la position du bâtiment. Si valide, finalise le placement, sinon annule.
 func place_building():
 	if not batiment_instance: return
 	
@@ -109,7 +109,6 @@ func place_building():
 	else:
 		cancel_placement()
 
-# Annule le placement en cours, détruit l'instance temporaire et rembourse l'inventaire.
 func cancel_placement():
 	if batiment_instance:
 		batiment_instance.queue_free()
@@ -119,20 +118,17 @@ func cancel_placement():
 	dragging = false
 	remove_grid()
 
-# Supprime proprement l'instance de la grille visuelle de la scène.
 func remove_grid():
 	if grid_visual_instance:
 		grid_visual_instance.queue_free()
 		grid_visual_instance = null
 
-# Change la couleur du bâtiment (Normal ou Rouge) selon s'il peut être placé à l'endroit actuel.
 func update_visual_feedback():
 	if map_ref.is_placable(batiment_instance):
 		batiment_instance.modulate = Color(1, 1, 1, 0.7)
 	else:
 		batiment_instance.modulate = Color(1, 0.2, 0.2, 0.7)
 
-# Classe interne utilitaire servant uniquement à dessiner les lignes de la grille via la fonction _draw().
 class GridDrawer extends Node2D:
 	var cell_size = 64
 	var grid_color = Color(0.0, 0.0, 0.0, 1.0)
