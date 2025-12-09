@@ -18,13 +18,13 @@ extends Node2D
 func _ready():
 	add_to_group("Map")
 
-func add_temp_building(node: Node2D):
+func add_temp_building(node: Sprite2D):
 	buildings_layer.add_child(node)
 
-func validate_building(node: Node2D):
+func validate_building(node: Sprite2D):
 	print("Bâtiment placé : ", node.name)
 
-func is_placable(ghost_building: Node2D) -> bool:
+func is_placable(ghost_building: Sprite2D) -> bool:
 	var ghost_rect = get_global_rect_of(ghost_building).grow(-2.0)
 	
 	for building in buildings_layer.get_children():
@@ -53,7 +53,7 @@ func _unhandled_input(event):
 			print("Clic détecté sur : ", batiment_clique.name, " -> Envoi signal : ", nom_a_envoyer)
 			GlobalScript.demande_ouverture_info.emit(nom_a_envoyer)
 
-func get_building_under_mouse() -> Node2D:
+func get_building_under_mouse() -> Sprite2D:
 	var mouse_pos = get_global_mouse_position()
 	var enfants = buildings_layer.get_children()
 	enfants.reverse() 
@@ -63,5 +63,5 @@ func get_building_under_mouse() -> Node2D:
 			return batiment
 	return null
 
-func get_global_rect_of(node: Node2D) -> Rect2:
+func get_global_rect_of(node: Sprite2D) -> Rect2:
 	return node.get_global_transform() * node.get_rect()
