@@ -134,6 +134,7 @@ theme_override_font_sizes/font_size = 100
 text = "QUITTER"
 
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_oa1go")
 autoplay = true
 bus = &"Music"
