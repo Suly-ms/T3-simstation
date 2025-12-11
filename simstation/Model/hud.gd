@@ -9,8 +9,6 @@ func _ready():
 	GlobalScript.connect("tour_change", _maj_mois)
 	_maj_mois()
 	_on_argent_changed(GlobalScript.get_argent())
-	CalculStats._calculer_saison_et_meteo()
-	CalculStats._appliquer_changements_tour()
 	CalculStats.actualiser_stats_derivees()
 	
 func _maj_mois():
