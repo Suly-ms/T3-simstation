@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://byhx4nqhp22jo"]
+[gd_scene load_steps=10 format=3 uid="uid://byhx4nqhp22jo"]
 
 [ext_resource type="Script" uid="uid://c4e02x7hylkmt" path="res://Model/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Texture2D" uid="uid://cl6ubdvrne04k" path="res://assets/menu_pictures/placeholder.jpg" id="2_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dej4bnfnmi6ug" path="res://assets/menu_pictures/logo.png" id="3_oa1go"]
-[ext_resource type="Texture2D" uid="uid://rar5onkg2hjt" path="res://assets/menu_pictures/button.png" id="4_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://bnj6op3vdclqx" path="res://assets/text_button/text_button.png" id="4_cdjdc"]
+[ext_resource type="Texture2D" uid="uid://68mwm43rbf0r" path="res://assets/text_button/text_button_click.png" id="5_il2qn"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
-[ext_resource type="Texture2D" uid="uid://dhnl88e4uhdrx" path="res://assets/menu_pictures/button_hover.png" id="5_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://cwotlcsrbjbed" path="res://assets/text_button/text_button_hover.png" id="6_75ixj"]
 [ext_resource type="AudioStream" uid="uid://i702nadbvxuy" path="res://assets/sons/musiques/dark_souls_main_theme.mp3" id="7_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
@@ -57,80 +58,101 @@ offset_bottom = 296.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_06t4h")
+metadata/_edit_use_anchors_ = true
 
 [node name="Logo" type="Sprite2D" parent="Panel"]
 position = Vector2(392, -1)
 scale = Vector2(0.796892, 0.714862)
 texture = ExtResource("3_oa1go")
 
-[node name="btnJouer" type="TextureButton" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.511
-anchor_top = 0.387
-anchor_right = 0.511
-anchor_bottom = 0.387
-offset_left = -230.58
-offset_top = -140.104
-offset_right = 793.42
-offset_bottom = 473.896
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.45, 0.4)
-texture_normal = ExtResource("4_tbmy8")
-texture_hover = ExtResource("5_rtw2f")
-
-[node name="Label" type="Label" parent="Panel/btnJouer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.889
-offset_top = -27.0
-offset_right = 194.111
-offset_bottom = 148.0
+offset_left = -263.0
+offset_top = -214.0
+offset_right = 293.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="btnJouer" type="TextureButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_cdjdc")
+texture_pressed = ExtResource("5_il2qn")
+texture_hover = ExtResource("6_75ixj")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/btnJouer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.25
+offset_top = -35.0
+offset_right = 78.25
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_jk1qb")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 50
 text = "JOUER"
 
-[node name="btnQuitter" type="TextureButton" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.511
-anchor_top = 0.387
-anchor_right = 0.511
-anchor_bottom = 0.387
-offset_left = -228.58
-offset_top = 96.896
-offset_right = 795.42
-offset_bottom = 710.896
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.45, 0.4)
-texture_normal = ExtResource("4_tbmy8")
-texture_hover = ExtResource("5_rtw2f")
+[node name="btnOptions" type="TextureButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_cdjdc")
+texture_pressed = ExtResource("5_il2qn")
+texture_hover = ExtResource("6_75ixj")
+stretch_mode = 0
 
-[node name="Label" type="Label" parent="Panel/btnQuitter"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/btnOptions"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.889
-offset_top = -27.0
-offset_right = 194.111
-offset_bottom = 148.0
+offset_left = -125.000015
+offset_top = -44.0
+offset_right = 125.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_jk1qb")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 50
+text = "OPTIONS"
+
+[node name="btnQuitter" type="TextureButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_cdjdc")
+texture_pressed = ExtResource("5_il2qn")
+texture_hover = ExtResource("6_75ixj")
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/btnQuitter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -44.0
+offset_right = 125.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jk1qb")
+theme_override_font_sizes/font_size = 50
 text = "QUITTER"
 
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
@@ -138,5 +160,6 @@ stream = ExtResource("7_oa1go")
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="Panel/btnJouer" to="." method="_on_btn_jouer_pressed"]
-[connection signal="pressed" from="Panel/btnQuitter" to="." method="_on_btn_quitter_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnJouer" to="." method="_on_btn_jouer_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnOptions" to="." method="_on_btn_options_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnQuitter" to="." method="_on_btn_quitter_pressed"]
