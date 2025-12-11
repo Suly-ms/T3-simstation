@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://rar5onkg2hjt" path="res://assets/menu_pictures/button.png" id="4_tbmy8"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://dhnl88e4uhdrx" path="res://assets/menu_pictures/button_hover.png" id="5_rtw2f"]
-[ext_resource type="AudioStream" uid="uid://i702nadbvxuy" path="res://assets/sons/musiques/dark_souls_main_theme.mp3" id="7_oa1go"]
+[ext_resource type="AudioStream" uid="uid://i702nadbvxuy" path="res://assets/sounds/musics/dark_souls_main_theme.mp3" id="7_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0.294118, 0.635294, 0.721569, 0.603922)
