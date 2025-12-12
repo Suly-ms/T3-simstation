@@ -195,6 +195,44 @@ theme_override_font_sizes/font_size = 38
 text = "v 1.0.0"
 metadata/_edit_use_anchors_ = true
 
+[node name="btnCredits" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9140001
+anchor_top = 0.92700005
+anchor_right = 0.9140001
+anchor_bottom = 0.92700005
+offset_left = -119.88013
+offset_top = -63.160034
+offset_right = 119.11987
+offset_bottom = 63.839966
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_dq6vp")
+texture_hover = ExtResource("5_wntf2")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="btnCredits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50415903
+anchor_top = 0.622252
+anchor_right = 0.50415903
+anchor_bottom = 0.622252
+offset_left = -62.494003
+offset_top = -22.026001
+offset_right = 62.505997
+offset_bottom = 21.973999
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jk1qb")
+theme_override_font_sizes/font_size = 25
+text = "CRÉDITS"
+metadata/_edit_use_anchors_ = true
+
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_oa1go")
 autoplay = true
@@ -203,3 +241,4 @@ bus = &"Music"
 [connection signal="pressed" from="Panel/btnJouer" to="." method="_on_btn_jouer_pressed"]
 [connection signal="pressed" from="Panel/btnOptions" to="." method="_on_btn_options_pressed"]
 [connection signal="pressed" from="Panel/btnQuitter" to="." method="_on_btn_quitter_pressed"]
+[connection signal="pressed" from="btnCredits" to="." method="_on_btn_credits_pressed"]

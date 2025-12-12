@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://ssm7kf5lxt27"]
+
+[ext_resource type="Texture2D" uid="uid://cqwsm3uxbo3v1" path="res://assets/shop/shop_background.png" id="1_7x7bw"]
+[ext_resource type="Script" uid="uid://l2mh27b8jh1b" path="res://Model/credits.gd" id="1_hid40"]
+[ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="2_hid40"]
+[ext_resource type="Texture2D" uid="uid://tnma6odo0arh" path="res://assets/exit_button/exit_button.png" id="3_1cwp1"]
+[ext_resource type="Texture2D" uid="uid://c60liaujyeegu" path="res://assets/exit_button/exit_button_click.png" id="4_r7np8"]
+[ext_resource type="Texture2D" uid="uid://ccgfp7p2mojhr" path="res://assets/exit_button/exit_button_hover.png" id="5_m0jbp"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hid40")
+metadata/_edit_use_anchors_ = true
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -753.5
+offset_top = -533.0
+offset_right = 751.5
+offset_bottom = 547.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7x7bw")
+
+[node name="Credits_text" type="RichTextLabel" parent="background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -388.0
+offset_top = 120.0
+offset_right = 388.0
+offset_bottom = 274.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_hid40")
+bbcode_enabled = true
+text = "[center][font_size=86]Crédits"
+
+[node name="Exit_button" type="TextureButton" parent="background"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -129.0
+offset_top = 46.0
+offset_right = -54.5
+offset_bottom = 120.5
+grow_horizontal = 0
+texture_normal = ExtResource("3_1cwp1")
+texture_pressed = ExtResource("4_r7np8")
+texture_hover = ExtResource("5_m0jbp")
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.097
+anchor_top = 0.31300002
+anchor_right = 0.97800004
+anchor_bottom = 0.851
+offset_left = -0.4850006
+offset_top = 35.95996
+offset_right = -126.390015
+offset_bottom = -26.080017
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("2_hid40")
+theme_override_fonts/bold_font = ExtResource("2_hid40")
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[center][b][color=#89CFF0]L'équipe Antarctic Arts[/color][/b]
+
+Emre SEN
+Fabio GIORGI-PANAZZOLO
+Martin SCHNEIDER-SYLVESTRE
+Josué MARTIN
+
+
+
+[color=#89CFF0][b]Attribution et Licence du Logiciel (MIT)[/b][/color] 
+
+Copyright (c) 2025 Antarctic Arts
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[/center]"
+
+[connection signal="pressed" from="background/Exit_button" to="." method="_on_exit_button_pressed"]
