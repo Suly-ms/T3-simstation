@@ -5,7 +5,7 @@ extends Control
 @onready var ecran_button = $background/VBoxContainer/Pleinecran_button
 
 func _ready():
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
 	effet_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 	
@@ -27,4 +27,5 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _on_retour_button_pressed() -> void:
+	#get_tree().paused = false
 	queue_free() 
