@@ -8,7 +8,10 @@ var camera_enable = true;
 var user = {"nom":"Martin","time":3}
 
 var population = [
-	{"sante": 100, "efficacite": 100, "bonheur": 50}
+	{"sante": 90, "efficacite": 50, "bonheur": 60},
+	{"sante": 50, "efficacite": 30, "bonheur": 50},
+	{"sante": 80, "efficacite": 40, "bonheur": 10},
+	{"sante": 20, "efficacite": 70, "bonheur": 70}
 ]
 
 var recherche_debloque = []
@@ -70,7 +73,7 @@ var stats = {
 }
 
 var environnement = {
-	"temperature": -5  # °C
+	"temperature": -40  # °C
 }
 
 var tour = 0       # chaque tours 3 mois
