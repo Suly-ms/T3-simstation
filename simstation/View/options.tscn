@@ -30,6 +30,28 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_1sggn")
 
+[node name="Options_text" type="RichTextLabel" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.16389474
+anchor_right = 0.5
+anchor_bottom = 0.16389474
+offset_left = -175.75
+offset_top = -41.700005
+offset_right = 175.75
+offset_bottom = 42.299995
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.5372549, 0.8117647, 0.9411765, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/normal_font = ExtResource("2_e6vpq")
+bbcode_enabled = true
+text = "[center][font_size=65]OPTIONS
+"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
 [node name="Retour_button" type="Button" parent="background"]
 layout_mode = 1
 anchors_preset = 7
@@ -46,21 +68,6 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_e6vpq")
 theme_override_font_sizes/font_size = 35
 text = "Retour"
-
-[node name="Options_text" type="RichTextLabel" parent="background"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -307.5
-offset_top = 108.0
-offset_right = 307.5
-offset_bottom = 239.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("2_e6vpq")
-bbcode_enabled = true
-text = "[center][font_size=70]Options"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="background"]
 layout_mode = 1

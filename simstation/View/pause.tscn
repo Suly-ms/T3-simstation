@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://4wx3fpdnps7x"]
+[gd_scene load_steps=6 format=3 uid="uid://4wx3fpdnps7x"]
 
 [ext_resource type="Script" uid="uid://bnhtj0jj88m17" path="res://Model/pause.gd" id="1_m0klm"]
 [ext_resource type="Texture2D" uid="uid://cqwsm3uxbo3v1" path="res://assets/shop/shop_background.png" id="2_aicil"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_jn4bt"]
+[ext_resource type="Texture2D" uid="uid://rar5onkg2hjt" path="res://assets/menu_pictures/button.png" id="4_b82to"]
+[ext_resource type="Texture2D" uid="uid://dhnl88e4uhdrx" path="res://assets/menu_pictures/button_hover.png" id="5_3rfc6"]
 
 [node name="Pause" type="Control"]
 layout_mode = 3
@@ -15,7 +17,7 @@ script = ExtResource("1_m0klm")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -30,52 +32,139 @@ texture = ExtResource("2_aicil")
 
 [node name="Pause_text" type="RichTextLabel" parent="background"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.16000001
 anchor_right = 0.5
+anchor_bottom = 0.16000001
 offset_left = -307.5
-offset_top = 108.0
+offset_top = -40.000015
 offset_right = 307.5
-offset_bottom = 239.0
+offset_bottom = 39.999985
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.5372549, 0.8117647, 0.9411765, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_fonts/normal_font = ExtResource("3_jn4bt")
 bbcode_enabled = true
-text = "[center][font_size=70]Pause"
+text = "[center][font_size=65]PAUSE"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+[node name="Panel" type="Panel" parent="background"]
+layout_mode = 0
+offset_left = 620.25
+offset_top = 710.0
+offset_right = 660.25
+offset_bottom = 750.0
+
+[node name="continue_button" type="TextureButton" parent="background/Panel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.411
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -332.0
-offset_top = -87.5
-offset_right = 332.0
-offset_bottom = 274.0
+anchor_bottom = 0.411
+offset_left = -167.25
+offset_top = -438.2751
+offset_right = 233.25
+offset_bottom = -256.60492
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 35
+texture_normal = ExtResource("4_b82to")
+texture_hover = ExtResource("5_3rfc6")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Resume_button" type="Button" parent="background/VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="background/Panel/continue_button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.60723567
+anchor_right = 0.5
+anchor_bottom = 0.60723567
+offset_left = -74.0
+offset_top = -33.48201
+offset_right = 74.0
+offset_bottom = 33.51799
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_jn4bt")
-theme_override_font_sizes/font_size = 50
-text = "Continuer"
+theme_override_font_sizes/font_size = 38
+text = "CONTINUER"
+metadata/_edit_use_anchors_ = true
 
-[node name="Option_button" type="Button" parent="background/VBoxContainer"]
-layout_mode = 2
+[node name="options_button" type="TextureButton" parent="background/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.57000005
+anchor_right = 0.5
+anchor_bottom = 0.57000005
+offset_left = -167.25
+offset_top = -272.63507
+offset_right = 233.25
+offset_bottom = -90.96492
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_b82to")
+texture_hover = ExtResource("5_3rfc6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="background/Panel/options_button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.60723567
+anchor_right = 0.5
+anchor_bottom = 0.60723567
+offset_left = -74.0
+offset_top = -33.48201
+offset_right = 74.0
+offset_bottom = 33.51799
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_jn4bt")
-theme_override_font_sizes/font_size = 50
-text = "Options"
+theme_override_font_sizes/font_size = 38
+text = "OPTIONS"
 
-[node name="Menu_button" type="Button" parent="background/VBoxContainer"]
-layout_mode = 2
+[node name="menu_button" type="TextureButton" parent="background/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.325
+anchor_top = 0.5
+anchor_right = 1.325
+anchor_bottom = 0.5
+offset_left = -200.25
+offset_top = -95.670166
+offset_right = 200.25
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_b82to")
+texture_hover = ExtResource("5_3rfc6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="background/Panel/menu_button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.51000005
+anchor_top = 0.601
+anchor_right = 0.51000005
+anchor_bottom = 0.601
+offset_left = -57.00502
+offset_top = -33.513603
+offset_right = 56.99498
+offset_bottom = 33.486397
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_jn4bt")
-theme_override_font_sizes/font_size = 50
-text = "Menu  principal"
+theme_override_font_sizes/font_size = 38
+text = "MENU"
 
-[connection signal="pressed" from="background/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="background/VBoxContainer/Option_button" to="." method="_on_option_button_pressed"]
-[connection signal="pressed" from="background/VBoxContainer/Menu_button" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="background/Panel/continue_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="background/Panel/options_button" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="background/Panel/menu_button" to="." method="_on_menu_button_pressed"]
