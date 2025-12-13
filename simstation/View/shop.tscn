@@ -7,16 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://tnma6odo0arh" path="res://assets/exit_button/exit_button.png" id="5_rn3ik"]
 [ext_resource type="Texture2D" uid="uid://c60liaujyeegu" path="res://assets/exit_button/exit_button_click.png" id="6_tbl8w"]
 [ext_resource type="Texture2D" uid="uid://ccgfp7p2mojhr" path="res://assets/exit_button/exit_button_hover.png" id="7_7ost5"]
-[ext_resource type="Texture2D" uid="uid://t3bktt82xfk1" path="res://assets/buildings/dortoir.png" id="8_rlnne"]
+[ext_resource type="Texture2D" uid="uid://cdd4udo6e2odn" path="res://assets/buildings/dortoir.png" id="8_rlnne"]
 [ext_resource type="Texture2D" uid="uid://davnig7fybkhe" path="res://assets/shop/buy_button/buy_button.png" id="9_jxxyu"]
 [ext_resource type="Texture2D" uid="uid://dlwdtu1jfb27b" path="res://assets/shop/buy_button/buy_button_click.png" id="10_hcqeq"]
 [ext_resource type="Texture2D" uid="uid://ywwb41atcdfp" path="res://assets/shop/buy_button/buy_button_hover.png" id="11_f5aa6"]
 [ext_resource type="Texture2D" uid="uid://b2hdab6gkv756" path="res://assets/batiments/cantine.png" id="12_i7rjl"]
-[ext_resource type="Texture2D" uid="uid://iy8xdmdxoe2q" path="res://assets/buildings/labo_recherche.png" id="13_h6y34"]
-[ext_resource type="Texture2D" uid="uid://oco214bncjoq" path="res://assets/buildings/salle_sport.png" id="14_pfslr"]
-[ext_resource type="Texture2D" uid="uid://bocxhr2pnncek" path="res://assets/buildings/salle_repos.png" id="15_qrah6"]
-[ext_resource type="Texture2D" uid="uid://0hpdoyqgkam7" path="res://assets/buildings/panneaux_solaires.png" id="16_svi8q"]
-[ext_resource type="Texture2D" uid="uid://d0pi2exb502h1" path="res://assets/buildings/generateur_petrole.png" id="17_g7m8a"]
+[ext_resource type="Texture2D" uid="uid://5ngex61wnopa" path="res://assets/buildings/labo_recherche.png" id="13_h6y34"]
+[ext_resource type="Texture2D" uid="uid://c37wc3108vpmo" path="res://assets/buildings/salle_sport.png" id="14_pfslr"]
+[ext_resource type="Texture2D" uid="uid://cpub6wrwhhupf" path="res://assets/buildings/salle_repos.png" id="15_qrah6"]
+[ext_resource type="Texture2D" uid="uid://bak2utfvn8cr2" path="res://assets/buildings/panneaux_solaires.png" id="16_svi8q"]
+[ext_resource type="Texture2D" uid="uid://bigpt7o2d0ns2" path="res://assets/buildings/generateur_petrole.png" id="17_g7m8a"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -30,33 +30,40 @@ script = ExtResource("2_ei2gw")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -752.5
-offset_top = -540.0
-offset_right = 752.5
-offset_bottom = 540.0
+anchor_bottom = 1.0
+offset_left = -673.25
+offset_top = -950.0
+offset_right = 673.25
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 texture = ExtResource("3_0mlmv")
 
-[node name="Boutique_text" type="RichTextLabel" parent="background"]
+[node name="Options_text" type="RichTextLabel" parent="background"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.15652633
 anchor_right = 0.5
+anchor_bottom = 0.15652633
 offset_left = -388.0
-offset_top = 120.0
+offset_top = -35.700012
 offset_right = 388.0
-offset_bottom = 274.0
+offset_bottom = 84.29999
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.5372549, 0.8117647, 0.9411765, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_fonts/normal_font = ExtResource("4_o4j7t")
 bbcode_enabled = true
-text = "[center][font_size=86]Boutique"
+text = "[center][font_size=65]BOUTIQUE
+"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Exit_button" type="TextureButton" parent="background"]
 layout_mode = 1
@@ -78,10 +85,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 134.5
-offset_top = 367.0
-offset_right = -137.5
-offset_bottom = -152.0
+offset_left = 122.25
+offset_top = 326.0
+offset_right = -134.25
+offset_bottom = -133.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -90,12 +97,12 @@ custom_minimum_size = Vector2(1000, 1000)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 90
-theme_override_constants/v_separation = 60
+theme_override_constants/h_separation = 56
+theme_override_constants/v_separation = 40
 columns = 2
 
 [node name="dortoir" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 
@@ -149,7 +156,7 @@ texture_hover = ExtResource("11_f5aa6")
 stretch_mode = 0
 
 [node name="cantine" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 
@@ -201,7 +208,7 @@ texture_hover = ExtResource("11_f5aa6")
 stretch_mode = 0
 
 [node name="labo_recherche" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 
@@ -253,7 +260,7 @@ texture_hover = ExtResource("11_f5aa6")
 stretch_mode = 0
 
 [node name="salle_sport" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 
@@ -305,7 +312,7 @@ texture_hover = ExtResource("11_f5aa6")
 stretch_mode = 0
 
 [node name="salle_repos" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 
@@ -358,7 +365,7 @@ texture_hover = ExtResource("11_f5aa6")
 stretch_mode = 0
 
 [node name="panneaux_solaires" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 
@@ -410,7 +417,7 @@ texture_hover = ExtResource("11_f5aa6")
 stretch_mode = 0
 
 [node name="generateur_petrole" type="VBoxContainer" parent="background/ScrollContainer/Batiments"]
-custom_minimum_size = Vector2(560, 300)
+custom_minimum_size = Vector2(510, 300)
 layout_mode = 2
 alignment = 1
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=17 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_o5r0d"]
 [ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://Model/HUD/resize_control.gd" id="4_hc4cx"]
-[ext_resource type="Script" uid="uid://c426xsof0jwpb" path="res://Model/HUD/resize_state_bar.gd" id="5_gpgge"]
 [ext_resource type="Texture2D" uid="uid://b5htmoxepvs57" path="res://assets/bar/health_bar_empty.png" id="6_nmx3l"]
 [ext_resource type="Texture2D" uid="uid://e14rlujxv2r6" path="res://assets/bar/filled_bar.png" id="7_s7bk8"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://Model/crop_bar.gd" id="8_fj0si"]
@@ -14,8 +13,8 @@
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
 [ext_resource type="PackedScene" uid="uid://r1h4u5yp1lk2" path="res://View/chart_stats.tscn" id="14_o7jfm"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
-[ext_resource type="Texture2D" uid="uid://cb2x7g83i6jqp" path="res://assets/particles/snow_particle.png" id="15_2wmmq"]
-[ext_resource type="Texture2D" uid="uid://cad24hxpdh1m" path="res://assets/particles/big_snow_particle.png" id="16_goc8r"]
+[ext_resource type="Texture2D" uid="uid://cxwf1b48xtn2o" path="res://assets/particles/snow_particle.png" id="15_2wmmq"]
+[ext_resource type="Texture2D" uid="uid://cvotmb1sxlf0h" path="res://assets/particles/big_snow_particle.png" id="16_goc8r"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -117,7 +116,6 @@ offset_right = 667.5
 offset_bottom = 133.0
 grow_horizontal = 2
 alignment = 1
-script = ExtResource("5_gpgge")
 
 [node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
 position = Vector2(321.1875, 92.625)
