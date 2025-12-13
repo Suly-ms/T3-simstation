@@ -4,17 +4,29 @@ extends Control
 
 func _ready():
 	remplir_labels()
-
+	
+		
 func remplir_labels():
-	for batiment_node in batiments_container.get_children():
-		var cost_label = batiment_node.get_node("Cost_text")
-		var name_label = batiment_node.get_node("Name_text")
-		
-		var batiment_name = batiment_node.name
-		var prix = GlobalScript.get_batiment_prix(batiment_name)
-		
-		cost_label.bbcode_text = "[center][font_size=48]" + GlobalScript.format_money(prix) + " €"
-		name_label.bbcode_text = "[center][font_size=48]" + GlobalScript.get_batiment_info(batiment_name)[3]
+	var enfants_batiments = batiments_container.get_children()
+
+	for i in range(enfants_batiments.size()):
+		if i % 2 == 0:
+			var batiment_node = enfants_batiments[i]
+
+			var cost_label = batiment_node.get_node("Cost_text")
+			var name_label = batiment_node.get_node("Name_text")
+
+			var batiment_name = batiment_node.name
+			var prix = GlobalScript.get_batiment_prix(batiment_name)
+
+			# Application des modifications (Identique à votre code original)
+			cost_label.bbcode_text = "[center][font_size=48]" + GlobalScript.format_money(prix) + " €"
+			name_label.bbcode_text = "[center][font_size=48]" + GlobalScript.get_batiment_info(batiment_name)[3]
+			
+			batiment_node = enfants_batiments[i+1]
+			var description_label = batiment_node.get_node("Backgournd/Description")
+			
+			description_label.bbcode_text = "[center][font_size=32]" + GlobalScript.get_batiment_info(batiment_name)[2] + "[/font_size]"
 		
 
 func _on_exit_button_pressed() -> void:

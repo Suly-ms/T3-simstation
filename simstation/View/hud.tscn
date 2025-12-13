@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=25 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
@@ -8,41 +8,22 @@
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://Model/crop_bar.gd" id="8_fj0si"]
 [ext_resource type="Texture2D" uid="uid://c7orjokudtall" path="res://assets/bar/efficiency_bar_empty.png" id="9_1cvsb"]
 [ext_resource type="Texture2D" uid="uid://dxoevfrf00nn6" path="res://assets/bar/happiness_bar_empty.png" id="10_0ig0g"]
+[ext_resource type="Texture2D" uid="uid://b13byyd7hdnsp" path="res://assets/button/next_round_button/next_round.png" id="10_o4crf"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://Model/button_action.gd" id="11_jtq4o"]
-[ext_resource type="Texture2D" uid="uid://rar5onkg2hjt" path="res://assets/menu_pictures/button.png" id="12_s65m4"]
-[ext_resource type="Texture2D" uid="uid://dhnl88e4uhdrx" path="res://assets/menu_pictures/button_hover.png" id="13_3v7fu"]
+[ext_resource type="Texture2D" uid="uid://cr8hfxgtx8jql" path="res://assets/button/next_round_button/next_button_click.png" id="11_n3rgs"]
+[ext_resource type="Texture2D" uid="uid://c0b0lb0bibu85" path="res://assets/button/next_round_button/next_button_hover.png" id="12_s65m4"]
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
 [ext_resource type="Texture2D" uid="uid://cvwmveht46c2g" path="res://assets/stats_button/stats_button.png" id="13_xp7qj"]
 [ext_resource type="Texture2D" uid="uid://bokftp00logmm" path="res://assets/stats_button/stats_button_click.png" id="14_o4crf"]
 [ext_resource type="PackedScene" uid="uid://r1h4u5yp1lk2" path="res://View/chart_stats.tscn" id="14_o7jfm"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
-[ext_resource type="Texture2D" uid="uid://b2hv4nah1swjg" path="res://assets/settings_button/settings_button.png" id="15_2wmmq"]
+[ext_resource type="Texture2D" uid="uid://cvny1t12dc2ak" path="res://assets/settings_button/settings_button.png" id="15_2wmmq"]
 [ext_resource type="Texture2D" uid="uid://c20qyppvj4g6y" path="res://assets/settings_button/settings_button_click.png" id="15_6wuao"]
 [ext_resource type="Texture2D" uid="uid://dvbv1mks1v2y" path="res://assets/stats_button/stats_button_hover.png" id="15_o4crf"]
-[ext_resource type="Texture2D" uid="uid://cadr26hddeyr4" path="res://assets/settings_button/settings_button_hover.png" id="16_6wuao"]
-[ext_resource type="Texture2D" uid="uid://bxcl73lq36t0v" path="res://assets/shop_button/shop_button.png" id="18_nlktb"]
-[ext_resource type="Texture2D" uid="uid://5o73o0dy56gu" path="res://assets/shop_button/shop_button_click.png" id="19_vpgw3"]
-[ext_resource type="Texture2D" uid="uid://dayuwe04m84xi" path="res://assets/shop_button/shop_button_hover.png" id="20_xp7qj"]
-
-[sub_resource type="GDScript" id="GDScript_mphia"]
-script/source = "extends RichTextLabel
-
-const BASE_RES = Vector2(1920, 1080)
-
-func _ready():
-	_resize()
-	get_viewport().connect(\"size_changed\", Callable(self, \"_resize\"))
-
-func _resize():
-	var screen_size = get_viewport_rect().size
-	var scale_factor = min(
-		screen_size.x / BASE_RES.x,
-		screen_size.y / BASE_RES.y
-	)
-	
-	# On applique uniquement l'échelle
-	self.scale = Vector2(scale_factor, scale_factor)
-"
+[ext_resource type="Texture2D" uid="uid://cku5i0uj2p7y5" path="res://assets/settings_button/settings_button_hover.png" id="16_6wuao"]
+[ext_resource type="Texture2D" uid="uid://bbs6a32pnkdun" path="res://assets/shop_button/shop_button.png" id="18_nlktb"]
+[ext_resource type="Texture2D" uid="uid://2eccmer3v4a" path="res://assets/shop_button/shop_button_click.png" id="19_vpgw3"]
+[ext_resource type="Texture2D" uid="uid://bw0kn2po8tx4g" path="res://assets/shop_button/shop_button_hover.png" id="20_xp7qj"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -63,17 +44,23 @@ anchor_bottom = 0.15
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="saison" type="RichTextLabel" parent="CanvasLayer/background"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 20.0
+offset_right = 335.0
+offset_bottom = 121.6
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=24
+]Printemps austral"
+
 [node name="mois" type="RichTextLabel" parent="CanvasLayer/background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.03
-anchor_top = 0.2
-anchor_right = 0.03
-anchor_bottom = 0.2
-offset_left = -10.599998
-offset_top = 6.5999985
-offset_right = 186.79999
-offset_bottom = 51.199997
+layout_mode = 0
+offset_left = 69.0
+offset_top = 62.0
+offset_right = 331.0
+offset_bottom = 131.6
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=24]Mois 0"
@@ -85,30 +72,22 @@ anchor_left = 0.97
 anchor_top = 0.2
 anchor_right = 0.97
 anchor_bottom = 0.2
-offset_left = -181.4
-offset_top = -0.400002
-offset_right = -0.400024
-offset_bottom = 34.6
+offset_left = -324.40002
+offset_top = 23.599998
+offset_right = -40.400024
+offset_bottom = 76.6
 grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
-text = "[right][font_size=24]1 000 000 €"
+text = "[right][font_size=32]1 000 000 €"
 scroll_active = false
-script = SubResource("GDScript_mphia")
 
 [node name="temperature" type="RichTextLabel" parent="CanvasLayer/background"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -872.3
-offset_top = -80.6
-offset_right = -749.30005
-offset_bottom = -38.6
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 0
+offset_left = 117.0
+offset_top = 107.0
+offset_right = 288.3
+offset_bottom = 166.6
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=24]24 C°"
@@ -147,7 +126,7 @@ anchor_right = 0.6
 anchor_bottom = 1.0
 offset_left = -95.9728
 offset_top = -48.7826
-offset_right = -13.0272
+offset_right = -13.027275
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -220,6 +199,23 @@ bbcode_enabled = true
 text = "[center][font_size=8]Bonheur"
 metadata/_edit_use_anchors_ = true
 
+[node name="settings_button" type="TextureButton" parent="CanvasLayer/background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96770835
+anchor_top = 0.06790123
+anchor_right = 0.96770835
+anchor_bottom = 0.06790123
+offset_right = 50.0
+offset_bottom = 50.0
+texture_normal = ExtResource("15_2wmmq")
+texture_pressed = ExtResource("15_6wuao")
+texture_hover = ExtResource("16_6wuao")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("11_jtq4o")
+metadata/_edit_use_anchors_ = true
+
 [node name="Inventaire" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.04654167
@@ -258,36 +254,34 @@ size_flags_vertical = 4
 [node name="PasserTour" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.896
-anchor_top = 0.88100004
-anchor_right = 0.896
-anchor_bottom = 0.88100004
-offset_left = -155.32007
-offset_top = -93.48004
-offset_right = 156.67993
-offset_bottom = 93.51996
-texture_normal = ExtResource("12_s65m4")
-texture_hover = ExtResource("13_3v7fu")
+offset_left = 1695.0
+offset_top = 849.0
+offset_right = 1815.0
+offset_bottom = 969.0
+texture_normal = ExtResource("10_o4crf")
+texture_pressed = ExtResource("11_n3rgs")
+texture_hover = ExtResource("12_s65m4")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="PasserTour"]
+[node name="Label" type="RichTextLabel" parent="PasserTour"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.586
 anchor_right = 0.5
 anchor_bottom = 0.586
-offset_left = -105.0
-offset_top = -24.582008
-offset_right = 105.0
-offset_bottom = 24.417992
+offset_left = -155.0
+offset_top = 45.399982
+offset_right = 158.0
+offset_bottom = 108.39998
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_o5r0d")
-theme_override_font_sizes/font_size = 27
-text = "Passer Tour"
+theme_override_colors/default_color = Color(0.71600944, 0.6322402, 0.12397011, 1)
+bbcode_enabled = true
+text = "[center][font_size=24]Passer le tour"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InfoPanel" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -328,25 +322,6 @@ offset_top = -357.48004
 offset_right = -1589.7601
 offset_bottom = -357.48004
 
-[node name="settings_button" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.051604167
-anchor_top = 0.22903705
-anchor_right = 0.051604167
-anchor_bottom = 0.22903705
-offset_left = -49.08
-offset_top = -50.360016
-offset_right = 50.92
-offset_bottom = 49.639984
-texture_normal = ExtResource("15_2wmmq")
-texture_pressed = ExtResource("15_6wuao")
-texture_hover = ExtResource("16_6wuao")
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("11_jtq4o")
-metadata/_edit_use_anchors_ = true
-
 [node name="shop_button" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -367,7 +342,7 @@ stretch_mode = 4
 script = ExtResource("11_jtq4o")
 metadata/_edit_use_anchors_ = true
 
+[connection signal="pressed" from="CanvasLayer/background/settings_button" to="CanvasLayer/background/settings_button" method="_on_pressed_pause"]
 [connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
 [connection signal="pressed" from="stats_button" to="." method="_on_btn_graphique_stats_pressed"]
-[connection signal="pressed" from="settings_button" to="settings_button" method="_on_pressed_pause"]
 [connection signal="pressed" from="shop_button" to="shop_button" method="_on_pressed_shop"]

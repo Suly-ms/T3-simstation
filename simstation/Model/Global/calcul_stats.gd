@@ -73,19 +73,22 @@ func _calculer_saison_et_meteo() -> void:
 	
 	match saison_index:
 		0: 
-			new_temp = -2 + (randi() % 8)
-			nom_saison = "Hiver"
+			new_temp = -25 - (randi() % 14)
+			nom_saison = "Été austral"
 		1: 
-			new_temp = 10 + (randi() % 10)
-			nom_saison = "Printemps"
+			new_temp = -40 - (randi() % 16)
+			nom_saison = "Automne austral"
 		2: 
-			new_temp = 22 + (randi() % 10)
-			nom_saison = "Été"
+			new_temp = -60 - (randi() % 16)
+			nom_saison = "Hiver austral"
 		3: 
-			new_temp = 8 + (randi() % 8)
-			nom_saison = "Automne"
+			new_temp = -45 - (randi() % 16)
+			nom_saison = "Printemps austral"
+
+
 			
 	GlobalScript.set_temperature(new_temp)
+	GlobalScript.set_saison(nom_saison)
 	print("Saison: %s | Temp: %d°C" % [nom_saison, new_temp])
 
 func _appliquer_changements_tour() -> void:

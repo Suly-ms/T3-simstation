@@ -53,6 +53,9 @@ func set_recherche_en_cours(nomRecherche, tourfin):
 func set_batiment_debloque(nom: String):
 	Global.info_batiments[nom][4] = true;
 	
+func set_saison(saison : String) :
+	Global.environnement["saison"] = saison
+	
 # ADD
 
 func add_recherche_debloque(recherche_nom):
