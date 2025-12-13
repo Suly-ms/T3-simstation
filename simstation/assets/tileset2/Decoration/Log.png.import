@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xh45ob7yyqc1"
-path="res://.godot/imported/Log.png-1190d61c62a9161fe91d2746ca569f26.ctex"
+path="res://.godot/imported/Log.png-1ecdf3f3d2fdd91eb589b9b7292aaf81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileset2/Decoration/Log.png"
-dest_files=["res://.godot/imported/Log.png-1190d61c62a9161fe91d2746ca569f26.ctex"]
+source_file="res://assets/tileset2/decoration/Log.png"
+dest_files=["res://.godot/imported/Log.png-1ecdf3f3d2fdd91eb589b9b7292aaf81.ctex"]
 
 [params]
 

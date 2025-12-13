@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=18 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
 [ext_resource type="PackedScene" uid="uid://r1h4u5yp1lk2" path="res://View/chart_stats.tscn" id="14_o7jfm"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
+[ext_resource type="Texture2D" uid="uid://cb2x7g83i6jqp" path="res://assets/particles/snow_particle.png" id="15_2wmmq"]
+[ext_resource type="Texture2D" uid="uid://cad24hxpdh1m" path="res://assets/particles/big_snow_particle.png" id="16_goc8r"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -226,6 +228,42 @@ theme_override_fonts/font = ExtResource("3_o5r0d")
 theme_override_font_sizes/font_size = 24
 text = "Boutique"
 script = ExtResource("11_jtq4o")
+
+[node name="SnowParticle" type="CPUParticles2D" parent="CanvasLayer"]
+z_index = -800
+position = Vector2(-250, -2321)
+amount = 500
+texture = ExtResource("15_2wmmq")
+lifetime = 5.0
+preprocess = 5.0
+speed_scale = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(400, 980)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+tangential_accel_min = -900.0
+tangential_accel_max = 900.0
+scale_amount_min = 1.2
+scale_amount_max = 1.6
+
+[node name="SnowParticle2" type="CPUParticles2D" parent="CanvasLayer"]
+z_index = -800
+position = Vector2(-250, -2321)
+amount = 500
+texture = ExtResource("16_goc8r")
+lifetime = 5.0
+preprocess = 5.0
+speed_scale = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(400, 980)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+tangential_accel_min = -900.0
+tangential_accel_max = 900.0
+scale_amount_min = 1.2
+scale_amount_max = 1.6
 
 [node name="Inventaire" type="Control" parent="."]
 anchors_preset = 0
