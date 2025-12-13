@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://djclb5m4lgayv" path="res://Model/camera_2d.gd" id="2_bofkp"]
 [ext_resource type="PackedScene" uid="uid://cnva1t7elyuce" path="res://View/hud.tscn" id="3_bq38n"]
 [ext_resource type="PackedScene" uid="uid://cnd66etwire0l" path="res://View/Map.tscn" id="5_65v2a"]
-[ext_resource type="AudioStream" uid="uid://c7hg2twegk3x0" path="res://assets/sounds/musics/ori_music.mp3" id="5_j27tm"]
+[ext_resource type="AudioStream" uid="uid://c7hg2twegk3x0" path="res://assets/sons/musiques/ori_music.mp3" id="5_j27tm"]
 
 [node name="Play" type="Node2D"]
 script = ExtResource("1_ioox1")
@@ -24,7 +24,6 @@ script = ExtResource("2_bofkp")
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
-process_mode = 3
 stream = ExtResource("5_j27tm")
 autoplay = true
 bus = &"Music"
