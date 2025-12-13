@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 # DESCRIPTION :
 # Script de gestion de l'interface utilisateur (UI) et de la navigation entre les différents menus.

@@ -4,7 +4,7 @@ signal argent_changed(argent)
 
 var tree: SearchTree
 var node_positions = {}
-var current_menu = null 
+var current_menu = null
 
 # Mise en page
 const X_SPACING = 300 # Écarté pour les boutons larges
@@ -32,7 +32,7 @@ func _ready():
 	
 	tree = SearchTree.new()
 
-	var root_infra = tree.create_root("Générateurs Diesel", 1, 5000, 0, "Électricité de base.", "")
+	var root_infra = tree.create_root("Générateurs Diesel", 1, 5000, 0, "Électricité de base.", "salle_sport")
 	var infra_2a = tree.add_child(root_infra, "Isolation Renforcée", 2, 25000, 10, "Protection -50°C.", "")
 	var infra_3a = tree.add_child(infra_2a, "Dortoirs Modulaires", 3, 60000, 20, "Modules chauffés.", "")
 	var infra_2b = tree.add_child(root_infra, "Garage à Chenilles", 2, 45000, 15, "Hangar véhicules.", "")
@@ -110,6 +110,9 @@ func _complete_research(nom_recherche: String):
 	if node:
 		# 2. Appliquer les gains
 		GlobalScript.modifier_argent(GlobalScript.get_argent() + node.money)
+		if(node.batiment_debloque!="") :
+			GlobalScript.set_batiment_debloque(node.batiment_debloque)
+
 		node.debloque = true
 	
 	# 3. Mettre à jour Global
