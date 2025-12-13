@@ -32,21 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_7x7bw")
 
-[node name="Credits_text" type="RichTextLabel" parent="background"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -388.0
-offset_top = 120.0
-offset_right = 388.0
-offset_bottom = 274.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("2_hid40")
-bbcode_enabled = true
-text = "[center][font_size=86]Crédits"
-
 [node name="Exit_button" type="TextureButton" parent="background"]
 layout_mode = 1
 anchors_preset = 1
@@ -100,5 +85,26 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [/center]"
+
+[node name="Credits_text" type="RichTextLabel" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.16389474
+anchor_right = 0.5
+anchor_bottom = 0.16389474
+offset_left = -396.0
+offset_top = -54.006317
+offset_right = 411.75
+offset_bottom = 117.99368
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.5372549, 0.8117647, 0.9411765, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/normal_font = ExtResource("2_hid40")
+bbcode_enabled = true
+text = "[center][font_size=82]CREDITS
+"
+scroll_active = false
 
 [connection signal="pressed" from="background/Exit_button" to="." method="_on_exit_button_pressed"]

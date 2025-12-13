@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c4e02x7hylkmt" path="res://Model/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Texture2D" uid="uid://cl6ubdvrne04k" path="res://assets/menu_pictures/placeholder.jpg" id="2_rtw2f"]
-[ext_resource type="Texture2D" uid="uid://de6nk4m5jdrro" path="res://assets/menu_pictures/logo.png" id="3_oa1go"]
-[ext_resource type="Texture2D" uid="uid://c6vfvajch8lb3" path="res://assets/menu_pictures/button.png" id="4_dq6vp"]
+[ext_resource type="Texture2D" uid="uid://dej4bnfnmi6ug" path="res://assets/menu_pictures/logo.png" id="3_oa1go"]
+[ext_resource type="Texture2D" uid="uid://rar5onkg2hjt" path="res://assets/menu_pictures/button.png" id="4_dq6vp"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="5_jk1qb"]
-[ext_resource type="Texture2D" uid="uid://dkelxgs723wfu" path="res://assets/menu_pictures/button_hover.png" id="5_wntf2"]
-[ext_resource type="AudioStream" uid="uid://i702nadbvxuy" path="res://assets/sons/musiques/dark_souls_main_theme.mp3" id="7_oa1go"]
+[ext_resource type="Texture2D" uid="uid://dhnl88e4uhdrx" path="res://assets/menu_pictures/button_hover.png" id="5_wntf2"]
+[ext_resource type="AudioStream" uid="uid://bk2da0qw33ru3" path="res://assets/sons/musiques/dark_souls_main_theme.mp3" id="7_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0.294118, 0.635294, 0.721569, 0.603922)
@@ -45,16 +45,14 @@ texture = ExtResource("2_rtw2f")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
+anchor_left = 0.45
 anchor_top = 0.531
-anchor_right = 0.5
+anchor_right = 0.55
 anchor_bottom = 0.531
 offset_left = -390.0
 offset_top = -329.48004
 offset_right = 390.0
 offset_bottom = 328.51996
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_06t4h")
 metadata/_edit_use_anchors_ = true
 
@@ -172,7 +170,7 @@ text = "QUITTER"
 metadata/_edit_use_anchors_ = true
 
 [node name="Logo" type="Sprite2D" parent="Panel"]
-position = Vector2(390.99997, -16.000006)
+position = Vector2(482, -16)
 scale = Vector2(7.49356, 6.7221923)
 texture = ExtResource("3_oa1go")
 
