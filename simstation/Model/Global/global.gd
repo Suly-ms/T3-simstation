@@ -52,14 +52,14 @@ var batiments_nombre = {
 
 # [Santé, Bonheur, Description]
 var info_batiments = {
-	"hub": [100, 50, "Hub principal de la station", "Hub"],  # [ Santé, Bonheur, Description, Nom (à afficher) ]
-	"dortoir": [100, 50, "Permet de se reposer tranquillement", "Dortoir"],  
-	"cantine": [80, 70, "Fournit de la nourriture aux habitants", "Cantine"],
-	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques", "Laboratoire de recherche"], 
-	"salle_sport": [70, 85, "Améliore la condition physique des habitants", "Salle de sport"],  
-	"salle_repos": [90, 90, "Endroit calme pour se détendre", "Salle de repos"],    
-	"panneaux_solaires": [90, 90, "Génère de l'électricité avec le Soleil", "Panneau solaire"],   
-	"generateur_petrole": [50, -20, "Génère de l'électricité avec du pétrole", "Générateur de pétrole"] 
+	"hub": [100, 50, "Hub principal de la station", "Hub", true],  # [ Santé, Bonheur, Description, Nom (à afficher), Débloqué ou pas ]
+	"dortoir": [100, 50, "Permet de se reposer tranquillement", "Dortoir", true],  
+	"cantine": [80, 70, "Fournit de la nourriture aux habitants", "Cantine", true],
+	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques", "Laboratoire de recherche", true], 
+	"salle_sport": [70, 85, "Améliore la condition physique des habitants", "Salle de sport", false],  
+	"salle_repos": [90, 90, "Endroit calme pour se détendre", "Salle de repos", true],    
+	"panneaux_solaires": [90, 90, "Génère de l'électricité avec le Soleil", "Panneau solaire", true],   
+	"generateur_petrole": [50, -20, "Génère de l'électricité avec du pétrole", "Générateur de pétrole", true] 
 }
 
 var stats = {

@@ -21,23 +21,25 @@ class NodeData:
 	var children: Array = []
 	var parent: NodeData
 	var cout_science: int
+	var batiment_debloque: String
 
-	func _init(k: String, t: int, gain_s: int, r_cost: int, desc: String):
+	func _init(k: String, t: int, gain_s: int, r_cost: int, desc: String, bat_debloque: String):
 		nom = k
 		money = gain_s
 		tour = t
 		description = desc
 		debloque = false
 		cout_science = r_cost
+		batiment_debloque = bat_debloque
 
 var root: NodeData
 
-func create_root(k: String, t: int, gain_s: int, r_cost: int, desc: String) -> NodeData:
-	root = NodeData.new(k, t, gain_s, r_cost, desc)
+func create_root(k: String, t: int, gain_s: int, r_cost: int, desc: String, bat_debloque: String) -> NodeData:
+	root = NodeData.new(k, t, gain_s, r_cost, desc, bat_debloque)
 	return root
 
-func add_child(parent: NodeData, k: String, t: int, gain_s: int, r_cost: int, desc: String) -> NodeData:
-	var child = NodeData.new(k, t, gain_s, r_cost, desc)
+func add_child(parent: NodeData, k: String, t: int, gain_s: int, r_cost: int, desc: String, bat_debloque: String) -> NodeData:
+	var child = NodeData.new(k, t, gain_s, r_cost, desc, bat_debloque)
 	child.parent = parent
 	parent.children.append(child)
 	return child
