@@ -74,7 +74,10 @@ func _on_buy_button_pressed_panneaux_solaires() -> void:
 
 func _on_buy_button_pressed_generateur_petrole() -> void:
 	acheter_batiment("generateur_petrole")
+	
+func _on_buy_button_pressed_observatoire() -> void:
+	acheter_batiment("observatoire")
+
 
 
 #func afficher_description(nom_batiment):
-	

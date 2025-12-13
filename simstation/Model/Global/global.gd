@@ -18,48 +18,40 @@ var argent = 3000000
 
 # ce que le joueur possède
 var inventaire = {
-	"hub": 1,
+	"labo_recherche": 1, 
 	"dortoir": 0, 
 	"cantine": 1, 
-	"labo_recherche": 1, 
+	"observatoire" : 0,
 	"salle_sport": 0, 
 	"salle_repos": 0, 
-	"panneaux_solaires": 0,
-	"generateur_petrole": 0
 }
 
 var batiments_prix = {
-	"hub": 94837175, 
+	"labo_recherche": 646463, 
 	"dortoir": 54867, 
 	"cantine": 50000, 
-	"labo_recherche": 646463, 
+	"observatoire" : 100000,
 	"salle_sport": 957376, 
 	"salle_repos": 75743, 
-	"panneaux_solaires": 88484,
-	"generateur_petrole": 19999
 }
 
 var batiments_nombre = {
-	"hub": 1,
-	"dortoir": 5, 
-	"cantine": 1, 
-	"labo_recherche": 5, 
-	"salle_sport": 1, 
-	"salle_repos": 1, 
-	"panneaux_solaires": 3,
-	"generateur_petrole": 3
+	"labo_recherche": 0, 
+	"dortoir": 0, 
+	"cantine": 0, 
+	"observatoire" : 0,
+	"salle_sport": 0, 
+	"salle_repos": 0, 
 }
 
 # [Santé, Bonheur, Description]
 var info_batiments = {
-	"hub": [100, 50, "Hub principal de la station", "Hub", true],  # [ Santé, Bonheur, Description, Nom (à afficher), Débloqué ou pas ]
-	"dortoir": [100, 50, "Permet de se reposer tranquillement", "Dortoir", true],  
-	"cantine": [80, 70, "Fournit de la nourriture aux habitants", "Cantine", true],
-	"labo_recherche": [50, 60, "Permet de faire des recherches scientifiques", "Laboratoire de recherche", true], 
-	"salle_sport": [70, 85, "Améliore la condition physique des habitants", "Salle de sport", false],  
-	"salle_repos": [90, 90, "Endroit calme pour se détendre", "Salle de repos", true],    
-	"panneaux_solaires": [90, 90, "Génère de l'électricité avec le Soleil", "Panneau solaire", true],   
-	"generateur_petrole": [50, -20, "Génère de l'électricité avec du pétrole", "Générateur de pétrole", true] 
+	"labo_recherche": [-20, -10, "Permet de faire des recherches scientifiques", "Laboratoire de recherche", true],  # [ Santé, Bonheur, Description, Nom (à afficher), Débloqué ou pas ]>
+	"dortoir": [60, 60, "Permet de se reposer tranquillement", "Dortoir", true],  
+	"cantine": [60, 70, "Fournit de la nourriture aux habitants", "Cantine", true],
+	"observatoire" : [20, 50, "Permet de découvrire de nouvelles étoiles", "Observatoire", true],
+	"salle_sport": [70, 70, "Améliore la condition physique des habitants", "Salle de sport", false],  
+	"salle_repos": [40, 60, "Endroit calme pour se détendre", "Salle de repos", true],    
 }
 
 var stats = {
