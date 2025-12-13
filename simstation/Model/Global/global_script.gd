@@ -50,6 +50,9 @@ func set_temperature(val: int):
 func set_recherche_en_cours(nomRecherche, tourfin):
 	Global.recherche_en_cours[nomRecherche] = tourfin
 	
+func set_batiment_debloque(debloque: bool):
+	pass
+	
 # ADD
 
 func add_recherche_debloque(recherche_nom):

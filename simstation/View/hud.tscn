@@ -14,8 +14,8 @@
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
 [ext_resource type="PackedScene" uid="uid://r1h4u5yp1lk2" path="res://View/chart_stats.tscn" id="14_o7jfm"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
-[ext_resource type="Texture2D" uid="uid://cb2x7g83i6jqp" path="res://assets/particles/snow_particle.png" id="15_2wmmq"]
-[ext_resource type="Texture2D" uid="uid://cad24hxpdh1m" path="res://assets/particles/big_snow_particle.png" id="16_goc8r"]
+[ext_resource type="Texture2D" uid="uid://cxwf1b48xtn2o" path="res://assets/particles/snow_particle.png" id="15_2wmmq"]
+[ext_resource type="Texture2D" uid="uid://cvotmb1sxlf0h" path="res://assets/particles/big_snow_particle.png" id="16_goc8r"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
