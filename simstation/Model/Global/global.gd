@@ -70,7 +70,8 @@ var stats = {
 }
 
 var environnement = {
-	"temperature": -5  # °C
+	"temperature": -25 - (randi() % 14),  # °C
+	"saison": "Été austral"
 }
 
 var tour = 0       # chaque tours 3 mois
