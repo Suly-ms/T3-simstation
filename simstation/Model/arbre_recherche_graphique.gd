@@ -4,7 +4,7 @@ signal argent_changed(argent)
 
 var tree: SearchTree
 var node_positions = {}
-var current_menu = null 
+var current_menu = null
 
 # Mise en page
 const X_SPACING = 300 # Écarté pour les boutons larges
@@ -32,28 +32,28 @@ func _ready():
 	
 	tree = SearchTree.new()
 
-	var root_infra = tree.create_root("Générateurs Diesel", 1, 5000, 0, "Électricité de base.")
-	var infra_2a = tree.add_child(root_infra, "Isolation Renforcée", 2, 25000, 10, "Protection -50°C.")
-	var infra_3a = tree.add_child(infra_2a, "Dortoirs Modulaires", 3, 60000, 20, "Modules chauffés.")
-	var infra_2b = tree.add_child(root_infra, "Garage à Chenilles", 2, 45000, 15, "Hangar véhicules.")
-	var infra_3b = tree.add_child(infra_2b, "Rover d'Exploration", 4, 120000, 40, "Accès zones lointaines.")
-	var infra_final = tree.add_child(infra_3a, "Centrale Géothermique", 12, 2500000, 100, "Énergie illimitée.")
+	var root_infra = tree.create_root("Générateurs Diesel", 1, 5000, 0, "Électricité de base.", "salle_sport")
+	var infra_2a = tree.add_child(root_infra, "Isolation Renforcée", 2, 25000, 10, "Protection -50°C.", "")
+	var infra_3a = tree.add_child(infra_2a, "Dortoirs Modulaires", 3, 60000, 20, "Modules chauffés.", "")
+	var infra_2b = tree.add_child(root_infra, "Garage à Chenilles", 2, 45000, 15, "Hangar véhicules.", "")
+	var infra_3b = tree.add_child(infra_2b, "Rover d'Exploration", 4, 120000, 40, "Accès zones lointaines.", "")
+	var infra_final = tree.add_child(infra_3a, "Centrale Géothermique", 12, 2500000, 100, "Énergie illimitée.", "")
 
-	var root_science = tree.create_root("Labo de Terrain", 1, 10000, 0, "Le début de la recherche.")
+	var root_science = tree.create_root("Labo de Terrain", 1, 10000, 0, "Le début de la recherche.", "")
 	root_science.debloque = true
-	var sci_2 = tree.add_child(root_science, "Forage Superficiel", 2, 35000, 10, "Carottes 0-50m.")
-	var sci_3a = tree.add_child(sci_2, "Labo de Chimie", 3, 80000, 25, "Analyse bulles d'air.")
-	var sci_4a = tree.add_child(sci_3a, "Données Climatiques", 4, 200000, 50, "Reconstitution climat.")
-	var sci_3b = tree.add_child(sci_2, "Cryobiologie", 3, 90000, 30, "Bactéries dormantes.")
-	var sci_4b = tree.add_child(sci_3b, "Séquençage ADN", 6, 500000, 80, "Nouvelles formes de vie.")
-	var sci_final = tree.add_child(sci_4a, "Forage Profond (3km)", 20, 15000000, 200, "Le socle rocheux.")
+	var sci_2 = tree.add_child(root_science, "Forage Superficiel", 2, 35000, 10, "Carottes 0-50m.", "")
+	var sci_3a = tree.add_child(sci_2, "Labo de Chimie", 3, 80000, 25, "Analyse bulles d'air.", "")
+	var sci_4a = tree.add_child(sci_3a, "Données Climatiques", 4, 200000, 50, "Reconstitution climat.", "")
+	var sci_3b = tree.add_child(sci_2, "Cryobiologie", 3, 90000, 30, "Bactéries dormantes.", "")
+	var sci_4b = tree.add_child(sci_3b, "Séquençage ADN", 6, 500000, 80, "Nouvelles formes de vie.", "")
+	var sci_final = tree.add_child(sci_4a, "Forage Profond (3km)", 20, 15000000, 200, "Le socle rocheux.", "")
 
-	var root_comms = tree.create_root("Antenne Radio", 1, 8000, 0, "Lien radio basique.")
+	var root_comms = tree.create_root("Antenne Radio", 1, 8000, 0, "Lien radio basique.", "")
 	root_comms.debloque = true
-	var com_2 = tree.add_child(root_comms, "Lien Satellite", 1, 150000, 20, "Haut débit.")
-	var com_3a = tree.add_child(com_2, "Reportage TV", 2, 500000, 30, "Droits TV.")
-	var com_4a = tree.add_child(com_3a, "Sponsoring Privé", 4, 2000000, 60, "Contrat Red Bull.")
-	var com_3b = tree.add_child(com_2, "Partenariat Univ.", 3, 400000, 40, "Fonds de recherche.")
+	var com_2 = tree.add_child(root_comms, "Lien Satellite", 1, 150000, 20, "Haut débit.", "")
+	var com_3a = tree.add_child(com_2, "Reportage TV", 2, 500000, 30, "Droits TV.", "")
+	var com_4a = tree.add_child(com_3a, "Sponsoring Privé", 4, 2000000, 60, "Contrat Red Bull.", "")
+	var com_3b = tree.add_child(com_2, "Partenariat Univ.", 3, 400000, 40, "Fonds de recherche.", "")
 
 	roots = [root_infra, root_science, root_comms]
 
@@ -110,6 +110,9 @@ func _complete_research(nom_recherche: String):
 	if node:
 		# 2. Appliquer les gains
 		GlobalScript.modifier_argent(GlobalScript.get_argent() + node.money)
+		if(node.batiment_debloque!="") :
+			GlobalScript.set_batiment_debloque(node.batiment_debloque)
+
 		node.debloque = true
 	
 	# 3. Mettre à jour Global

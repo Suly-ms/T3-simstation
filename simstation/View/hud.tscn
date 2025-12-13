@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=27 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
@@ -11,11 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://c7orjokudtall" path="res://assets/bar/efficiency_bar_empty.png" id="9_1cvsb"]
 [ext_resource type="Texture2D" uid="uid://dxoevfrf00nn6" path="res://assets/bar/happiness_bar_empty.png" id="10_0ig0g"]
 [ext_resource type="Script" uid="uid://dfm8a1cu60p68" path="res://Model/button_action.gd" id="11_jtq4o"]
+[ext_resource type="Texture2D" uid="uid://rar5onkg2hjt" path="res://assets/menu_pictures/button.png" id="12_s65m4"]
+[ext_resource type="Texture2D" uid="uid://dhnl88e4uhdrx" path="res://assets/menu_pictures/button_hover.png" id="13_3v7fu"]
 [ext_resource type="Script" uid="uid://bqulw7dgngjad" path="res://Model/InventaireUI.gd" id="13_ew7f8"]
+[ext_resource type="Texture2D" uid="uid://cvwmveht46c2g" path="res://assets/stats_button/stats_button.png" id="13_xp7qj"]
+[ext_resource type="Texture2D" uid="uid://bokftp00logmm" path="res://assets/stats_button/stats_button_click.png" id="14_o4crf"]
 [ext_resource type="PackedScene" uid="uid://r1h4u5yp1lk2" path="res://View/chart_stats.tscn" id="14_o7jfm"]
 [ext_resource type="Script" uid="uid://0h5bj5sdmbnu" path="res://Model/info_panel.gd" id="14_xnmgy"]
-[ext_resource type="Texture2D" uid="uid://cb2x7g83i6jqp" path="res://assets/particles/snow_particle.png" id="15_2wmmq"]
-[ext_resource type="Texture2D" uid="uid://cad24hxpdh1m" path="res://assets/particles/big_snow_particle.png" id="16_goc8r"]
+[ext_resource type="Texture2D" uid="uid://b2hv4nah1swjg" path="res://assets/settings_button/settings_button.png" id="15_2wmmq"]
+[ext_resource type="Texture2D" uid="uid://c20qyppvj4g6y" path="res://assets/settings_button/settings_button_click.png" id="15_6wuao"]
+[ext_resource type="Texture2D" uid="uid://dvbv1mks1v2y" path="res://assets/stats_button/stats_button_hover.png" id="15_o4crf"]
+[ext_resource type="Texture2D" uid="uid://cadr26hddeyr4" path="res://assets/settings_button/settings_button_hover.png" id="16_6wuao"]
+[ext_resource type="Texture2D" uid="uid://bxcl73lq36t0v" path="res://assets/shop_button/shop_button.png" id="18_nlktb"]
+[ext_resource type="Texture2D" uid="uid://5o73o0dy56gu" path="res://assets/shop_button/shop_button_click.png" id="19_vpgw3"]
+[ext_resource type="Texture2D" uid="uid://dayuwe04m84xi" path="res://assets/shop_button/shop_button_hover.png" id="20_xp7qj"]
 
 [sub_resource type="GDScript" id="GDScript_mphia"]
 script/source = "extends RichTextLabel
@@ -215,70 +224,33 @@ bbcode_enabled = true
 text = "[center][font_size=8]Bonheur"
 metadata/_edit_use_anchors_ = true
 
-[node name="shop_button" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.9
-anchor_right = 0.1
-anchor_bottom = 0.9
-offset_top = -54.0
-offset_right = 156.0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_o5r0d")
-theme_override_font_sizes/font_size = 24
-text = "Boutique"
-script = ExtResource("11_jtq4o")
-
-[node name="SnowParticle" type="CPUParticles2D" parent="CanvasLayer"]
-z_index = -800
-position = Vector2(-250, -2321)
-amount = 500
-texture = ExtResource("15_2wmmq")
-lifetime = 5.0
-preprocess = 5.0
-speed_scale = 0.5
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(400, 980)
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-tangential_accel_min = -900.0
-tangential_accel_max = 900.0
-scale_amount_min = 1.2
-scale_amount_max = 1.6
-
-[node name="SnowParticle2" type="CPUParticles2D" parent="CanvasLayer"]
-z_index = -800
-position = Vector2(-250, -2321)
-amount = 500
-texture = ExtResource("16_goc8r")
-lifetime = 5.0
-preprocess = 5.0
-speed_scale = 0.5
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(400, 980)
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-tangential_accel_min = -900.0
-tangential_accel_max = 900.0
-scale_amount_min = 1.2
-scale_amount_max = 1.6
-
 [node name="Inventaire" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 61.0
-offset_top = 243.0
-offset_right = 189.0
-offset_bottom = 795.0
+layout_mode = 1
+anchor_left = 0.04654167
+anchor_top = 0.587963
+anchor_right = 0.04654167
+anchor_bottom = 0.587963
+offset_left = -63.36
+offset_top = -276.0
+offset_right = 64.64
+offset_bottom = 276.0
+grow_vertical = 2
 script = ExtResource("13_ew7f8")
+metadata/_edit_use_anchors_ = true
 
 [node name="ScrollInventaire" type="ScrollContainer" parent="Inventaire"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 58.0
-offset_right = 141.0
-offset_bottom = 610.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -276.0
+offset_right = 64.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginInventaire" type="MarginContainer" parent="Inventaire/ScrollInventaire"]
 layout_mode = 2
@@ -287,13 +259,39 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="PasserTour" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1655.0
-offset_top = 926.0
-offset_right = 1843.0
-offset_bottom = 1022.0
-text = "Passer tour"
+[node name="PasserTour" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.896
+anchor_top = 0.88100004
+anchor_right = 0.896
+anchor_bottom = 0.88100004
+offset_left = -155.32007
+offset_top = -93.48004
+offset_right = 156.67993
+offset_bottom = 93.51996
+texture_normal = ExtResource("12_s65m4")
+texture_hover = ExtResource("13_3v7fu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PasserTour"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.586
+anchor_right = 0.5
+anchor_bottom = 0.586
+offset_left = -105.0
+offset_top = -24.582008
+offset_right = 105.0
+offset_bottom = 24.417992
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o5r0d")
+theme_override_font_sizes/font_size = 27
+text = "Passer Tour"
 
 [node name="InfoPanel" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -303,18 +301,77 @@ offset_right = 1655.0
 offset_bottom = 441.0
 script = ExtResource("14_xnmgy")
 
-[node name="BtnGraphiqueStats" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1676.0
-offset_top = 198.0
-offset_right = 1878.0
-offset_bottom = 304.0
-text = "Graphique
-stats"
+[node name="stats_button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9335209
+anchor_top = 0.2288889
+anchor_right = 0.9335209
+anchor_bottom = 0.2288889
+offset_left = -50.360107
+offset_top = -50.200012
+offset_right = 49.639893
+offset_bottom = 49.799988
+texture_normal = ExtResource("13_xp7qj")
+texture_pressed = ExtResource("14_o4crf")
+texture_hover = ExtResource("15_o4crf")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="ChartStats" parent="." instance=ExtResource("14_o7jfm")]
-layout_mode = 0
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82800007
+anchor_top = 0.33100003
+anchor_right = 0.82800007
+anchor_bottom = 0.33100003
+offset_left = -1589.7601
+offset_top = -357.48004
+offset_right = -1589.7601
+offset_bottom = -357.48004
 
-[connection signal="pressed" from="CanvasLayer/shop_button" to="CanvasLayer/shop_button" method="_on_pressed_shop"]
+[node name="settings_button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051604167
+anchor_top = 0.22903705
+anchor_right = 0.051604167
+anchor_bottom = 0.22903705
+offset_left = -49.08
+offset_top = -50.360016
+offset_right = 50.92
+offset_bottom = 49.639984
+texture_normal = ExtResource("15_2wmmq")
+texture_pressed = ExtResource("15_6wuao")
+texture_hover = ExtResource("16_6wuao")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("11_jtq4o")
+metadata/_edit_use_anchors_ = true
+
+[node name="shop_button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051958337
+anchor_top = 0.9133334
+anchor_right = 0.051958337
+anchor_bottom = 0.9133334
+offset_left = -49.76001
+offset_top = -50.400085
+offset_right = 50.23999
+offset_bottom = 49.599915
+grow_vertical = 0
+texture_normal = ExtResource("18_nlktb")
+texture_pressed = ExtResource("19_vpgw3")
+texture_hover = ExtResource("20_xp7qj")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("11_jtq4o")
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
-[connection signal="pressed" from="BtnGraphiqueStats" to="." method="_on_btn_graphique_stats_pressed"]
+[connection signal="pressed" from="stats_button" to="." method="_on_btn_graphique_stats_pressed"]
+[connection signal="pressed" from="settings_button" to="settings_button" method="_on_pressed_pause"]
+[connection signal="pressed" from="shop_button" to="shop_button" method="_on_pressed_shop"]
