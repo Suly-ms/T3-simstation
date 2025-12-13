@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=16 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
 [ext_resource type="FontFile" uid="uid://cpy65047eb1jb" path="res://font/Minecraftia-Regular.ttf" id="3_o5r0d"]
-[ext_resource type="Script" uid="uid://ibdx6nkw1dxg" path="res://Model/HUD/resize_control.gd" id="4_hc4cx"]
 [ext_resource type="Texture2D" uid="uid://b5htmoxepvs57" path="res://assets/bar/health_bar_empty.png" id="6_nmx3l"]
 [ext_resource type="Texture2D" uid="uid://e14rlujxv2r6" path="res://assets/bar/filled_bar.png" id="7_s7bk8"]
 [ext_resource type="Script" uid="uid://blpgf8txxyl8p" path="res://Model/crop_bar.gd" id="8_fj0si"]
@@ -69,7 +68,6 @@ offset_bottom = 51.199997
 theme_override_fonts/normal_font = ExtResource("3_o5r0d")
 bbcode_enabled = true
 text = "[center][font_size=24]Mois 0"
-script = ExtResource("4_hc4cx")
 
 [node name="argent" type="RichTextLabel" parent="CanvasLayer/background"]
 layout_mode = 1
