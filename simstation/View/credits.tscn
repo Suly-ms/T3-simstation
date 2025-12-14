@@ -55,9 +55,9 @@ anchor_top = 0.31300002
 anchor_right = 0.97800004
 anchor_bottom = 0.851
 offset_left = -0.4850006
-offset_top = 35.95996
+offset_top = 32.95996
 offset_right = -126.390015
-offset_bottom = -26.080017
+offset_bottom = 9.719971
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/outline_size = 5
@@ -66,25 +66,49 @@ theme_override_fonts/bold_font = ExtResource("2_hid40")
 theme_override_font_sizes/normal_font_size = 26
 theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
-text = "[center][b][color=#89CFF0]L'équipe Antarctic Arts[/color][/b]
-
-Emre SEN
+text = "[center][font_size=56][b][color=#89CFF0]L'équipe Antarctic Arts[/color][/b][/font_size][font_size=42]
+[color=#e6c321]Emre SEN
 Fabio GIORGI-PANAZZOLO
-Martin SCHNEIDER-SYLVESTRE
 Josué MARTIN
+Martin SCHNEIDER-SYLVESTRE
+[/color][/font_size]
 
-
-
-[color=#89CFF0][b]Attribution et Licence du Logiciel (MIT)[/b][/color] 
+[font_size=56][color=#89CFF0][b]Attribution et Licence du Logiciel (MIT)[/b][/color][font_size=24]
 
 Copyright (c) 2025 Antarctic Arts
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted,
+free of charge,
+to any person obtaining a copy
+of this software and associated
+documentation files (the \"Software\"),
+to deal in the Software without restriction,
+including without limitation the rights to use,
+copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software
+is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice
+and this permission notice
+shall be included in all copies
+or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-[/center]"
+THE SOFTWARE IS PROVIDED \"AS IS\",
+WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO
+THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE
+AND NON INFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 
 [node name="Credits_text" type="RichTextLabel" parent="background"]
 layout_mode = 1
@@ -107,4 +131,5 @@ text = "[center][font_size=82]CREDITS
 "
 scroll_active = false
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="background/Exit_button" to="." method="_on_exit_button_pressed"]
