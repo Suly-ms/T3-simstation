@@ -1,12 +1,13 @@
 extends Control
 
-@onready var argent_label = $CanvasLayer/background/argent
-@onready var date_label = $CanvasLayer/background/mois
-@onready var temperature_label = $CanvasLayer/background/temperature
-@onready var saison_label = $CanvasLayer/background/saison
+@onready var argent_label = $CanvasLayer/BorderContainer/background/argent
+@onready var date_label = $CanvasLayer/BorderContainer/background/mois
+@onready var temperature_label = $CanvasLayer/BorderContainer/background/temperature
+@onready var saison_label = $CanvasLayer/BorderContainer/background/saison
+@onready var chart_stats = $CanvasLayer/BorderContainer/ChartStats
 
 func _ready():
-	$ChartStats.hide()
+	chart_stats.hide()
 	GlobalScript.connect("argent_changed", Callable(self, "_on_argent_changed"))
 	GlobalScript.connect("tour_change", Callable(self, "_maj_saison"))
 	GlobalScript.connect("tour_change", Callable(self, "_maj_mois"))
@@ -35,5 +36,5 @@ func _on_passer_tour_pressed():
 	GlobalScript.emit_signal("tour_change")
 
 func _on_btn_graphique_stats_pressed() -> void:
-	$ChartStats.show()
+	chart_stats.show()
 	#GameManager.load_scene("res://View/chart_stats.tscn", "CharStats")

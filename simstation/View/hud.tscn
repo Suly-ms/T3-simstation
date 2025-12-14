@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cnva1t7elyuce"]
+[gd_scene load_steps=28 format=3 uid="uid://cnva1t7elyuce"]
 
 [ext_resource type="Theme" uid="uid://jn71302gkvqy" path="res://hud_theme.tres" id="1_pil5s"]
 [ext_resource type="Script" uid="uid://biwrxmh77pnjx" path="res://Model/hud.gd" id="2_ugs5p"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://b07uv5qepy2li" path="res://assets/shop_button/shop_button_hover.png" id="20_xp7qj"]
 [ext_resource type="Texture2D" uid="uid://cxwf1b48xtn2o" path="res://assets/particles/snow_particle.png" id="25_3v7fu"]
 [ext_resource type="Texture2D" uid="uid://cvotmb1sxlf0h" path="res://assets/particles/big_snow_particle.png" id="26_bljva"]
+[ext_resource type="Texture2D" uid="uid://dcrgxsquua5l7" path="res://assets/background.png" id="27_bljva"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -34,227 +35,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_pil5s")
 script = ExtResource("2_ugs5p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="background" type="Panel" parent="CanvasLayer"]
-anchors_preset = -1
+[node name="BorderContainer" type="Control" parent="CanvasLayer"]
+z_index = -4000
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.15
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="saison" type="RichTextLabel" parent="CanvasLayer/background"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 20.0
-offset_right = 335.0
-offset_bottom = 121.6
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=24
-]Printemps austral"
-
-[node name="mois" type="RichTextLabel" parent="CanvasLayer/background"]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 62.0
-offset_right = 331.0
-offset_bottom = 131.6
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=24]Mois 0"
-
-[node name="argent" type="RichTextLabel" parent="CanvasLayer/background"]
+[node name="TopBorder" type="TextureRect" parent="CanvasLayer/BorderContainer"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.97
-anchor_top = 0.2
-anchor_right = 0.97
-anchor_bottom = 0.2
-offset_left = -324.40002
-offset_top = 23.599998
-offset_right = -40.400024
-offset_bottom = 76.6
-grow_horizontal = 0
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[right][font_size=32]1 000 000 €"
-scroll_active = false
-
-[node name="temperature" type="RichTextLabel" parent="CanvasLayer/background"]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 107.0
-offset_right = 288.3
-offset_bottom = 166.6
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=24]24 C°"
-
-[node name="state_bar" type="HBoxContainer" parent="CanvasLayer/background"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -667.5
-offset_right = 667.5
-offset_bottom = 133.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(321.1875, 92.625)
-scale = Vector2(2.875, 2.875)
-texture = ExtResource("6_nmx3l")
-region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
-
-[node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
-position = Vector2(-29.231003, -27.259998)
-texture = ExtResource("7_s7bk8")
-centered = false
-region_enabled = true
-region_rect = Rect2(33.999, 45.353, 83.872, 54.51)
-script = ExtResource("8_fj0si")
-
-[node name="Health_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HealthBarEmpty"]
-anchors_preset = -1
-anchor_left = 0.6
-anchor_top = 1.0
-anchor_right = 0.6
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -95.9728
-offset_top = -48.7826
-offset_right = -13.027275
-offset_bottom = -27.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=8]Santé"
-metadata/_edit_use_anchors_ = true
+grow_vertical = 2
+texture = ExtResource("27_bljva")
 
-[node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(661.1875, 92.625)
-scale = Vector2(2.875, 2.875)
-texture = ExtResource("9_1cvsb")
-region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
-
-[node name="FilledBarEfficiency" type="Sprite2D" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
-position = Vector2(-29.231, -27.26)
-texture = ExtResource("7_s7bk8")
-centered = false
-region_enabled = true
-region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
-script = ExtResource("8_fj0si")
-
-[node name="Efficiency_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/EfficiencyBarEmpty"]
-anchors_preset = -1
-anchor_left = 0.6
-anchor_top = 1.0
-anchor_right = 0.6
-anchor_bottom = 1.0
-offset_left = -95.9728
-offset_top = -48.7826
-offset_right = -13.0272
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=8]Efficacité"
-metadata/_edit_use_anchors_ = true
-
-[node name="HappinessBarEmpty" type="Sprite2D" parent="CanvasLayer/background/state_bar"]
-position = Vector2(1001.1875, 92.625)
-scale = Vector2(2.875, 2.875)
-texture = ExtResource("10_0ig0g")
-region_enabled = true
-region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
-
-[node name="FilledBarHappiness" type="Sprite2D" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
-position = Vector2(-29.231, -27.26)
-texture = ExtResource("7_s7bk8")
-centered = false
-region_enabled = true
-region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
-script = ExtResource("8_fj0si")
-
-[node name="Happiness_text" type="RichTextLabel" parent="CanvasLayer/background/state_bar/HappinessBarEmpty"]
-anchors_preset = -1
-anchor_left = 0.6
-anchor_top = 1.0
-anchor_right = 0.6
-anchor_bottom = 1.0
-offset_left = -95.9728
-offset_top = -48.7826
-offset_right = -13.0272
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("3_o5r0d")
-bbcode_enabled = true
-text = "[center][font_size=8]Bonheur"
-metadata/_edit_use_anchors_ = true
-
-[node name="settings_button" type="TextureButton" parent="CanvasLayer/background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.96770835
-anchor_top = 0.06790123
-anchor_right = 0.96770835
-anchor_bottom = 0.06790123
-offset_right = 50.0
-offset_bottom = 50.0
-texture_normal = ExtResource("15_2wmmq")
-texture_pressed = ExtResource("15_6wuao")
-texture_hover = ExtResource("16_6wuao")
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("11_jtq4o")
-metadata/_edit_use_anchors_ = true
-
-[node name="SnowParticle" type="CPUParticles2D" parent="CanvasLayer"]
-z_index = -800
-position = Vector2(-250, -2321)
-amount = 500
-texture = ExtResource("25_3v7fu")
-lifetime = 5.0
-preprocess = 5.0
-speed_scale = 0.5
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(400, 980)
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-tangential_accel_min = -900.0
-tangential_accel_max = 900.0
-scale_amount_min = 1.2
-scale_amount_max = 1.6
-
-[node name="SnowParticle2" type="CPUParticles2D" parent="CanvasLayer"]
-z_index = -800
-position = Vector2(-250, -2321)
-amount = 500
-texture = ExtResource("26_bljva")
-lifetime = 5.0
-preprocess = 5.0
-speed_scale = 0.5
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(400, 980)
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-tangential_accel_min = -900.0
-tangential_accel_max = 900.0
-scale_amount_min = 1.2
-scale_amount_max = 1.6
-
-[node name="Inventaire" type="Control" parent="."]
+[node name="Inventaire" type="Control" parent="CanvasLayer/BorderContainer"]
 layout_mode = 1
 anchor_left = 0.04654167
 anchor_top = 0.587963
@@ -266,23 +72,22 @@ offset_right = 64.64
 offset_bottom = 276.0
 grow_vertical = 2
 script = ExtResource("13_ew7f8")
-metadata/_edit_use_anchors_ = true
 
-[node name="ScrollInventaire" type="ScrollContainer" parent="Inventaire"]
+[node name="ScrollInventaire" type="ScrollContainer" parent="CanvasLayer/BorderContainer/Inventaire"]
 layout_mode = 0
 offset_left = 30.0
 offset_top = -128.0
 offset_right = 158.0
 offset_bottom = 500.0
 
-[node name="MarginInventaire" type="MarginContainer" parent="Inventaire/ScrollInventaire"]
+[node name="MarginInventaire" type="MarginContainer" parent="CanvasLayer/BorderContainer/Inventaire/ScrollInventaire"]
 layout_mode = 2
 
-[node name="GridInventaire" type="GridContainer" parent="Inventaire/ScrollInventaire/MarginInventaire"]
+[node name="GridInventaire" type="GridContainer" parent="CanvasLayer/BorderContainer/Inventaire/ScrollInventaire/MarginInventaire"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="PasserTour" type="TextureButton" parent="."]
+[node name="PasserTour" type="TextureButton" parent="CanvasLayer/BorderContainer"]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 1695.0
@@ -295,7 +100,7 @@ texture_hover = ExtResource("12_s65m4")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="RichTextLabel" parent="PasserTour"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/BorderContainer/PasserTour"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -314,7 +119,7 @@ text = "[center][font_size=24]Passer le tour"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InfoPanel" type="PanelContainer" parent="."]
+[node name="InfoPanel" type="PanelContainer" parent="CanvasLayer/BorderContainer"]
 layout_mode = 0
 offset_left = 1547.0
 offset_top = 342.0
@@ -322,7 +127,7 @@ offset_right = 1655.0
 offset_bottom = 441.0
 script = ExtResource("14_xnmgy")
 
-[node name="stats_button" type="TextureButton" parent="."]
+[node name="stats_button" type="TextureButton" parent="CanvasLayer/BorderContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.9335209
@@ -340,7 +145,7 @@ ignore_texture_size = true
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="ChartStats" parent="." instance=ExtResource("14_o7jfm")]
+[node name="ChartStats" parent="CanvasLayer/BorderContainer" instance=ExtResource("14_o7jfm")]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -353,7 +158,7 @@ offset_top = -357.48004
 offset_right = -1589.7601
 offset_bottom = -357.48004
 
-[node name="shop_button" type="TextureButton" parent="."]
+[node name="shop_button" type="TextureButton" parent="CanvasLayer/BorderContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.051958337
@@ -373,7 +178,228 @@ stretch_mode = 4
 script = ExtResource("11_jtq4o")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="CanvasLayer/background/settings_button" to="CanvasLayer/background/settings_button" method="_on_pressed_pause"]
-[connection signal="pressed" from="PasserTour" to="." method="_on_passer_tour_pressed"]
-[connection signal="pressed" from="stats_button" to="." method="_on_btn_graphique_stats_pressed"]
-[connection signal="pressed" from="shop_button" to="shop_button" method="_on_pressed_shop"]
+[node name="background" type="Panel" parent="CanvasLayer/BorderContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.15
+offset_left = 15.0
+offset_top = 16.0
+offset_right = -15.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="saison" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 12.0
+offset_right = 335.0
+offset_bottom = 113.6
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=24
+]Printemps austral"
+
+[node name="mois" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 54.0
+offset_right = 331.0
+offset_bottom = 123.600006
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=24]Mois 0"
+
+[node name="argent" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.97
+anchor_top = 0.2
+anchor_right = 0.97
+anchor_bottom = 0.2
+offset_left = -338.40002
+offset_top = 13.600002
+offset_right = -54.400024
+offset_bottom = 66.600006
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[right][font_size=32]1 000 000 €"
+scroll_active = false
+
+[node name="temperature" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background"]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 99.0
+offset_right = 288.3
+offset_bottom = 158.6
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=24]24 C°"
+
+[node name="state_bar" type="HBoxContainer" parent="CanvasLayer/BorderContainer/background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -667.5
+offset_right = 667.5
+offset_bottom = 133.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HealthBarEmpty" type="Sprite2D" parent="CanvasLayer/BorderContainer/background/state_bar"]
+position = Vector2(321.1875, 81.625)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("6_nmx3l")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarHealth" type="Sprite2D" parent="CanvasLayer/BorderContainer/background/state_bar/HealthBarEmpty"]
+position = Vector2(-29.231003, -27.259998)
+texture = ExtResource("7_s7bk8")
+centered = false
+region_enabled = true
+region_rect = Rect2(33.999, 45.353, 83.872, 54.51)
+script = ExtResource("8_fj0si")
+
+[node name="Health_text" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background/state_bar/HealthBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.027275
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=8]Santé"
+metadata/_edit_use_anchors_ = true
+
+[node name="EfficiencyBarEmpty" type="Sprite2D" parent="CanvasLayer/BorderContainer/background/state_bar"]
+position = Vector2(661.1875, 81.625)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("9_1cvsb")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarEfficiency" type="Sprite2D" parent="CanvasLayer/BorderContainer/background/state_bar/EfficiencyBarEmpty"]
+position = Vector2(-29.231, -27.26)
+texture = ExtResource("7_s7bk8")
+centered = false
+region_enabled = true
+region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
+script = ExtResource("8_fj0si")
+
+[node name="Efficiency_text" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background/state_bar/EfficiencyBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.0272
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=8]Efficacité"
+metadata/_edit_use_anchors_ = true
+
+[node name="HappinessBarEmpty" type="Sprite2D" parent="CanvasLayer/BorderContainer/background/state_bar"]
+position = Vector2(1001.1875, 81.625)
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("10_0ig0g")
+region_enabled = true
+region_rect = Rect2(8.589, 45.353, 109.282, 54.51)
+
+[node name="FilledBarHappiness" type="Sprite2D" parent="CanvasLayer/BorderContainer/background/state_bar/HappinessBarEmpty"]
+position = Vector2(-29.231, -27.26)
+texture = ExtResource("7_s7bk8")
+centered = false
+region_enabled = true
+region_rect = Rect2(33.9985, 45.353, 83.8725, 54.51)
+script = ExtResource("8_fj0si")
+
+[node name="Happiness_text" type="RichTextLabel" parent="CanvasLayer/BorderContainer/background/state_bar/HappinessBarEmpty"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -95.9728
+offset_top = -48.7826
+offset_right = -13.0272
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_o5r0d")
+bbcode_enabled = true
+text = "[center][font_size=8]Bonheur"
+metadata/_edit_use_anchors_ = true
+
+[node name="settings_button" type="TextureButton" parent="CanvasLayer/BorderContainer/background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9692956
+anchor_top = 0.04662464
+anchor_right = 0.9692956
+anchor_bottom = 0.04662464
+offset_right = 50.0
+offset_bottom = 50.0
+texture_normal = ExtResource("15_2wmmq")
+texture_pressed = ExtResource("15_6wuao")
+texture_hover = ExtResource("16_6wuao")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("11_jtq4o")
+metadata/_edit_use_anchors_ = true
+
+[node name="SnowParticle" type="CPUParticles2D" parent="CanvasLayer"]
+z_index = -4096
+position = Vector2(-250, -2321)
+amount = 500
+texture = ExtResource("25_3v7fu")
+lifetime = 5.0
+preprocess = 5.0
+speed_scale = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(400, 980)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+tangential_accel_min = -900.0
+tangential_accel_max = 900.0
+scale_amount_min = 1.2
+scale_amount_max = 1.6
+
+[node name="SnowParticle2" type="CPUParticles2D" parent="CanvasLayer"]
+z_index = -4096
+position = Vector2(-250, -2321)
+amount = 500
+texture = ExtResource("26_bljva")
+lifetime = 5.0
+preprocess = 5.0
+speed_scale = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(400, 980)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+tangential_accel_min = -900.0
+tangential_accel_max = 900.0
+scale_amount_min = 1.2
+scale_amount_max = 1.6
+
+[connection signal="pressed" from="CanvasLayer/BorderContainer/PasserTour" to="." method="_on_passer_tour_pressed"]
+[connection signal="pressed" from="CanvasLayer/BorderContainer/stats_button" to="." method="_on_btn_graphique_stats_pressed"]
+[connection signal="pressed" from="CanvasLayer/BorderContainer/shop_button" to="CanvasLayer/BorderContainer/shop_button" method="_on_pressed_shop"]
+[connection signal="pressed" from="CanvasLayer/BorderContainer/background/settings_button" to="CanvasLayer/BorderContainer/background/settings_button" method="_on_pressed_pause"]
