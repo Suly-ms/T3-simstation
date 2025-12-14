@@ -13,7 +13,7 @@ config_version=5
 config/name="SimStation"
 run/main_scene="uid://byhx4nqhp22jo"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://jxmc7jawk5jx"
 
 [autoload]
 
